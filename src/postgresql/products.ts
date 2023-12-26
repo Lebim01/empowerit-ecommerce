@@ -5,6 +5,7 @@ import { sql } from "@vercel/postgres";
 import dbClient, { json } from "./db";
 import { productShopifyToStore } from "@/adapters/product";
 import { ColumnDefinitionBuilder } from "kysely";
+import { ProductStore } from "@/types/store";
 
 const defaultNull = (col: ColumnDefinitionBuilder) => col.defaultTo(null);
 const defaultEmptyString = (col: ColumnDefinitionBuilder) => col.defaultTo("");
@@ -80,6 +81,24 @@ export const createTable = async () => {
     .execute();
 };
 
+const convertToPSQL = (processedProduct: ProductStore) => ({
+  ...processedProduct,
+  can_review: processedProduct.can_review ? 1 : 0,
+  attributes: json(processedProduct.attributes),
+  product_galleries: json(processedProduct.product_galleries),
+  cross_sell_products: json(processedProduct.cross_sell_products),
+  variations: json(processedProduct.variations),
+  categories: json(processedProduct.categories),
+  tags: json(processedProduct.tags),
+  tax: processedProduct.tax ? json(processedProduct.tax) : null,
+  store: json(processedProduct.store),
+  related_products: json(processedProduct.related_products),
+  reviews: json(processedProduct.reviews),
+  product_meta_image: json(processedProduct.product_meta_image),
+  product_thumbnail: json(processedProduct.product_thumbnail),
+  review_ratings: json(processedProduct.review_ratings),
+});
+
 export const getProduct = async (id: number) => {
   const res = await dbClient
     .selectFrom("products")
@@ -92,23 +111,7 @@ export const insertNewProduct = async (product: ShopifyProduct) => {
   const processedProduct = productShopifyToStore(product);
   const res = await dbClient
     .insertInto("products")
-    .values({
-      ...processedProduct,
-      can_review: processedProduct.can_review ? 1 : 0,
-      attributes: json(processedProduct.attributes),
-      product_galleries: json(processedProduct.product_galleries),
-      cross_sell_products: json(processedProduct.cross_sell_products),
-      variations: json(processedProduct.variations),
-      categories: json(processedProduct.categories),
-      tags: json(processedProduct.tags),
-      tax: processedProduct.tax ? json(processedProduct.tax) : null,
-      store: json(processedProduct.store),
-      related_products: json(processedProduct.related_products),
-      reviews: json(processedProduct.reviews),
-      product_meta_image: json(processedProduct.product_meta_image),
-      product_thumbnail: json(processedProduct.product_thumbnail),
-      review_ratings: json(processedProduct.review_ratings),
-    })
+    .values(convertToPSQL(processedProduct))
     .execute();
   console.log(res);
   return res;
@@ -116,11 +119,12 @@ export const insertNewProduct = async (product: ShopifyProduct) => {
 
 export const updateProduct = async (product: ShopifyProduct) => {
   const id = product.id;
-  const { rows, fields } = await sql`
-    UPDATE products 
-    SET
-
-    WHERE id = ${id}`;
-  if (rows.length > 0) return rows[0];
-  return null;
+  const processedProduct = productShopifyToStore(product);
+  const res = await dbClient
+    .updateTable("products")
+    .set(convertToPSQL(processedProduct))
+    .where("products.id", "=", id)
+    .executeTakeFirst();
+  console.log(res);
+  return res;
 };
