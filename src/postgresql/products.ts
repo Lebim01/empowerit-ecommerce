@@ -62,6 +62,7 @@ export const createTable = async () => {
     .addColumn("slug", "varchar(255)", defaultEmptyString)
     .addColumn("social_share", "int2", (col) => col.defaultTo(1))
     .addColumn("store", "jsonb")
+    .addColumn("attributes", "jsonb", defaultEmptyArray)
     .addColumn("store_id", "int2", (col) => col.defaultTo(1))
     .addColumn("tags", "jsonb", defaultEmptyArray)
     .addColumn("tax", "jsonb", defaultNull)
