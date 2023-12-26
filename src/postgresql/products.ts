@@ -2,7 +2,7 @@ import { ShopifyProduct } from "@/types/shopify";
 
 import { sql } from "@vercel/postgres";
 
-import dbClient from "./db";
+import dbClient, { json } from "./db";
 import { productShopifyToStore } from "@/adapters/product";
 import { ColumnDefinitionBuilder } from "kysely";
 
@@ -18,19 +18,14 @@ export const createTable = async () => {
     .addColumn("name", "varchar(255)")
     .addColumn("description", "text")
     .addColumn("status", "int2", (col) => col.defaultTo(1))
-    .addColumn("product_galleries", "jsonb")
     .addColumn("stock_status", "varchar(20)")
     .addColumn("unit", "varchar(20)")
-    .addColumn("product_meta_image", "jsonb")
-    .addColumn("product_thumbnail", "jsonb")
     .addColumn("can_review", "int2", (col) => col.defaultTo(1))
     .addColumn("product_thumbnail_id", "integer", (col) => col.defaultTo(1))
     .addColumn("quantity", "integer", (col) => col.defaultTo(0))
     .addColumn("rating_count", "integer", (col) => col.defaultTo(5))
-    .addColumn("related_products", "jsonb", defaultEmptyArray)
     .addColumn("return_policy_text", "text", defaultEmptyString)
     .addColumn("review_ratings", "integer", (col) => col.defaultTo(5))
-    .addColumn("reviews", "jsonb", defaultEmptyArray)
     .addColumn("reviews_count", "integer", (col) => col.defaultTo(0))
     .addColumn("safe_checkout", "int2", (col) => col.defaultTo(1))
     .addColumn("sale_expired_at", "date", defaultNull)
@@ -45,19 +40,12 @@ export const createTable = async () => {
     .addColumn("sku", "varchar(100)", defaultEmptyString)
     .addColumn("slug", "varchar(255)", defaultEmptyString)
     .addColumn("social_share", "int2", (col) => col.defaultTo(1))
-    .addColumn("store", "jsonb")
-    .addColumn("attributes", "jsonb", defaultEmptyArray)
     .addColumn("store_id", "int2", (col) => col.defaultTo(1))
-    .addColumn("tags", "jsonb", defaultEmptyArray)
-    .addColumn("tax", "jsonb", defaultNull)
     .addColumn("tax_id", "integer", defaultNull)
     .addColumn("type", "varchar(255)")
-    .addColumn("variations", "jsonb", defaultEmptyArray)
-    .addColumn("categories", "jsonb", defaultEmptyArray)
     .addColumn("weight", "decimal", defaultNull)
     .addColumn("created_at", "date")
     .addColumn("updated_at", "date")
-    .addColumn("cross_sell_products", "jsonb", defaultEmptyArray)
     .addColumn("created_by_id", "varchar(2)")
     .addColumn("deleted_at", "date")
     .addColumn("discount", "decimal")
@@ -77,6 +65,18 @@ export const createTable = async () => {
     .addColumn("order_amount", "integer")
     .addColumn("orders_count", "integer")
     .addColumn("product_meta_image_id", "varchar(10)")
+    .addColumn("product_galleries", "jsonb")
+    .addColumn("cross_sell_products", "jsonb", defaultEmptyArray)
+    .addColumn("variations", "jsonb", defaultEmptyArray)
+    .addColumn("categories", "jsonb", defaultEmptyArray)
+    .addColumn("tags", "jsonb", defaultEmptyArray)
+    .addColumn("tax", "jsonb", defaultNull)
+    .addColumn("store", "jsonb")
+    .addColumn("attributes", "jsonb", defaultEmptyArray)
+    .addColumn("related_products", "jsonb", defaultEmptyArray)
+    .addColumn("reviews", "jsonb", defaultEmptyArray)
+    .addColumn("product_meta_image", "jsonb")
+    .addColumn("product_thumbnail", "jsonb")
     .execute();
 };
 
@@ -90,10 +90,23 @@ export const getProduct = async (id: number) => {
 
 export const insertNewProduct = async (product: ShopifyProduct) => {
   const processedProduct = productShopifyToStore(product);
-  console.log(processedProduct);
   const res = await dbClient
     .insertInto("products")
-    .values(processedProduct)
+    .values({
+      ...processedProduct,
+      attributes: json(processedProduct.attributes),
+      product_galleries: json(processedProduct.product_galleries),
+      cross_sell_products: json(processedProduct.cross_sell_products),
+      variations: json(processedProduct.variations),
+      categories: json(processedProduct.categories),
+      tags: json(processedProduct.tags),
+      tax: processedProduct.tax ? json(processedProduct.tax) : null,
+      store: json(processedProduct.store),
+      related_products: json(processedProduct.related_products),
+      reviews: json(processedProduct.reviews),
+      product_meta_image: json(processedProduct.product_meta_image),
+      product_thumbnail: json(processedProduct.product_thumbnail),
+    })
     .execute();
   console.log(res);
   return res;
