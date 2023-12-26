@@ -9,6 +9,9 @@ export const getProduct = async (id: number) => {
 
 export const insertNewProduct = async (product: ShopifyProduct) => {
   const status = product.status == "active" ? 1 : 0;
+  console.log(`
+  INSERT INTO products (id, title, description, status)
+  VALUES (${product.id}, '${product.title}', '${product.body_html}', ${status})`);
   const res = await sql`
     INSERT INTO products (id, title, description, status)
     VALUES (${product.id}, '${product.title}', '${product.body_html}', ${status})`;
