@@ -90,6 +90,7 @@ export const getProduct = async (id: number) => {
 
 export const insertNewProduct = async (product: ShopifyProduct) => {
   const processedProduct = productShopifyToStore(product);
+  console.log(processedProduct);
   const res = await dbClient
     .insertInto("products")
     .values(processedProduct)
