@@ -41,6 +41,7 @@ export const createTable = async () => {
     .addColumn("unit", "varchar(20)")
     .addColumn("product_meta_image", "jsonb")
     .addColumn("product_thumbnail", "jsonb")
+    .addColumn("can_review", "int2", (col) => col.defaultTo(1))
     .addColumn("product_thumbnail_id", "integer", (col) => col.defaultTo(1))
     .addColumn("quantity", "integer", (col) => col.defaultTo(0))
     .addColumn("rating_count", "integer", (col) => col.defaultTo(5))
