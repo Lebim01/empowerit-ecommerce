@@ -25,8 +25,7 @@ export const createTable = async () => {
     .addColumn("quantity", "integer", (col) => col.defaultTo(0))
     .addColumn("rating_count", "integer", (col) => col.defaultTo(5))
     .addColumn("return_policy_text", "text", defaultEmptyString)
-    .addColumn("review_ratings", "integer", (col) => col.defaultTo(5))
-    .addColumn("reviews_count", "integer", (col) => col.defaultTo(0))
+    .addColumn("reviews_count", "integer")
     .addColumn("safe_checkout", "int2", (col) => col.defaultTo(1))
     .addColumn("sale_expired_at", "date", defaultNull)
     .addColumn("sale_price", "decimal")
@@ -75,6 +74,7 @@ export const createTable = async () => {
     .addColumn("attributes", "jsonb", defaultEmptyArray)
     .addColumn("related_products", "jsonb", defaultEmptyArray)
     .addColumn("reviews", "jsonb", defaultEmptyArray)
+    .addColumn("review_ratings", "jsonb", defaultEmptyArray)
     .addColumn("product_meta_image", "jsonb")
     .addColumn("product_thumbnail", "jsonb")
     .execute();
@@ -107,6 +107,7 @@ export const insertNewProduct = async (product: ShopifyProduct) => {
       reviews: json(processedProduct.reviews),
       product_meta_image: json(processedProduct.product_meta_image),
       product_thumbnail: json(processedProduct.product_thumbnail),
+      review_ratings: json(processedProduct.review_ratings),
     })
     .execute();
   console.log(res);
