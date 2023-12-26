@@ -35,6 +35,7 @@ export const createTable = async () => {
     .addColumn("safe_checkout", "int2", (col) => col.defaultTo(1))
     .addColumn("sale_expired_at", "date", defaultNull)
     .addColumn("sale_price", "decimal")
+    .addColumn("price", "decimal")
     .addColumn("sale_starts_at", "date")
     .addColumn("secure_checkout", "int2", (col) => col.defaultTo(1))
     .addColumn("shipping_days", "int4", (col) => col.defaultTo(2))
