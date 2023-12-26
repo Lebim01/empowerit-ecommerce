@@ -16,14 +16,13 @@ export const getProduct = async (id: number) => {
 };
 
 export const insertNewProduct = async (product: ShopifyProduct) => {
-  const status = product.status == "active" ? 1 : 0;
   const res = await dbClient
     .insertInto("products")
     .values({
       id: product.id,
       title: product.title,
       description: product.body_html,
-      status,
+      status: product.status == "active" ? 1 : 0,
     })
     .execute();
   console.log(res);
