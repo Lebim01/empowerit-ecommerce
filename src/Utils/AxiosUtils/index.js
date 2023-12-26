@@ -19,11 +19,12 @@ const request = async ({ ...options }, router) => {
     console.log("error axios-utils", error?.response?.status);
     return error;
   };
+
+  console.log(options)
   try {
     const response = await client(options);
     return onSuccess(response);
   } catch (error) {
-    console.trace(error);
     return onError(error);
   }
 };
