@@ -32,6 +32,7 @@ const defaultEmptyArray = (col: ColumnDefinitionBuilder) => col.defaultTo("[]");
 export const createTable = async () => {
   return dbClient.schema
     .createTable("products")
+    .ifNotExists()
     .addColumn("id", "bigint", (col) => col.primaryKey())
     .addColumn("name", "varchar(255)")
     .addColumn("description", "text")
