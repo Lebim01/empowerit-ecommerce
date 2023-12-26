@@ -1,7 +1,6 @@
 import { ShopifyProduct } from "@/types/shopify";
 
 import { sql } from "@vercel/postgres";
-import sanitizeHtml from "sanitize-html";
 
 import dbClient from "./db";
 import { productShopifyToStore } from "@/adapters/product";
@@ -86,12 +85,7 @@ export const insertNewProduct = async (product: ShopifyProduct) => {
   const processedProduct = productShopifyToStore(product);
   const res = await dbClient
     .insertInto("products")
-    .values({
-      id: processedProduct.id,
-      name: processedProduct.name,
-      description: sanitizeHtml(product.body_html),
-      status: product.status == "active" ? 1 : 0,
-    })
+    .values(processedProduct)
     .execute();
   console.log(res);
   return res;

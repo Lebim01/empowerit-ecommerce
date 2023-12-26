@@ -2,6 +2,7 @@ import { STORE } from "@/Utils/Constants";
 import { Product } from "@/types/postgresql";
 import { ShopifyProduct, Variant } from "@/types/shopify";
 import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
+import sanitizeHtml from "sanitize-html";
 
 export const productShopifyToSQL = (product: ShopifyProduct): Product => {
   return {
@@ -32,7 +33,7 @@ export const productShopifyToStore = (
     created_by_id: "1",
     cross_sell_products: [],
     deleted_at: null,
-    description: product.body_html,
+    description: sanitizeHtml(product.body_html),
     discount: 0,
     encourage_order: 0,
     encourage_view: 0,
