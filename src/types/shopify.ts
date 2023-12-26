@@ -14,9 +14,17 @@ export type ShopifyProduct = {
   published_scope: string;
   tags: string;
   variants: Variant[];
-  options: [];
-  images: [];
+  options: Option[];
+  images: Image[];
   image: null;
+};
+
+export type Option = {
+  name: string;
+  id: number;
+  product_id: number;
+  position: number;
+  values: string[];
 };
 
 export type Image = {

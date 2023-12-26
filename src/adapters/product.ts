@@ -44,7 +44,7 @@ export const productShopifyToStore = (
     price: 1,
     product_galleries: product.images.map((image, i) => ({
       name: "Imagen del producto #" + i,
-      original_url: image,
+      original_url: image.src,
     })),
     product_meta_image: product.image,
     product_meta_image_id: "meta#image",
