@@ -94,6 +94,7 @@ export const insertNewProduct = async (product: ShopifyProduct) => {
     .insertInto("products")
     .values({
       ...processedProduct,
+      can_review: processedProduct.can_review ? 1 : 0,
       attributes: json(processedProduct.attributes),
       product_galleries: json(processedProduct.product_galleries),
       cross_sell_products: json(processedProduct.cross_sell_products),

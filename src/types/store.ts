@@ -45,7 +45,7 @@ export interface ProductStore {
   updated_at: Date;
   orders_count: number;
   reviews_count: number;
-  can_review: boolean;
+  can_review: number;
   rating_count: number;
   order_amount: number;
   review_ratings: number[];

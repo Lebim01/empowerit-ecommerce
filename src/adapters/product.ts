@@ -27,7 +27,7 @@ export const productShopifyToStore = (
       updated_at: new Date(),
       deleted_at: null,
     })),
-    can_review: true,
+    can_review: 1,
     categories: [],
     created_at: new Date(),
     created_by_id: "1",
