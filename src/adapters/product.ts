@@ -31,7 +31,7 @@ export const productShopifyToStore = (
       attribute_values: option.values.map((value) => ({
         id: product.variants.find((r) => value == r.title).id,
         value,
-        attribute_id: product.variants.find((r) => value == r.title).id,
+        attribute_id: "1",
       })),
       pivot: {
         attribute_id: product.variants[0].id.toString(),
@@ -136,7 +136,7 @@ const convertVariant = (
     stock_status: StockStatus.InStock,
     attribute_values: [
       {
-        attribute_id: "attr-" + slug,
+        attribute_id: "1",
         created_at: new Date(),
         created_by_id: "1",
         deleted_at: null,
