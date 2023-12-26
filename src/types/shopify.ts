@@ -19,6 +19,20 @@ export type ShopifyProduct = {
   image: null;
 };
 
+export type Image = {
+  id: number;
+  position: number;
+  product_id: number;
+  width: number;
+  height: number;
+  alt: null | string;
+  src: string;
+  created_at: Date;
+  updated_at: Date;
+  admin_graphql_api_id: string;
+  variant_ids: any[];
+};
+
 export type Variant = {
   admin_graphql_api_id: string;
   barcode: null | string;
