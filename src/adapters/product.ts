@@ -70,7 +70,7 @@ export const productShopifyToStore = (
       original_url: product.image.src,
     },
     product_thumbnail_id: 1,
-    quantity: 0,
+    quantity: product.variants.reduce((a, b) => a + b.inventory_quantity, 0),
     rating_count: 5,
     related_products: [],
     return_policy_text: "",
