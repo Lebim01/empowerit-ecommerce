@@ -1,5 +1,4 @@
 import { createKysely } from "@vercel/postgres-kysely";
-import { ProductTable } from "./products";
 import { ProductStore } from "@/types/store";
 
 interface Database {

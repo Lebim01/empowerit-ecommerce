@@ -6,24 +6,6 @@ import dbClient from "./db";
 import { productShopifyToStore } from "@/adapters/product";
 import { ColumnDefinitionBuilder } from "kysely";
 
-export type ProductTable = {
-  id: number;
-  name: string;
-  description: string;
-  status: 1 | 0;
-  attributes: JSON;
-  can_review: boolean;
-  categories: JSON;
-  created_at: Date;
-  created_by_id: string;
-  cross_sell_products: JSON;
-  deleted_at: null;
-  discount: number;
-  encourage_order: number;
-  encourage_view: null;
-  estimated_delivery_text: string;
-};
-
 const defaultNull = (col: ColumnDefinitionBuilder) => col.defaultTo(null);
 const defaultEmptyString = (col: ColumnDefinitionBuilder) => col.defaultTo("");
 const defaultEmptyArray = (col: ColumnDefinitionBuilder) => col.defaultTo("[]");
@@ -69,10 +51,11 @@ export const createTable = async () => {
     .addColumn("tax", "jsonb", defaultNull)
     .addColumn("tax_id", "integer", defaultNull)
     .addColumn("type", "varchar(255)")
-    .addColumn("updated_at", "date")
     .addColumn("variations", "jsonb", defaultEmptyArray)
     .addColumn("categories", "jsonb", defaultEmptyArray)
     .addColumn("weight", "decimal", defaultNull)
+    .addColumn("created_at", "date")
+    .addColumn("updated_at", "date")
     .execute();
 };
 
