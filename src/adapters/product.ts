@@ -104,7 +104,7 @@ export const productShopifyToStore = (
     tags: product.tags.split(",").map((tag) => tag.trim()),
     tax: null,
     tax_id: 1,
-    type: product.product_type,
+    type: "classified",
     unit: Unit.The1Item,
     updated_at: new Date(),
     variations: product.variants.map((variantion) =>
@@ -125,7 +125,7 @@ const convertVariant = (
   return {
     id: variation.id,
     name: variation.title,
-    price: Number(variation.price),
+    price: Math.ceil(Number(variation.price) * (1 + DISCOUNT) * 100) / 100,
     quantity: variation.inventory_quantity,
     sale_price: Number(variation.price),
     discount: 0,
