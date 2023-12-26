@@ -1,6 +1,6 @@
-export const fallbackLng = 'en'
-export const languages = [fallbackLng, , 'ar', 'fr', "es"]
-export const defaultNS = 'translation'
+export const fallbackLng = "es";
+export const languages = [fallbackLng, , "ar", "fr", "es"];
+export const defaultNS = "translation";
 
 export function getOptions(lng = fallbackLng, ns = defaultNS) {
   return {
@@ -15,5 +15,5 @@ export function getOptions(lng = fallbackLng, ns = defaultNS) {
     // backend: {
     //   projectId: '01b2e5e8-6243-47d1-b36f-963dbb8bcae3'
     // }
-  }
+  };
 }

@@ -29,7 +29,7 @@ export const productShopifyToStore = (
     })),
     can_review: 1,
     categories: [],
-    created_at: new Date(),
+    created_at: new Date(product.published_at),
     created_by_id: "1",
     cross_sell_products: [],
     deleted_at: null,
