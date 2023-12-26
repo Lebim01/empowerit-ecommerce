@@ -104,7 +104,7 @@ export const productShopifyToStore = (
     tags: product.tags.split(",").map((tag) => tag.trim()),
     tax: null,
     tax_id: 1,
-    type: "classified",
+    type: product.variants.length > 0 ? "classified" : "simple",
     unit: Unit.The1Item,
     updated_at: new Date(),
     variations: product.variants.map((variantion) =>

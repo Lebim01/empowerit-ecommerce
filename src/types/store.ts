@@ -3,7 +3,7 @@ export interface ProductStore {
   name: string;
   short_description: string;
   description: string;
-  type: string;
+  type: "classified" | "simple";
   unit: Unit;
   weight: number | null;
   quantity: number;
