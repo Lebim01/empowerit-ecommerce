@@ -128,8 +128,6 @@ export const getProducts = async (queries: Queries) => {
     );
   }
 
-  console.log(query.compile());
-
   const res = await query.execute();
   return res;
 };
@@ -138,6 +136,14 @@ export const getProduct = async (id: number) => {
   const res = await dbClient
     .selectFrom("products")
     .where("products.id", "=", id)
+    .executeTakeFirst();
+  return res;
+};
+
+export const getProductBySlug = async (slug: string) => {
+  const res = await dbClient
+    .selectFrom("products")
+    .where("products.slug", "=", slug)
     .executeTakeFirst();
   return res;
 };
