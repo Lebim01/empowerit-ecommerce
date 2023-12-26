@@ -143,6 +143,7 @@ export const getProduct = async (id: number) => {
 export const getProductBySlug = async (slug: string) => {
   const res = await dbClient
     .selectFrom("products")
+    .selectAll()
     .where("products.slug", "=", slug)
     .executeTakeFirst();
   return res;
