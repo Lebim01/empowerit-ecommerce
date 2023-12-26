@@ -2,7 +2,7 @@ export type ShopifyProduct = {
   admin_graphql_api_id: string;
   body_html: string;
   created_at: null | Date;
-  handle: String;
+  handle: string;
   id: number;
   product_type: string;
   published_at: Date;

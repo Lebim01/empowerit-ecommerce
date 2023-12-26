@@ -1,7 +1,5 @@
 import { ShopifyProduct } from "@/types/shopify";
 
-import { sql } from "@vercel/postgres";
-
 import dbClient, { json } from "./db";
 import { productShopifyToStore } from "@/adapters/product";
 import { ColumnDefinitionBuilder } from "kysely";
@@ -98,6 +96,43 @@ const convertToPSQL = (processedProduct: ProductStore) => ({
   product_thumbnail: json(processedProduct.product_thumbnail),
   review_ratings: json(processedProduct.review_ratings),
 });
+
+type Queries = {
+  querySearch?: string;
+  querySortBy?: string;
+  queryCategory?: string;
+  queryPage?: string;
+  queryPaginate?: string;
+};
+
+export const getProducts = async (queries: Queries) => {
+  let query = dbClient.selectFrom("products").selectAll();
+
+  if (queries.querySearch) {
+    query = query.where((eb) =>
+      eb.or([
+        eb("products.name", "like", queries.querySearch),
+        eb("products.description", "like", queries.querySearch),
+      ])
+    );
+  }
+
+  if (queries.queryPaginate) {
+    query = query.limit(Number(queries.queryPaginate));
+  }
+
+  if (queries.queryPage) {
+    query = query.offset(
+      Number(queries.queryPaginate) * (Number(queries.queryPage) - 1) -
+        (Number(queries.queryPage) > 1 ? 1 : 0)
+    );
+  }
+
+  console.log(query.compile());
+
+  const res = await query.execute();
+  return res;
+};
 
 export const getProduct = async (id: number) => {
   const res = await dbClient

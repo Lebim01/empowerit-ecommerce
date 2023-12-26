@@ -40,6 +40,10 @@ module.exports = (phase) => {
         protocol: "https",
         hostname: "react.pixelstrap.net",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
     ],
   };
 

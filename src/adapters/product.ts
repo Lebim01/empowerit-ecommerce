@@ -84,7 +84,7 @@ export const productShopifyToStore = (
     size_chart_image: null,
     size_chart_image_id: null,
     sku: "",
-    slug: "",
+    slug: product.handle,
     social_share: 1,
     status: 1,
     stock_status: StockStatus.InStock,
