@@ -13,9 +13,9 @@ const request = async ({ ...options }, router) => {
   const onSuccess = (response) => response;
   const onError = (error) => {
     if (error?.response?.status == 403) {
-      router && router.push("/403")
+      router && router.push("/403");
     }
-    router && router.push('/404')
+    router && router.push("/404");
     console.log("error axios-utils", error?.response?.status);
     return error;
   };
@@ -23,6 +23,7 @@ const request = async ({ ...options }, router) => {
     const response = await client(options);
     return onSuccess(response);
   } catch (error) {
+    console.trace(error);
     return onError(error);
   }
 };
