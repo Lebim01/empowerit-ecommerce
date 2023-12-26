@@ -71,6 +71,7 @@ export const createTable = async () => {
     .addColumn("type", "varchar(255)")
     .addColumn("updated_at", "date")
     .addColumn("variations", "jsonb", defaultEmptyArray)
+    .addColumn("categories", "jsonb", defaultEmptyArray)
     .addColumn("weight", "decimal", defaultNull)
     .execute();
 };
