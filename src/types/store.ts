@@ -5,7 +5,7 @@ export interface ProductStore {
   description: string;
   type: string;
   unit: Unit;
-  weight: number;
+  weight: number | null;
   quantity: number;
   price: number;
   sale_price: number;
@@ -62,6 +62,33 @@ export interface ProductStore {
   tags: string[];
   attributes: any[];
   variations: Variation[];
+}
+
+export interface Attribute {
+  id: number;
+  name: string;
+  style: "rectangle";
+  slug: string;
+  status: 1 | 0;
+  created_by_id: string;
+  created_at: Date;
+  updated_at: Date;
+  deleted_at: null | Date;
+  pivot?: {
+    product_id: string;
+    attribute_id: string;
+  };
+  attribute_values: {
+    id: number;
+    value: string;
+    slug: string;
+    hex_color: null | string;
+    attribute_id: string;
+    created_by_id: string;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: null | Date;
+  }[];
 }
 
 export interface Category {

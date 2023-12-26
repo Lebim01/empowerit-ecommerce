@@ -16,7 +16,7 @@ export type ShopifyProduct = {
   variants: Variant[];
   options: Option[];
   images: Image[];
-  image: null;
+  image: Image;
 };
 
 export type Option = {
@@ -38,7 +38,7 @@ export type Image = {
   created_at: Date;
   updated_at: Date;
   admin_graphql_api_id: string;
-  variant_ids: any[];
+  variant_ids: number[];
 };
 
 export type Variant = {

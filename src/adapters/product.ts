@@ -15,7 +15,17 @@ export const productShopifyToStore = (
   product: ShopifyProduct
 ): ProductStore => {
   return {
-    attributes: [],
+    attributes: product.options.map((option) => ({
+      id: option.id,
+      name: option.name,
+      style: "rectangle",
+      slug: option.name.replaceAll(" ", "-").toLocaleLowerCase(),
+      status: 1,
+      created_by_id: "1",
+      created_at: new Date(),
+      updated_at: new Date(),
+      deleted_at: null,
+    })),
     can_review: true,
     categories: [],
     created_at: new Date(),
@@ -46,9 +56,15 @@ export const productShopifyToStore = (
       name: "Imagen del producto #" + i,
       original_url: image.src,
     })),
-    product_meta_image: product.image,
+    product_meta_image: {
+      name: product.image.id.toString() + ".jpg",
+      original_url: product.image.src,
+    },
     product_meta_image_id: "meta#image",
-    product_thumbnail: product.image,
+    product_thumbnail: {
+      name: product.image.id.toString() + ".jpg",
+      original_url: product.image.src,
+    },
     product_thumbnail_id: 1,
     quantity: 0,
     rating_count: 5,
@@ -82,39 +98,48 @@ export const productShopifyToStore = (
     variations: product.variants.map((variantion) =>
       convertVariant(variantion, product)
     ),
-    weight: 100,
+    weight: null,
   };
 };
 
 const convertVariant = (
   variation: Variant,
   product?: ShopifyProduct
-): Variation => ({
-  id: variation.id,
-  name: variation.title,
-  price: null,
-  quantity: variation.inventory_quantity,
-  sale_price: Number(variation.price),
-  discount: 0,
-  sku: variation.sku,
-  status: 1,
-  product_id: variation.product_id,
-  stock_status: StockStatus.InStock,
-  attribute_values: [
-    {
-      attribute_id: "1",
-      created_at: new Date(),
-      created_by_id: "1",
-      deleted_at: null,
-      hex_color: null,
-      id: 1,
-      slug: "",
-      value: "",
-      updated_at: new Date(),
+): Variation => {
+  const variant_image =
+    product.images.find((r) => r.variant_ids.includes(variation.id)) ||
+    product.image;
+  const option = product.options.length > 0 ? product.options[0].name : "";
+  return {
+    id: variation.id,
+    name: variation.title,
+    price: null,
+    quantity: variation.inventory_quantity,
+    sale_price: Number(variation.price),
+    discount: 0,
+    sku: variation.sku,
+    status: 1,
+    product_id: variation.product_id,
+    stock_status: StockStatus.InStock,
+    attribute_values: [
+      {
+        attribute_id: "1",
+        created_at: new Date(),
+        created_by_id: "1",
+        deleted_at: null,
+        hex_color: null,
+        id: variation.id,
+        slug: option,
+        value: variation.title,
+        updated_at: new Date(),
+      },
+    ],
+    variation_image: {
+      name: variant_image.id + ".jpg",
+      original_url: variant_image.src,
     },
-  ],
-  variation_image: null,
-  deleted_at: null,
-  created_at: variation.created_at,
-  updated_at: variation.updated_at,
-});
+    deleted_at: null,
+    created_at: variation.created_at,
+    updated_at: variation.updated_at,
+  };
+};
