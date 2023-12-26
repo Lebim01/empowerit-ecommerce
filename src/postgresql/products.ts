@@ -15,7 +15,7 @@ export type ProductTable = {
 export const getProduct = async (id: number) => {
   const res = await dbClient
     .selectFrom("products")
-    .where("products.id", "==", id)
+    .where("products.id", "=", id)
     .executeTakeFirst();
   return res;
 };
