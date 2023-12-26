@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 
 const DropdownAttribute = ({ elem, soldOutAttributesIds, productState, setVariant, i }) => {
+  console.log(elem?.attribute_values)
   return (
     <select id={`input-state-${i}`} className='form-control form-select' onChange={(e) => setVariant(productState?.product?.variations, elem?.attribute_values[e.target.value])}>
       <option selected disabled>

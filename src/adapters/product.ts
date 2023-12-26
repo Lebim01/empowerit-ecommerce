@@ -28,6 +28,10 @@ export const productShopifyToStore = (
       created_at: new Date(),
       updated_at: new Date(),
       deleted_at: null,
+      attribute_values: option.values.map((value, index) => ({
+        id: "attr-" + value.replace(" ", "-").toLocaleLowerCase(),
+        value,
+      })),
     })),
     can_review: 1,
     categories: [],
@@ -127,7 +131,8 @@ const convertVariant = (
     stock_status: StockStatus.InStock,
     attribute_values: [
       {
-        attribute_id: "1",
+        attribute_id:
+          "attr-" + variation.title.replace(" ", "-").toLocaleLowerCase(),
         created_at: new Date(),
         created_by_id: "1",
         deleted_at: null,
