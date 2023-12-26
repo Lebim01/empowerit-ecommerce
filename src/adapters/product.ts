@@ -28,8 +28,8 @@ export const productShopifyToStore = (
       created_at: new Date(),
       updated_at: new Date(),
       deleted_at: null,
-      attribute_values: option.values.map((value, index) => ({
-        id: "attr-" + value.replace(" ", "-").toLocaleLowerCase(),
+      attribute_values: option.values.map((value) => ({
+        id: product.variants.find((r) => value == r.title).id,
         value,
       })),
     })),
