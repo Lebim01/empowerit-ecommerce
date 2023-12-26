@@ -12,6 +12,7 @@ const request = async ({ ...options }, router) => {
   client.defaults.headers.common.Authorization = `Bearer ${getCookie("uat")}`;
   const onSuccess = (response) => response;
   const onError = (error) => {
+    console.log(error.response);
     if (error?.response?.status == 403) {
       router && router.push("/403");
     }
@@ -19,8 +20,6 @@ const request = async ({ ...options }, router) => {
     console.log("error axios-utils", error?.response?.status);
     return error;
   };
-
-  console.log(options)
   try {
     const response = await client(options);
     return onSuccess(response);
