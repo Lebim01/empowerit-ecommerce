@@ -1,7 +1,7 @@
 import { STORE } from "@/Utils/Constants";
 import { Product } from "@/types/postgresql";
-import { ShopifyProduct } from "@/types/shopify";
-import { ProductStore, StockStatus, Unit } from "@/types/store";
+import { ShopifyProduct, Variant } from "@/types/shopify";
+import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
 
 export const productShopifyToSQL = (product: ShopifyProduct): Product => {
   return {
@@ -73,13 +73,48 @@ export const productShopifyToStore = (
     stock_status: StockStatus.InStock,
     store: STORE,
     store_id: 1,
-    tags: [],
+    tags: product.tags.split(",").map((tag) => tag.trim()),
     tax: null,
     tax_id: 1,
-    type: "simple",
+    type: product.product_type,
     unit: Unit.The1Item,
     updated_at: new Date(),
-    variations: [],
+    variations: product.variants.map((variantion) =>
+      convertVariant(variantion, product)
+    ),
     weight: 100,
   };
 };
+
+const convertVariant = (
+  variation: Variant,
+  product?: ShopifyProduct
+): Variation => ({
+  id: variation.id,
+  name: variation.title,
+  price: null,
+  quantity: variation.inventory_quantity,
+  sale_price: Number(variation.price),
+  discount: 0,
+  sku: variation.sku,
+  status: 1,
+  product_id: variation.product_id,
+  stock_status: StockStatus.InStock,
+  attribute_values: [
+    {
+      attribute_id: "1",
+      created_at: new Date(),
+      created_by_id: "1",
+      deleted_at: null,
+      hex_color: null,
+      id: 1,
+      slug: "",
+      value: "",
+      updated_at: new Date(),
+    },
+  ],
+  variation_image: null,
+  deleted_at: null,
+  created_at: variation.created_at,
+  updated_at: variation.updated_at,
+});

@@ -3,7 +3,7 @@ export interface ProductStore {
   name: string;
   short_description: string;
   description: string;
-  type: "simple";
+  type: string;
   unit: Unit;
   weight: number;
   quantity: number;
@@ -59,9 +59,9 @@ export interface ProductStore {
   store: Store;
   tax: Tax;
   categories: Category[];
-  tags: Tag[];
+  tags: string[];
   attributes: any[];
-  variations: any[];
+  variations: Variation[];
 }
 
 export interface Category {
@@ -320,3 +320,37 @@ export enum Unit {
   The1Item = "1 Item",
   The1Pair = "1 Pair",
 }
+
+export type Variation = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  stock_status: StockStatus;
+  sale_price: number;
+  discount: number;
+  sku: string;
+  status: 1 | 0;
+  variation_options?: null;
+  variation_image_id?: number;
+  product_id: number;
+  deleted_at: null | Date;
+  created_at: Date;
+  updated_at: Date;
+  variation_image: null | ProductMetaImage;
+  attribute_values: {
+    id: number;
+    value: string;
+    slug: string;
+    hex_color: null | string;
+    attribute_id: string;
+    created_by_id: string;
+    created_at: Date;
+    updated_at: Date;
+    deleted_at: null | Date;
+    pivot?: {
+      variation_id: string;
+      attribute_value_id: string;
+    };
+  }[];
+};
