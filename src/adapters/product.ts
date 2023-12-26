@@ -36,7 +36,7 @@ export const productShopifyToStore = (
     cross_sell_products: [],
     deleted_at: null,
     description: sanitizeHtml(product.body_html),
-    discount: DISCOUNT,
+    discount: DISCOUNT * 100,
     encourage_order: 0,
     encourage_view: 0,
     estimated_delivery_text: "",
@@ -54,7 +54,8 @@ export const productShopifyToStore = (
     name: product.title,
     order_amount: 0,
     orders_count: 0,
-    price: Number(product.variants[0].price),
+    price:
+      Math.ceil(Number(product.variants[0].price) * (1 + DISCOUNT) * 100) / 100,
     product_galleries: product.images.map((image, i) => ({
       name: "Imagen del producto #" + i,
       original_url: image.src,
@@ -78,8 +79,7 @@ export const productShopifyToStore = (
     reviews_count: 0,
     safe_checkout: 0,
     sale_expired_at: null,
-    sale_price:
-      Math.ceil(Number(product.variants[0].price) * (1 + DISCOUNT) * 100) / 100,
+    sale_price: Number(product.variants[0].price),
     sale_starts_at: null,
     secure_checkout: 1,
     shipping_days: 2,
