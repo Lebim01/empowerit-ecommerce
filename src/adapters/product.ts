@@ -121,7 +121,7 @@ const convertVariant = (
   const variant_image =
     product.images.find((r) => r.variant_ids.includes(variation.id)) ||
     product.image;
-  const option = product.options.length > 0 ? product.options[0].name : "";
+  const slug = variation.title.replaceAll(" ", "-").toLocaleLowerCase();
   return {
     id: variation.id,
     name: variation.title,
@@ -135,14 +135,13 @@ const convertVariant = (
     stock_status: StockStatus.InStock,
     attribute_values: [
       {
-        attribute_id:
-          "attr-" + variation.title.replace(" ", "-").toLocaleLowerCase(),
+        attribute_id: "attr-" + slug,
         created_at: new Date(),
         created_by_id: "1",
         deleted_at: null,
         hex_color: null,
         id: variation.id,
-        slug: option,
+        slug,
         value: variation.title,
         updated_at: new Date(),
       },
