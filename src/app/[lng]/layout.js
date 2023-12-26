@@ -2,7 +2,7 @@ import I18NextProvider from "@/Helper/I18NextContext/I18NextProvider";
 import "../../../public/assets/scss/app.scss";
 import NoSSR from "@/Utils/NoSSR";
 
-/*export async function generateMetadata() {
+export async function generateMetadata() {
   // fetch data
   const themeOption = await fetch(`${process.env.API_PROD_URL}themeOptions`)
     .then((res) => res.json())
@@ -24,7 +24,7 @@ import NoSSR from "@/Utils/NoSSR";
       images: [themeOption?.options?.seo?.og_image?.original_url, []],
     },
   };
-}*/
+}
 
 export default function CustomLayout({ children, params: { lng } }) {
   return (
