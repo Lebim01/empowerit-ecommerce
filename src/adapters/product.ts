@@ -31,6 +31,7 @@ export const productShopifyToStore = (
       attribute_values: option.values.map((value) => ({
         id: product.variants.find((r) => value == r.title).id,
         value,
+        attribute_id: product.variants.find((r) => value == r.title).id,
       })),
       pivot: {
         attribute_id: product.variants[0].id.toString(),
