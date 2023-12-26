@@ -15,9 +15,9 @@ const ShowProduct = ({ productState, setProductState }) => {
   const price_compare = productState?.selectedVariation
     ? productState?.selectedVariation?.price
     : productState?.product?.price;
-  const off_discount = (price_sale / price_compare) * 100;
-
-  console.log({ off_discount });
+  const off_discount = productState?.selectedVariation
+    ? productState?.selectedVariation?.discount
+    : productState?.product?.discount;
 
   return (
     <div className="sticky-bottom-cart">

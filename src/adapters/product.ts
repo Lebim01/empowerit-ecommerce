@@ -4,6 +4,8 @@ import { ShopifyProduct, Variant } from "@/types/shopify";
 import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
 import sanitizeHtml from "sanitize-html";
 
+const DISCOUNT = 0.15;
+
 export const productShopifyToSQL = (product: ShopifyProduct): Product => {
   return {
     title: product.title,
@@ -34,7 +36,7 @@ export const productShopifyToStore = (
     cross_sell_products: [],
     deleted_at: null,
     description: sanitizeHtml(product.body_html),
-    discount: 0,
+    discount: DISCOUNT,
     encourage_order: 0,
     encourage_view: 0,
     estimated_delivery_text: "",
@@ -52,7 +54,7 @@ export const productShopifyToStore = (
     name: product.title,
     order_amount: 0,
     orders_count: 0,
-    price: 1,
+    price: Number(product.variants[0].price),
     product_galleries: product.images.map((image, i) => ({
       name: "Imagen del producto #" + i,
       original_url: image.src,
@@ -76,7 +78,8 @@ export const productShopifyToStore = (
     reviews_count: 0,
     safe_checkout: 0,
     sale_expired_at: null,
-    sale_price: 2,
+    sale_price:
+      Math.ceil(Number(product.variants[0].price) * (1 + DISCOUNT) * 100) / 100,
     sale_starts_at: null,
     secure_checkout: 1,
     shipping_days: 2,
