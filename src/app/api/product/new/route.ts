@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   const data: ShopifyProduct = await req.json();
+  console.log(data);
   await insertNewProduct(data);
   return NextResponse.json("OK");
 }
