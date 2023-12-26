@@ -283,7 +283,14 @@
     "@typescript-eslint/types" "6.15.0"
     eslint-visitor-keys "^3.4.1"
 
-"@vercel/postgres@^0.5.1":
+"@vercel/postgres-kysely@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@vercel/postgres-kysely/-/postgres-kysely-0.6.0.tgz#07a7c5ee5dddf634fd8ab8140d3f4182fcf4f04e"
+  integrity sha512-R5iSb7aM0XDztcOXfBaBBgdIHLtn0auFCXXJA6gq0GCWSZyBTv4OawsIWxix4lSjqql/MKmze7zvAVP21UkxMg==
+  dependencies:
+    "@vercel/postgres" "0.5.1"
+
+"@vercel/postgres@0.5.1", "@vercel/postgres@^0.5.1":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@vercel/postgres/-/postgres-0.5.1.tgz#af986133f5ec53b4839561fc3cc2a5fb1867868d"
   integrity sha512-JKl8QOBIDnifhkxAhIKtY0A5Tb8oWBf2nzZhm0OH7Ffjsl0hGVnDL2w1/FCfpX8xna3JAWM034NGuhZfTFdmiw==
@@ -1730,6 +1737,11 @@ klaw-sync@^6.0.0:
   integrity sha512-nIeuVSzdCCs6TDPTqI8w1Yre34sSq7AkZ4B3sfOBbI2CgVSB4Du4aLQijFU2+lhAFCwt9+42Hel6lQNIv6AntQ==
   dependencies:
     graceful-fs "^4.1.11"
+
+kysely@^0.26.3:
+  version "0.26.3"
+  resolved "https://registry.yarnpkg.com/kysely/-/kysely-0.26.3.tgz#45fdd0153d8c9418b0ea9a6f05ed46b95ed27678"
+  integrity sha512-yWSgGi9bY13b/W06DD2OCDDHQmq1kwTGYlQ4wpZkMOJqMGCstVCFIvxCCVG4KfY1/3G0MhDAcZsip/Lw8/vJWw==
 
 language-subtag-registry@^0.3.20:
   version "0.3.22"
