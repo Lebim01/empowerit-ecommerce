@@ -32,6 +32,10 @@ export const productShopifyToStore = (
         id: product.variants.find((r) => value == r.title).id,
         value,
       })),
+      pivot: {
+        attribute_id: product.variants[0].id.toString(),
+        product_id: product.id.toString(),
+      },
     })),
     can_review: 1,
     categories: [],
@@ -47,7 +51,7 @@ export const productShopifyToStore = (
     id: product.id,
     is_approved: 1,
     is_cod: "",
-    is_featured: 0,
+    is_featured: 1,
     is_free_shipping: 0,
     is_random_related_products: 0,
     is_return: 0,
@@ -121,7 +125,7 @@ const convertVariant = (
   return {
     id: variation.id,
     name: variation.title,
-    price: null,
+    price: Number(variation.price),
     quantity: variation.inventory_quantity,
     sale_price: Number(variation.price),
     discount: 0,
