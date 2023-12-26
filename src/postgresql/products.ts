@@ -1,5 +1,8 @@
 import { ShopifyProduct } from "@/types/shopify";
+
 import { sql } from "@vercel/postgres";
+import sanitizeHtml from "sanitize-html";
+
 import dbClient from "./db";
 
 export type ProductTable = {
@@ -10,9 +13,11 @@ export type ProductTable = {
 };
 
 export const getProduct = async (id: number) => {
-  const { rows, fields } = await sql`SELECT * FROM products WHERE id = ${id}`;
-  if (rows.length > 0) return rows[0];
-  return null;
+  const res = await dbClient
+    .selectFrom("products")
+    .where("products.id", "==", id)
+    .executeTakeFirst();
+  return res;
 };
 
 export const insertNewProduct = async (product: ShopifyProduct) => {
@@ -21,7 +26,7 @@ export const insertNewProduct = async (product: ShopifyProduct) => {
     .values({
       id: product.id,
       title: product.title,
-      description: product.body_html,
+      description: sanitizeHtml(product.body_html),
       status: product.status == "active" ? 1 : 0,
     })
     .execute();
