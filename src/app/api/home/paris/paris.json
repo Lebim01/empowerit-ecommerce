@@ -160,7 +160,7 @@
       "section7_products": {
         "title": "Our Best Seller",
         "description": "A virtual assistant collects the products from your list.",
-        "status": true,
+        "status": false,
         "product_ids": [6, 10, 2, 3, 8, 1, 4, 7, 12, 11, 9, 18]
       },
       "section8_full_width_banner": {
@@ -169,7 +169,7 @@
           "link": "vegetables-fruits",
           "link_type": "collection"
         },
-        "status": true
+        "status": false
       },
       "section9_featured_blogs": {
         "title": "Featured Blog",
