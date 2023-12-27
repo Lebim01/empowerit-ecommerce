@@ -65,7 +65,7 @@ const MainCollection = ({
         <div className={`top-filter-menu${isOffcanvas ? "-2" : ""}`}>
           <FilterBtn isOffcanvas={isOffcanvas} />
           <FilterSort filter={filter} setFilter={setFilter} />
-          <GridBox grid={grid} setGrid={setGrid} />
+          {/*<GridBox grid={grid} setGrid={setGrid} />*/}
         </div>
       </div>
       <CollectionProducts filter={filter} grid={grid} />
