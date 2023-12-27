@@ -227,7 +227,7 @@
       "section9_featured_blogs": {
         "title": "Featured Blog",
         "description": "Uncover Intriguing Highlights in Our Featured Blog",
-        "status": true,
+        "status": false,
         "blog_ids": [
           10,
           14,
@@ -239,7 +239,7 @@
       "title": "Join Our Newsletter And Get...",
       "sub_title": "$20 discount for your first order",
       "image_url": "https://react.pixelstrap.net/fastkart/assets/newsletter.jpg",
-      "status": true
+      "status": false
     },
     "products_ids": [
       19,

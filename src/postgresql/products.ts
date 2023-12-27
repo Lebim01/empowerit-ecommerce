@@ -111,8 +111,8 @@ export const getProducts = async (queries: Queries) => {
   if (queries.querySearch) {
     query = query.where((eb) =>
       eb.or([
-        eb("products.name", "like", queries.querySearch),
-        eb("products.description", "like", queries.querySearch),
+        eb("products.name", "like", '%' + queries.querySearch + '%'),
+        eb("products.description", "like", '%' + queries.querySearch + '%'),
       ])
     );
   }
@@ -126,6 +126,10 @@ export const getProducts = async (queries: Queries) => {
       Number(queries.queryPaginate) * (Number(queries.queryPage) - 1) -
         (Number(queries.queryPage) > 1 ? 1 : 0)
     );
+  }
+
+  if (process.env.NODE_ENV == "development") {
+    console.log(query.compile());
   }
 
   const res = await query.execute();

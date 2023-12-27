@@ -1,9 +1,7 @@
-import SearchModule from "@/Components/Search"
+import SearchModule from "@/Components/Search";
 
 const SearchPage = () => {
-    return (
-        <SearchModule />
-    )
-}
+  return <SearchModule />;
+};
 
-export default SearchPage
+export default SearchPage;
