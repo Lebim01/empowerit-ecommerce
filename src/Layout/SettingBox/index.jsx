@@ -9,36 +9,53 @@ import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import useOutsideDropdown from "@/Utils/Hooks/CustomHooks/useOutsideDropdown";
 
 const SettingBox = () => {
-  const { ref, isComponentVisible, setIsComponentVisible } = useOutsideDropdown(false);
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useOutsideDropdown(false);
   const { i18Lang } = useContext(I18NextContext);
   const { themeOption } = useContext(ThemeOptionContext);
-  const { t } = useTranslation(i18Lang, 'common');
-  const [rtlValue, setRtlValue] = useState(themeOption?.general?.language_direction?themeOption?.general?.language_direction:"ltr");
-  const [lightDarkMode, setLightDarkMode] = useState(themeOption?.general?.mode?themeOption?.general?.mode:"light");
-  const [themeColor, setThemeColor] = useState("#0da487");
+  const { t } = useTranslation(i18Lang, "common");
+  const [rtlValue, setRtlValue] = useState(
+    themeOption?.general?.language_direction
+      ? themeOption?.general?.language_direction
+      : "ltr"
+  );
+  const [lightDarkMode, setLightDarkMode] = useState(
+    themeOption?.general?.mode ? themeOption?.general?.mode : "light"
+  );
+  const [themeColor, setThemeColor] = useState("#f2cb1f");
   const pathName = usePathname();
   useEffect(() => {
-    const currentThemeColor = getComputedStyle(document.documentElement).getPropertyValue("--theme-color");
-    if (currentThemeColor) {      
+    const currentThemeColor = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--theme-color");
+    if (currentThemeColor) {
       setThemeColor(currentThemeColor.trimStart());
     } else {
-      setThemeColor("#0da487");
+      setThemeColor("#f2cb1f");
     }
-  }, [pathName]); 
-  
-   useEffect(() => {
-    setThemeColor(themeOption?.general?.primary_color ?? "#0da487" )
-    themeOption?.general?.mode === "dark"? document.documentElement.classList.add("dark") : document.documentElement.classList.remove("dark");
-    themeOption?.general?.language_direction == "rtl"? document.body.setAttribute("dir", "rtl"): document.body.setAttribute("dir", "ltr");
-  }, [themeOption?.general?.mode,themeOption?.general?.language_direction]);
+  }, [pathName]);
+
+  useEffect(() => {
+    setThemeColor(themeOption?.general?.primary_color ?? "#f2cb1f");
+    themeOption?.general?.mode === "dark"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
+    themeOption?.general?.language_direction == "rtl"
+      ? document.body.setAttribute("dir", "rtl")
+      : document.body.setAttribute("dir", "ltr");
+  }, [themeOption?.general?.mode, themeOption?.general?.language_direction]);
 
   const handleRtl = (value) => {
     setRtlValue(value);
-    value == "rtl"? document.body.setAttribute("dir", "rtl"): document.body.setAttribute("dir", "ltr");
+    value == "rtl"
+      ? document.body.setAttribute("dir", "rtl")
+      : document.body.setAttribute("dir", "ltr");
   };
   const handleLightDarkMode = (value) => {
     setLightDarkMode(value);
-    value == "dark" ? document.documentElement.classList.add("dark") : document.documentElement.classList.remove("dark");
+    value == "dark"
+      ? document.documentElement.classList.add("dark")
+      : document.documentElement.classList.remove("dark");
   };
   const handleColorChange = (event) => {
     const { value } = event.target;
@@ -47,7 +64,10 @@ const SettingBox = () => {
   };
   return (
     <div className="setting-box" ref={ref}>
-      <Btn className="btn setting-button theme-bg-color text-white" onClick={() => setIsComponentVisible((prev) => !prev)}>
+      <Btn
+        className="btn setting-button theme-bg-color text-white"
+        onClick={() => setIsComponentVisible((prev) => !prev)}
+      >
         {isComponentVisible ? <RiCloseLine /> : <RiSettings3Fill />}
       </Btn>
       <div className={`theme-setting-2 ${isComponentVisible ? "active" : ""}`}>
@@ -59,8 +79,16 @@ const SettingBox = () => {
               </div>
               <div className="theme-setting-button color-picker">
                 <Form className="form-control">
-                  <Label htmlFor="colorPick" className="form-label mb-0">{t("ThemeColor")}</Label>
-                  <Input type="color" className="form-control-color" title="Choose your color" onChange={handleColorChange} value={themeColor}/>
+                  <Label htmlFor="colorPick" className="form-label mb-0">
+                    {t("ThemeColor")}
+                  </Label>
+                  <Input
+                    type="color"
+                    className="form-control-color"
+                    title="Choose your color"
+                    onChange={handleColorChange}
+                    value={themeColor}
+                  />
                 </Form>
               </div>
             </li>
@@ -69,8 +97,24 @@ const SettingBox = () => {
                 <h4>{t("Dark")}</h4>
               </div>
               <div className="theme-setting-button">
-                <Btn className={`btn-2 ${lightDarkMode == "dark" ? "unline" : "outline"}`} onClick={() => handleLightDarkMode("dark")} id="darkButton">{t("Dark")}</Btn>
-                <Btn className={`btn-2 ${ lightDarkMode == "light" ? "unline" : "outline"}`} onClick={() => handleLightDarkMode("light")} id="lightButton">{t("Light")}</Btn>
+                <Btn
+                  className={`btn-2 ${
+                    lightDarkMode == "dark" ? "unline" : "outline"
+                  }`}
+                  onClick={() => handleLightDarkMode("dark")}
+                  id="darkButton"
+                >
+                  {t("Dark")}
+                </Btn>
+                <Btn
+                  className={`btn-2 ${
+                    lightDarkMode == "light" ? "unline" : "outline"
+                  }`}
+                  onClick={() => handleLightDarkMode("light")}
+                  id="lightButton"
+                >
+                  {t("Light")}
+                </Btn>
               </div>
             </li>
             <li>
@@ -78,8 +122,22 @@ const SettingBox = () => {
                 <h4>{t("RTL")}</h4>
               </div>
               <div className="theme-setting-button rtl">
-                <Btn className={`btn btn-2 ${ rtlValue === "rtl" ? "rtl-unline" : "rtl-outline"}`} onClick={() => handleRtl("rtl")}>{t("RTL")}</Btn>
-                <Btn className={`btn btn-2 ${ rtlValue === "ltr" ? "rtl-unline" : "rtl-outline" }`} onClick={() => handleRtl("ltr")}>{t("LTR")}</Btn>
+                <Btn
+                  className={`btn btn-2 ${
+                    rtlValue === "rtl" ? "rtl-unline" : "rtl-outline"
+                  }`}
+                  onClick={() => handleRtl("rtl")}
+                >
+                  {t("RTL")}
+                </Btn>
+                <Btn
+                  className={`btn btn-2 ${
+                    rtlValue === "ltr" ? "rtl-unline" : "rtl-outline"
+                  }`}
+                  onClick={() => handleRtl("ltr")}
+                >
+                  {t("LTR")}
+                </Btn>
               </div>
             </li>
           </ul>
