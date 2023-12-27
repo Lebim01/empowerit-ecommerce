@@ -20,7 +20,7 @@ const FooterQuickPage = ({ footerMenu, setFooterMenu }) => {
           {themeOption?.footer?.help_center?.map((elem, i) => (
             <li key={i}>
               <Link href={`/${i18Lang}/${elem?.link}`} className='text-content'>
-                {elem.label}
+                {t(elem.label)}
               </Link>
             </li>
           ))}

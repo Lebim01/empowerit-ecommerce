@@ -43,7 +43,7 @@ const HeaderMenu = () => {
               <Link
                 className={`nav-item`}
                 href={{
-                  pathname: `/${i18Lang}/catalog`,
+                  pathname: `/${i18Lang}/collections`,
                 }}
               >
                 {t('Catalog')}

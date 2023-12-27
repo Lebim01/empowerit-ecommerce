@@ -87,11 +87,11 @@
       "footer_categories": [6, 5, 4, 3, 2, 1],
       "help_center": [
         {
-          "label": "My Account",
+          "label": "MyAccount",
           "link": "account/dashboard"
         },
         {
-          "label": "My Orders",
+          "label": "MyOrders",
           "link": "account/order"
         },
         {
@@ -107,7 +107,7 @@
           "link": "faq"
         },
         {
-          "label": "Contact Us",
+          "label": "ContactUs",
           "link": "contact-us"
         }
       ],
@@ -117,7 +117,7 @@
           "link": "home"
         },
         {
-          "label": "Collections",
+          "label": "Catalog",
           "link": "collections"
         },
         {
