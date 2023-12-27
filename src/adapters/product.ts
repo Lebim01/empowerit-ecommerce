@@ -19,7 +19,7 @@ export const productShopifyToStore = (
 ): ProductStore => {
   return {
     attributes: product.options.map((option) => ({
-      id: option.id,
+      id: option.id.toString(),
       name: option.name,
       style: "rectangle",
       slug: option.name.replaceAll(" ", "-").toLocaleLowerCase(),
@@ -31,7 +31,7 @@ export const productShopifyToStore = (
       attribute_values: option.values.map((value) => ({
         id: product.variants.find((r) => value == r.title).id,
         value,
-        attribute_id: "1",
+        attribute_id: option.id.toString(),
       })),
       pivot: {
         attribute_id: product.variants[0].id.toString(),
@@ -136,7 +136,7 @@ const convertVariant = (
     stock_status: StockStatus.InStock,
     attribute_values: [
       {
-        attribute_id: "1",
+        attribute_id: product.options[0].id.toString(),
         created_at: new Date(),
         created_by_id: "1",
         deleted_at: null,
