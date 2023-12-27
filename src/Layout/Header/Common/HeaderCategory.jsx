@@ -1,48 +1,58 @@
-import React, { useContext, useMemo } from 'react';
-import Link from 'next/link';
-import { Col } from 'reactstrap';
-import Avatar from '@/Components/Common/Avatar';
-import TodaysDeal from './TodaysDeal';
-import Btn from '@/Elements/Buttons/Btn';
-import ClassicHeaderMenu from './ClassicHeaderMenu';
-import { placeHolderImage } from '../../../../Data/CommonPath';
-import I18NextContext from '@/Helper/I18NextContext';
-import { useTranslation } from '@/app/i18n/client';
-import CategoryContext from '@/Helper/CategoryContext';
-import ThemeOptionContext from '@/Helper/ThemeOptionsContext';
-import { RiAlignLeft, RiCloseLine } from 'react-icons/ri';
+import React, { useContext, useMemo } from "react";
+import Link from "next/link";
+import { Col } from "reactstrap";
+import Avatar from "@/Components/Common/Avatar";
+import TodaysDeal from "./TodaysDeal";
+import Btn from "@/Elements/Buttons/Btn";
+import ClassicHeaderMenu from "./ClassicHeaderMenu";
+import { placeHolderImage } from "../../../../Data/CommonPath";
+import I18NextContext from "@/Helper/I18NextContext";
+import { useTranslation } from "@/app/i18n/client";
+import CategoryContext from "@/Helper/CategoryContext";
+import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
+import { RiAlignLeft, RiCloseLine } from "react-icons/ri";
+import HeaderMenu from "./HeaderMenu";
 
 const HeaderCategory = ({ customClass, icon, dropDownClass }) => {
   const { filterCategory } = useContext(CategoryContext);
-  const categoryData = filterCategory('product');
+  const categoryData = filterCategory("product");
   const { i18Lang } = useContext(I18NextContext);
-  const { t } = useTranslation(i18Lang, 'common');
+  const { t } = useTranslation(i18Lang, "common");
   const { themeOption } = useContext(ThemeOptionContext);
   const filteredCategories = useMemo(() => {
-    return categoryData?.filter((elem) => themeOption?.header?.category_ids?.includes(elem.id));
+    return categoryData?.filter((elem) =>
+      themeOption?.header?.category_ids?.includes(elem.id)
+    );
   });
   return (
     <Col xs={12}>
-      <div className={`${customClass ? customClass : 'header-nav'}`}>
-        <div className='header-nav-left'>
-          <Btn className={`dropdown-category ${dropDownClass ?? ''}`}>
+      <div className={`${customClass ? customClass : "header-nav"}`}>
+        <div className="header-nav-left">
+          <Btn className={`dropdown-category ${dropDownClass ?? ""}`}>
             {icon ? icon : <RiAlignLeft />}
-            <span>{t('AllCategories')}</span>
+            <span>{t("AllCategories")}</span>
           </Btn>
 
-          <div className='category-dropdown'>
-            <div className='category-title'>
-              <h5>{t('Categories')}</h5>
-              <Btn type='button' className='p-0 close-button text-content'>
+          <div className="category-dropdown">
+            <div className="category-title">
+              <h5>{t("Categories")}</h5>
+              <Btn type="button" className="p-0 close-button text-content">
                 <RiCloseLine />
               </Btn>
             </div>
 
-            <ul className='category-list'>
+            <ul className="category-list">
               {filteredCategories?.map((elem, i) => (
-                <li className='onhover-category-list' key={i}>
-                  <Link href={`/${i18Lang}/collections?category=${elem?.slug}`} className='category-name'>
-                    <Avatar data={elem?.category_icon} placeHolder={placeHolderImage} name={elem.name} />
+                <li className="onhover-category-list" key={i}>
+                  <Link
+                    href={`/${i18Lang}/collections?category=${elem?.slug}`}
+                    className="category-name"
+                  >
+                    <Avatar
+                      data={elem?.category_icon}
+                      placeHolder={placeHolderImage}
+                      name={elem.name}
+                    />
                     <h6>{elem?.name}</h6>
                   </Link>
                 </li>
@@ -50,7 +60,9 @@ const HeaderCategory = ({ customClass, icon, dropDownClass }) => {
             </ul>
           </div>
         </div>
-        <ClassicHeaderMenu />
+
+        {/*<ClassicHeaderMenu />*/}
+        <HeaderMenu />
 
         <TodaysDeal />
       </div>

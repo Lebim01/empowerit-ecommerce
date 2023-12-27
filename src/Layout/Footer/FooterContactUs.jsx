@@ -25,7 +25,7 @@ const FooterContactUs = () => {
         <ul>
           <FooterSupportNumber />
           <FooterSupportEmail />
-          <FooterDownloadAppLink />
+          {/*<FooterDownloadAppLink />*/}
         </ul>
       </div>
     </Col>
