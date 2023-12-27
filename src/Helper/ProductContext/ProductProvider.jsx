@@ -6,7 +6,7 @@ import ProductContext from ".";
 
 const ProductProvider = (props) => {
   const [customProduct, setCustomProduct] = useState([]);
-  const [totalDealIds, setTotalDealIds] = useState("");
+  const [totalDealIds, setTotalDealIds] = useState([]);
   const [productAPIData, setProductAPIData] = useState({
     data: [],
     refetchProduct: "",

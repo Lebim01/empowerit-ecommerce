@@ -12,14 +12,16 @@ import SearchedData from "./SearchedData";
 import ProductContext from "@/Helper/ProductContext";
 
 const SearchModule = () => {
+  const router = useRouter();
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
+
   const [searchState, setSearchState] = useState("");
-  const router = useRouter();
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
-  const { productData, setProductAPIData } = useContext(ProductContext);
-  const [data, setData] = useState([]);
+
+  const { productData, setProductAPIData, productRefetch } =
+    useContext(ProductContext);
 
   useEffect(() => {
     setProductAPIData((data) => ({
@@ -29,6 +31,7 @@ const SearchModule = () => {
       },
     }));
     setSearchState(search);
+    productRefetch();
   }, [search]);
 
   const onHandleSearch = () => {
@@ -63,6 +66,11 @@ const SearchModule = () => {
               className="form-control"
               value={searchState}
               onChange={(e) => onChangeHandler(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key == "Enter") {
+                  onHandleSearch();
+                }
+              }}
             />
             <Btn
               className="theme-bg-color text-white m-0"
