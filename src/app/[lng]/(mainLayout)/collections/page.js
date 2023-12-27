@@ -1,9 +1,7 @@
-import CollectionContain from "@/Components/Collection"
+import CollectionContain from "@/Components/Collection";
 
 const Collection = () => {
-    return (
-        <CollectionContain />
-    )
-}
+  return <CollectionContain />;
+};
 
-export default Collection
+export default Collection;

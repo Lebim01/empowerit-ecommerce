@@ -14,6 +14,32 @@ const CollectionProducts = ({ filter, grid }) => {
   const { slug } = useParams();
   const [page, setPage] = useState(1);
 
+  const { data: pagination } = useQuery(
+    [filter],
+    () =>
+      request({
+        url: ProductAPI + "/pagination",
+        params: {
+          page,
+          status: 1,
+          paginate: 40,
+          field: filter?.field ?? "",
+          price: filter?.price.join(",") ?? "",
+          category: filter?.category.join(","),
+          sort: "",
+          sortBy: filter?.sortBy ?? "",
+          rating: filter?.rating.join(",") ?? "",
+          attribute: filter?.attribute.join(",") ?? "",
+          store_slug: slug ? slug : null,
+        },
+      }),
+    {
+      enabled: true,
+      refetchOnWindowFocus: false,
+      select: (data) => data.data,
+    }
+  );
+
   const { data, fetchStatus } = useQuery(
     [page, filter],
     () =>
@@ -39,6 +65,7 @@ const CollectionProducts = ({ filter, grid }) => {
       select: (data) => data.data,
     }
   );
+
   return (
     <>
       {fetchStatus == "fetching" ? (
@@ -92,9 +119,9 @@ const CollectionProducts = ({ filter, grid }) => {
       {data?.length > 0 && (
         <nav className="custome-pagination">
           <Pagination
-            current_page={data?.current_page}
-            total={data?.total}
-            per_page={data?.per_page}
+            current_page={page}
+            total={pagination?.total}
+            per_page={pagination?.per_page}
             setPage={setPage}
           />
         </nav>

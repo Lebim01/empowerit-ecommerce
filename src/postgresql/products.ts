@@ -105,14 +105,14 @@ type Queries = {
   queryPaginate?: string;
 };
 
-export const getProducts = async (queries: Queries) => {
-  let query = dbClient.selectFrom("products").selectAll();
+const productsQuery = (queries: Queries) => {
+  let query = dbClient.selectFrom("products");
 
   if (queries.querySearch) {
     query = query.where((eb) =>
       eb.or([
-        eb("products.name", "like", '%' + queries.querySearch + '%'),
-        eb("products.description", "like", '%' + queries.querySearch + '%'),
+        eb("products.name", "like", "%" + queries.querySearch + "%"),
+        eb("products.description", "like", "%" + queries.querySearch + "%"),
       ])
     );
   }
@@ -132,8 +132,25 @@ export const getProducts = async (queries: Queries) => {
     console.log(query.compile());
   }
 
+  return query;
+};
+
+export const getProducts = async (queries: Queries) => {
+  let query = productsQuery(queries).selectAll();
   const res = await query.execute();
   return res;
+};
+
+export const getProductsPagination = async (queries: Queries) => {
+  let query = productsQuery(queries).select(({ fn, val, ref }) => [
+    fn.count("products.id").as("count_all"),
+  ]);
+  const res = await query.executeTakeFirst();
+  return {
+    total: Number(res.count_all),
+    current_page: Number(queries.queryPage),
+    per_page: Number(queries.queryPaginate),
+  };
 };
 
 export const getProduct = async (id: number) => {
