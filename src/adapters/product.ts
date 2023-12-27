@@ -17,6 +17,10 @@ export const productShopifyToSQL = (product: ShopifyProduct): Product => {
 export const productShopifyToStore = (
   product: ShopifyProduct
 ): ProductStore => {
+  const stock_total = product.variants.reduce(
+    (a, b) => a + b.inventory_quantity,
+    0
+  );
   return {
     attributes: product.options.map((option) => ({
       id: option.id.toString(),
@@ -79,7 +83,7 @@ export const productShopifyToStore = (
       original_url: product.image.src,
     },
     product_thumbnail_id: 1,
-    quantity: product.variants.reduce((a, b) => a + b.inventory_quantity, 0),
+    quantity: stock_total,
     rating_count: 5,
     related_products: [],
     return_policy_text: "",
@@ -99,7 +103,8 @@ export const productShopifyToStore = (
     slug: product.handle,
     social_share: 1,
     status: 1,
-    stock_status: StockStatus.InStock,
+    stock_status:
+      stock_total > 0 ? StockStatus.InStock : StockStatus.OutOfStock,
     store: STORE,
     store_id: 1,
     tags: product.tags.split(",").map((tag) => tag.trim()),

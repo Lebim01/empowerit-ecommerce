@@ -3,7 +3,7 @@ import { ShopifyProduct } from "@/types/shopify";
 import dbClient, { json } from "./db";
 import { productShopifyToStore } from "@/adapters/product";
 import { ColumnDefinitionBuilder } from "kysely";
-import { ProductStore } from "@/types/store";
+import { ProductStore, StockStatus } from "@/types/store";
 
 const defaultNull = (col: ColumnDefinitionBuilder) => col.defaultTo(null);
 const defaultEmptyString = (col: ColumnDefinitionBuilder) => col.defaultTo("");
@@ -106,7 +106,9 @@ type Queries = {
 };
 
 const productsQuery = (queries: Queries) => {
-  let query = dbClient.selectFrom("products");
+  let query = dbClient
+    .selectFrom("products")
+    .where("products.stock_status", "=", StockStatus.InStock);
 
   if (queries.querySearch) {
     query = query.where((eb) =>
