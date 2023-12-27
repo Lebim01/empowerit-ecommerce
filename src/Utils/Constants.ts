@@ -45,7 +45,7 @@ export const STORE: Store = {
   store_cover_id: 1,
   store_logo: {
     name: "Logo",
-    original_url: "/assets/logo.png",
+    original_url: "https://react.pixelstrap.net/fastkart/assets/logo.png",
   },
   store_logo_id: 1,
   store_name: "SupleMK",

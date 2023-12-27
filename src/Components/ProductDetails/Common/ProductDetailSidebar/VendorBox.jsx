@@ -13,7 +13,7 @@ const VendorBox = ({ productState }) => {
       <div className='vendor-contain'>
         <div className='vendor-image'>
           <Link href={`/${i18Lang}/seller/stores/${productState?.product?.store?.slug}`}>
-            <Avatar data={productState?.product?.store?.store_logo} height={64} width={64} name={productState?.product?.store?.store_name} />
+            <Avatar data={"/assets/images/logo/suplemk.png"} height={64} width={64} name={productState?.product?.store?.store_name} />
           </Link>
         </div>
 
