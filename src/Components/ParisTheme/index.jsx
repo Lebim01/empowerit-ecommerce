@@ -48,7 +48,9 @@ const ParisTheme = () => {
 
   return (
     <>
-      <TopBanner dataAPI={data?.content} />
+      {data?.content?.home_banner?.status && (
+        <TopBanner dataAPI={data?.content} />
+      )}
 
       {data?.content?.featured_banners?.status && (
         <HomeBanner bannersData={data?.content?.featured_banners?.banners} />

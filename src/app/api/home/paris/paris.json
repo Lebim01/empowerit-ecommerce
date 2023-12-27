@@ -2,7 +2,7 @@
   "id": 1,
   "content": {
     "home_banner": {
-      "status": true,
+      "status": false,
       "main_banner": {
         "image_url": "https://react.pixelstrap.net/fastkart/assets/themes/paris/1.jpg",
         "redirect_link": {
