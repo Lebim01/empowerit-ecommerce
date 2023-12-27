@@ -43,7 +43,7 @@
             "link_type": "collection"
           },
           "status": true,
-          "image_url": "/assets/promos/premium-intermedio.jpeg"
+          "image_url": "/assets/promos/premium-pro.jpeg"
         },
         {
           "redirect_link": {
@@ -51,7 +51,7 @@
             "link_type": "collection"
           },
           "status": true,
-          "image_url": "/assets/promos/premium-pro.jpeg"
+          "image_url": "/assets/promos/premium-intermedio.jpeg"
         },
         {
           "redirect_link": {
@@ -69,18 +69,7 @@
         "status": true,
         "categories_icon_list": {
           "title": "Popular Categories",
-          "category_ids": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10
-          ],
+          "category_ids": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
           "status": true
         },
         "left_side_banners": {
@@ -103,42 +92,20 @@
         "sidebar_products": {
           "title": "Trending Products",
           "status": true,
-          "product_ids": [
-            1,
-            2,
-            4,
-            6
-          ]
+          "product_ids": [1, 2, 4, 6]
         }
       },
       "section1_products": {
         "title": "Top Save Today",
         "description": "Don't miss this opportunity at a special discount just for this week.",
-        "product_ids": [
-          8,
-          10,
-          15,
-          18,
-          16,
-          12
-        ],
+        "product_ids": [8, 10, 15, 18, 16, 12],
         "status": false
       },
       "section2_categories_list": {
         "image_url": null,
         "title": "Bowse By Categories",
         "description": "Uncover Hidden Gems and Culinary Delights",
-        "category_ids": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          10,
-          9
-        ],
+        "category_ids": [1, 2, 3, 4, 5, 6, 7, 10, 9],
         "status": true
       },
       "section3_two_column_banners": {
@@ -162,14 +129,7 @@
         "title": "Fresh Veggies and Fruits",
         "description": "Unlocking the Pantry: A Journey into Essential Veggies Staples",
         "status": false,
-        "product_ids": [
-          19,
-          17,
-          7,
-          9,
-          11,
-          13
-        ]
+        "product_ids": [19, 17, 7, 9, 11, 13]
       },
       "section5_coupons": {
         "image_url": "https://react.pixelstrap.net/fastkart/assets/themes/paris/7.jpg",
@@ -201,20 +161,7 @@
         "title": "Our Best Seller",
         "description": "A virtual assistant collects the products from your list.",
         "status": true,
-        "product_ids": [
-          6,
-          10,
-          2,
-          3,
-          8,
-          1,
-          4,
-          7,
-          12,
-          11,
-          9,
-          18
-        ]
+        "product_ids": [6, 10, 2, 3, 8, 1, 4, 7, 12, 11, 9, 18]
       },
       "section8_full_width_banner": {
         "image_url": "https://react.pixelstrap.net/fastkart/assets/themes/paris/10.jpg",
@@ -228,11 +175,7 @@
         "title": "Featured Blog",
         "description": "Uncover Intriguing Highlights in Our Featured Blog",
         "status": false,
-        "blog_ids": [
-          10,
-          14,
-          23
-        ]
+        "blog_ids": [10, 14, 23]
       }
     },
     "news_letter": {
@@ -241,25 +184,7 @@
       "image_url": "https://react.pixelstrap.net/fastkart/assets/newsletter.jpg",
       "status": false
     },
-    "products_ids": [
-      19,
-      1,
-      2,
-      4,
-      6,
-      8,
-      10,
-      15,
-      18,
-      16,
-      12,
-      17,
-      7,
-      9,
-      11,
-      13,
-      3
-    ]
+    "products_ids": [19, 1, 2, 4, 6, 8, 10, 15, 18, 16, 12, 17, 7, 9, 11, 13, 3]
   },
   "slug": "paris"
 }
