@@ -35,7 +35,7 @@ const HeaderMenu = () => {
               <Link
                 className={`nav-item`}
                 href={{
-                  pathname: `/${i18Lang}`,
+                  pathname: `/`,
                 }}
               >
                 {t('Home')}
