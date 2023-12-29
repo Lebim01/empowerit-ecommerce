@@ -1,9 +1,7 @@
-import WishlistContent from "@/Components/Wishlist"
+import WishlistContent from "@/Components/Wishlist";
 
 const Wishlist = () => {
-    return (
-        <WishlistContent />
-    )
-}
+  return <WishlistContent />;
+};
 
-export default Wishlist
+export default Wishlist;

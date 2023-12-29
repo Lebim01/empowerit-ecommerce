@@ -1,13 +1,21 @@
-import { RiBankLine, RiCoinLine, RiFileTextLine, RiHomeLine, RiNotificationLine, RiWalletLine, RiMapPinLine } from 'react-icons/ri';
+import {
+  RiBankLine,
+  RiCoinLine,
+  RiFileTextLine,
+  RiHomeLine,
+  RiNotificationLine,
+  RiWalletLine,
+  RiMapPinLine,
+} from "react-icons/ri";
 
 export const sidebarMenu = [
   {
-    title: 'Dashboard',
+    title: "Dashboard",
     icon: <RiHomeLine />,
-    id: 'dashboard',
-    path: '/account/dashboard',
+    id: "dashboard",
+    path: "/account/dashboard",
   },
-  {
+  /*{
     title: 'Notification',
     icon: <RiNotificationLine />,
     id: 'notification',
@@ -31,23 +39,23 @@ export const sidebarMenu = [
     icon: <RiCoinLine />,
     id: 'point',
     path: '/account/point',
-  },
+  },*/
   {
-    title: 'MyOrders',
+    title: "MyOrders",
     icon: <RiFileTextLine />,
-    id: 'order',
-    path: '/account/order',
+    id: "order",
+    path: "/account/order",
   },
-  {
+  /*{
     title: 'RefundHistory',
     icon: <RiMapPinLine />,
     id: 'refund',
     path: '/account/refund',
-  },
+  },*/
   {
-    title: 'SavedAddress',
+    title: "SavedAddress",
     icon: <RiMapPinLine />,
-    id: 'address',
-    path: '/account/addresses',
+    id: "address",
+    path: "/account/addresses",
   },
 ];

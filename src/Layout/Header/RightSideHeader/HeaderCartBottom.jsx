@@ -87,7 +87,7 @@ const HeaderCartBottom = ({
           <div className="empty-icon">
             <RiShoppingCartLine />
           </div>
-          <h5>{"Your cart is currently empty."}</h5>
+          <h5>{t("EmptyCart")}</h5>
         </div>
       )}
       {cartProducts?.length ? (

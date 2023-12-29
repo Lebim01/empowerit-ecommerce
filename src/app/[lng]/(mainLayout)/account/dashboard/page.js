@@ -1,11 +1,11 @@
-import AccountDashboard from "@/Components/Account/Dashboard"
+import AccountDashboard from "@/Components/Account/Dashboard";
 
 const Dashboard = () => {
-    return (
-        <>
-            <AccountDashboard />
-        </>
-    )
-}
+  return (
+    <>
+      <AccountDashboard />
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
