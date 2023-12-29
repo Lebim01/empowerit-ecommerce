@@ -15,6 +15,8 @@ const AccountProvider = (props) => {
       select: (res) => {
         return res?.data;
       },
+      retry: 1,
+      refetchOnWindowFocus: false,
     }
   );
   useEffect(() => {

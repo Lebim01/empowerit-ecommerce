@@ -9,6 +9,7 @@ import useCreate from "@/Utils/Hooks/useCreate";
 import ConfirmationModal from "@/Components/Common/ConfirmationModal";
 import AccountContext from "@/Helper/AccountContext";
 import Avatar from "@/Components/Common/Avatar";
+import classNames from "classnames";
 
 const HeaderProfile = () => {
   const { i18Lang } = useContext(I18NextContext);
@@ -16,11 +17,21 @@ const HeaderProfile = () => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
   const { t } = useTranslation(i18Lang, "common");
-  const { mutate, isLoading } = useCreate(LogoutAPI,false,false,"Logout Successfully", () => { router.push(`/${i18Lang}/auth/login`); setModal(false);});
+  const { mutate, isLoading } = useCreate(
+    LogoutAPI,
+    false,
+    false,
+    "Logout Successfully",
+    () => {
+      router.push(`/${i18Lang}/auth/login`);
+      setModal(false);
+    }
+  );
 
   const handleLogout = () => {
     mutate({});
   };
+
   return (
     <li className="right-side onhover-dropdown">
       <div className="delivery-login-box">
@@ -37,32 +48,40 @@ const HeaderProfile = () => {
         </div>
         <div className="delivery-detail">
           <h6>
-            {t("Hi")}, { accountData?.name ?? t("User")}
+            {t("Hi")}, {accountData?.name ?? t("User")}
           </h6>
-          <h5>{t("MyAccount")}</h5>
+          {accountData ? (
+            <h5>{t("MyAccount")}</h5>
+          ) : (
+            <Link href={`/${i18Lang}/auth/login`}>
+              <h5>{t("LogIn")}</h5>
+            </Link>
+          )}
         </div>
       </div>
 
-      <div className="onhover-div onhover-div-login">
-        <ul className="user-box-name">
-          <li className="product-box-contain">
-            <Link href={`/${i18Lang}/account/dashboard`}>
-              <RiUserLine className="me-2" /> {t("MyAccount")}
-            </Link>
-          </li>
-          <li className="product-box-contain" onClick={() => setModal(true)}>
-            <a>
-              <RiLogoutBoxRLine className="me-2" /> {t("Logout")}
-            </a>
-          </li>
-          <ConfirmationModal
-            modal={modal}
-            setModal={setModal}
-            confirmFunction={handleLogout}
-            isLoading={isLoading}
-          />
-        </ul>
-      </div>
+      {accountData && (
+        <div className={"onhover-div onhover-div-login"}>
+          <ul className="user-box-name">
+            <li className="product-box-contain">
+              <Link href={`/${i18Lang}/account/dashboard`}>
+                <RiUserLine className="me-2" /> {t("MyAccount")}
+              </Link>
+            </li>
+            <li className="product-box-contain" onClick={() => setModal(true)}>
+              <a>
+                <RiLogoutBoxRLine className="me-2" /> {t("Logout")}
+              </a>
+            </li>
+            <ConfirmationModal
+              modal={modal}
+              setModal={setModal}
+              confirmFunction={handleLogout}
+              isLoading={isLoading}
+            />
+          </ul>
+        </div>
+      )}
     </li>
   );
 };
