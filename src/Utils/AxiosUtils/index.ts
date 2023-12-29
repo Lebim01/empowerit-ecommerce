@@ -1,5 +1,6 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import getCookie from "../CustomFunctions/GetCookie";
+import { NextRouter } from "next/router";
 
 const client = axios.create({
   baseURL: process.env.API_PROD_URL,
@@ -8,7 +9,10 @@ const client = axios.create({
   },
 });
 
-const request = async ({ ...options }, router) => {
+const request = async (
+  options: AxiosRequestConfig<any>,
+  router?: NextRouter
+) => {
   client.defaults.headers.common.Authorization = `Bearer ${getCookie("uat")}`;
   const onSuccess = (response) => response;
   const onError = (error) => {
@@ -19,7 +23,6 @@ const request = async ({ ...options }, router) => {
     console.log("error axios-utils", error?.response?.status);
     return error;
   };
-  console.log(options);
   try {
     const response = await client(options);
     return onSuccess(response);

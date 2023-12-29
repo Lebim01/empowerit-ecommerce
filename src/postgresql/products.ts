@@ -1,13 +1,13 @@
 import { ShopifyProduct } from "@/types/shopify";
 
-import dbClient, { json } from "./db";
+import dbClient, {
+  json,
+  defaultEmptyArray,
+  defaultEmptyString,
+  defaultNull,
+} from "./db";
 import { productShopifyToStore } from "@/adapters/product";
-import { ColumnDefinitionBuilder } from "kysely";
 import { ProductStore, StockStatus } from "@/types/store";
-
-const defaultNull = (col: ColumnDefinitionBuilder) => col.defaultTo(null);
-const defaultEmptyString = (col: ColumnDefinitionBuilder) => col.defaultTo("");
-const defaultEmptyArray = (col: ColumnDefinitionBuilder) => col.defaultTo("[]");
 
 export const createTable = async () => {
   return dbClient.schema

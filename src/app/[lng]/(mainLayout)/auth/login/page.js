@@ -1,11 +1,11 @@
-import LoginContent from "@/Components/Auth/Login"
+import LoginContent from "@/Components/Auth/Login";
 
 const Login = () => {
-    return (
-        <>
-            <LoginContent />
-        </>
-    )
-}
+  return (
+    <>
+      <LoginContent />
+    </>
+  );
+};
 
-export default Login
+export default Login;

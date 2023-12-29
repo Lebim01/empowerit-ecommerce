@@ -1,48 +1,72 @@
-import { Form, Formik } from 'formik';
-import Link from 'next/link';
-import { Col, Input, Label } from 'reactstrap';
-import FormBtn from '@/Components/Common/FormBtn';
-import SimpleInputField from '@/Components/Common/InputFields/SimpleInputField';
-import useHandleLogin, { LogInSchema } from '@/Utils/Hooks/Auth/useLogin';
-import { useContext } from 'react';
-import I18NextContext from '@/Helper/I18NextContext';
-import { useTranslation } from '@/app/i18n/client';
+import { Form, Formik } from "formik";
+import Link from "next/link";
+import { Col, Input, Label } from "reactstrap";
+import FormBtn from "@/Components/Common/FormBtn";
+import SimpleInputField from "@/Components/Common/InputFields/SimpleInputField";
+import useHandleLogin, { LogInSchema } from "@/Utils/Hooks/Auth/useLogin";
+import { useContext } from "react";
+import I18NextContext from "@/Helper/I18NextContext";
+import { useTranslation } from "@/app/i18n/client";
 
 const LoginForm = () => {
   const { i18Lang } = useContext(I18NextContext);
-  const { t } = useTranslation(i18Lang, 'common');
+  const { t } = useTranslation(i18Lang, "common");
   const { mutate, isLoading } = useHandleLogin();
+
   return (
     <Formik
       initialValues={{
-        email: 'john.customer@example.com',
-        password: '123456789',
+        email: "",
+        password: "",
       }}
       validationSchema={LogInSchema}
-      onSubmit={mutate}>
+      onSubmit={mutate}
+    >
       {() => (
-        <Form className='row g-4'>
+        <Form className="row g-4">
           <SimpleInputField
             nameList={[
-              { name: 'email', placeholder: t('EmailAddress'), title: 'Email', label: 'Email Address' },
-              { name: 'password', placeholder: t('EnterPassword'), type: 'password', title: 'Password', label: 'Password' },
+              {
+                name: "email",
+                placeholder: t("EmailAddress"),
+                title: "Email",
+                label: "Email Address",
+              },
+              {
+                name: "password",
+                placeholder: t("EnterPassword"),
+                type: "password",
+                title: "Password",
+                label: "Password",
+              },
             ]}
           />
 
           <Col xs={12}>
-            <div className='forgot-box'>
-              <div className='form-check remember-box'>
-                <Input className='checkbox_animated check-box' type='checkbox' id='flexCheckDefault' />
-                <Label className='form-check-label' htmlFor='flexCheckDefault'>
-                  {t('Rememberme')}
+            <div className="forgot-box">
+              <div className="form-check remember-box">
+                <Input
+                  className="checkbox_animated check-box"
+                  type="checkbox"
+                  id="flexCheckDefault"
+                />
+                <Label className="form-check-label" htmlFor="flexCheckDefault">
+                  {t("Rememberme")}
                 </Label>
               </div>
-              <Link href={`/${i18Lang}/auth/forgot-password`} className='forgot-password'>
-                {t('ForgotPassword')}?
+              <Link
+                href={`/${i18Lang}/auth/forgot-password`}
+                className="forgot-password"
+              >
+                {t("ForgotPassword")}?
               </Link>
             </div>
           </Col>
-          <FormBtn title={'LogIn'} classes={{ btnClass: 'btn btn-animation w-100' }} loading={isLoading} />
+          <FormBtn
+            title={"LogIn"}
+            classes={{ btnClass: "btn btn-animation w-100" }}
+            loading={isLoading}
+          />
         </Form>
       )}
     </Formik>
