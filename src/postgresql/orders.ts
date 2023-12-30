@@ -1,3 +1,4 @@
+import { Order } from "@/types/shopify";
 import dbClient from "./db";
 
 export type Orders = {
@@ -13,5 +14,14 @@ export const createTable = async () => {
     .addColumn("id", "bigint", (col) => col.primaryKey())
     .addColumn("id_user", "bigint")
     .addColumn("created_at", "timestamptz", (col) => col.defaultTo(new Date()))
+    .execute();
+};
+
+export const insertNewOrder = async (order: Order) => {
+  return dbClient
+    .insertInto("orders")
+    .values({
+      ...order,
+    })
     .execute();
 };
