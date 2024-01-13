@@ -103,8 +103,8 @@
       },
       "section2_categories_list": {
         "image_url": null,
-        "title": "Bowse By Categories",
-        "description": "Uncover Hidden Gems and Culinary Delights",
+        "title": "common:section2_categories_list_title",
+        "description": "common:section2_categories_list_description",
         "category_ids": [1, 2, 3, 4, 5, 6, 7, 10, 9],
         "status": true
       },

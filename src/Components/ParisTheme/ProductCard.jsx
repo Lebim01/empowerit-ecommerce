@@ -13,8 +13,11 @@ import CustomHeading from '../Common/CustomHeading';
 import { categorySliderOption, featureBlogSliderOption } from '../../../Data/SliderSettingsData';
 import { LeafSVG } from '../Common/CommonSVG';
 import ProductIdsContext from '@/Helper/ProductIdsContext';
+import { useTranslation } from 'react-i18next';
+
 
 const ProductCard = ({ dataAPI }) => {
+  const { t } = useTranslation();
   const { filteredProduct } = useContext(ProductIdsContext);
   return (
     <Col xxl={dataAPI?.main_content?.sidebar?.status ? 9 : 12} xl={dataAPI?.main_content?.sidebar?.status ? 8 : 12}>
@@ -33,6 +36,7 @@ const ProductCard = ({ dataAPI }) => {
           dataAPI={dataAPI?.main_content?.section2_categories_list}
           svgUrl={<LeafSVG className='icon-width' />}
           classes={{ sliderOption: categorySliderOption }}
+          title={t('section2_categories_list:title')}
         />
       )}
       {dataAPI?.main_content?.section3_two_column_banners?.status && <ShowCaseBanner dataAPI={dataAPI?.main_content?.section3_two_column_banners} />}
