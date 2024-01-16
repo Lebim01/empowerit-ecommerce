@@ -1,5 +1,5 @@
 import { Order } from "@/types/shopify";
-import dbClient from "./db";
+import dbClient, { json } from "./db";
 
 export type Orders = {
   id: number;
@@ -7,7 +7,7 @@ export type Orders = {
   created_at?: Date;
 };
 
-const convertToPSQL = (processedProduct: Order) => ({
+const convertToPSQL = (processedProduct: any) => ({
   ...processedProduct,
   can_review: processedProduct.can_review ? 1 : 0,
   attributes: json(processedProduct.attributes),
