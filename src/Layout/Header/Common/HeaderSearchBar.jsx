@@ -5,11 +5,14 @@ import I18NextContext from "@/Helper/I18NextContext";
 import { useRouter } from "next/navigation";
 import { RiSearchLine } from "react-icons/ri";
 import CategoryDropdown from "./CategoryDropdown";
+import { useTranslation } from "react-i18next"; 
 
 const HeaderSearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
   const { i18Lang } = useContext(I18NextContext);
   const router = useRouter();
+  const { t } = useTranslation(); 
+
   const onHandleSearch = () => {
     if (searchValue) {
       router.push(`/${i18Lang}/search?search=${searchValue}`);
@@ -27,7 +30,7 @@ const HeaderSearchBar = () => {
           <Input
             type="search"
             className="form-control"
-            placeholder="I'm searching for..."
+            placeholder={t('common:Placeholder')} 
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             onKeyDown={(e) => {
