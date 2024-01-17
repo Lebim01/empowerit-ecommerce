@@ -33,9 +33,14 @@ const getApi = (): Promise<AxiosInstance> => {
 };
 
 export const addProductCommerce = async (payload: ProductCommerce) => {
-  const api = await getApi();
-  const res = await api.post("products", payload);
-  return res.data;
+  try {
+    const api = await getApi();
+    const res = await api.post("products", payload);
+    return res.data;
+  } catch (err) {
+    console.error(err.response.data.error.message);
+    throw err;
+  }
 };
 
 export const updateProductCommerce = async (
@@ -64,7 +69,7 @@ export const updateProductCommerce = async (
     );
     return res.data;
   } catch (err) {
-    console.error(err);
+    console.error(err.response.data.error.message);
     throw err.response.data.error.message;
   }
 };
