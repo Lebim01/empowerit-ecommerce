@@ -63,6 +63,7 @@ export const updateProductCommerce = async (
     );
     return res.data;
   } catch (err) {
+    console.error(err);
     throw err.response.data.error.message;
   }
 };

@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     await insertNewProduct(processedProduct);
   }
 
-  /*const googleProduct = productGoogleCommerce(processedProduct);
+  const googleProduct = productGoogleCommerce(processedProduct);
   if (exists) {
     if (exists.google_commerce_id) {
       await updateProductCommerce(exists.google_commerce_id, googleProduct);
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     }
   } else {
     await addProductCommerce(googleProduct);
-  }*/
+  }
 
   return NextResponse.json("OK");
 }
