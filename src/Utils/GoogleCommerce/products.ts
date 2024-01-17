@@ -34,6 +34,7 @@ const getApi = (): Promise<AxiosInstance> => {
 
 export const addProductCommerce = async (payload: ProductCommerce) => {
   try {
+    console.log(payload);
     const api = await getApi();
     const res = await api.post("products", payload);
     return res.data;
@@ -55,6 +56,8 @@ export const updateProductCommerce = async (
     delete payload.contentLanguage;
     delete payload.channel;
     delete payload.source;
+
+    console.log(payload);
 
     const searchParams = new URLSearchParams();
     searchParams.append(
