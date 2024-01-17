@@ -34,6 +34,7 @@ const getApi = (): Promise<AxiosInstance> => {
 
 export const addProductCommerce = async (payload: ProductCommerce) => {
   try {
+    delete payload.source;
     const { description, ...log } = payload;
     console.log(log);
     console.log(payload.source);
