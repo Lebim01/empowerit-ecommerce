@@ -36,6 +36,7 @@ export const addProductCommerce = async (payload: ProductCommerce) => {
   try {
     const { description, ...log } = payload;
     console.log(log);
+    console.log(payload.source);
 
     const api = await getApi();
     const res = await api.post("products", payload);
@@ -61,6 +62,7 @@ export const updateProductCommerce = async (
 
     const { description, ...log } = payload;
     console.log(log);
+    console.log(payload.source);
 
     const searchParams = new URLSearchParams();
     searchParams.append(
