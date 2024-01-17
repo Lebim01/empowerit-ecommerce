@@ -159,6 +159,7 @@ export const getProductsPagination = async (queries: Queries) => {
 export const getProduct = async (id: number) => {
   const res = await dbClient
     .selectFrom("products")
+    .selectAll()
     .where("products.id", "=", id)
     .executeTakeFirst();
   return res;
