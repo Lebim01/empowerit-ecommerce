@@ -11,6 +11,7 @@ export const getVariantStore = (variant: Variation): VariantStore => {
     created_at: variant.created_at,
     barcode: null,
     google_commerce_id: null,
+    stock: variant.quantity,
   };
 };
 

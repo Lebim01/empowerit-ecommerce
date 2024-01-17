@@ -75,6 +75,7 @@ export interface VariantStore {
   compare_price: number;
   barcode: string;
   product_id: number;
+  stock: number;
   created_at: Date;
 }
 
