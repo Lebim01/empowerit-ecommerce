@@ -1,7 +1,8 @@
 import dbClient from "./db";
+import { v4 } from "uuid";
 
 export type Log = {
-  id: number;
+  id: string;
   payload: string;
   created_at?: Date;
 };
@@ -10,16 +11,18 @@ export const createTable = async () => {
   return dbClient.schema
     .createTable("logs")
     .ifNotExists()
-    .addColumn("id", "bigint", (col) => col.primaryKey().autoIncrement())
+    .addColumn("id", "varchar(50)", (col) => col.primaryKey())
     .addColumn("payload", "text")
     .addColumn("created_at", "timestamptz", (col) => col.defaultTo(new Date()))
     .execute();
 };
 
 export const addLog = async (payload: string) => {
+  const id = v4()
   return dbClient
     .insertInto("logs")
     .values({
+      id,
       payload,
     })
     .execute();

@@ -45,12 +45,14 @@
     "sanitize-html": "^2.11.0",
     "sass": "^1.63.4",
     "slick-carousel": "^1.8.1",
+    "uuid": "^9.0.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.10.5",
     "@types/sanitize-html": "^2.9.5",
+    "@types/uuid": "^9.0.7",
     "typescript": "^5.3.3"
   }
 }
