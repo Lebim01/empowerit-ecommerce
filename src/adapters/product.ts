@@ -115,9 +115,9 @@ export const productShopifyToStore = (
     type: product.variants.length > 0 ? "classified" : "simple",
     unit: Unit.The1Item,
     updated_at: new Date(),
-    variations: product.variants.map((variantion) =>
-      convertVariant(variantion, product)
-    ),
+    variations: product.variants
+      .filter((r) => !r.title.toLocaleLowerCase().includes("default"))
+      .map((variantion) => convertVariant(variantion, product)),
     weight: null,
   };
 };
