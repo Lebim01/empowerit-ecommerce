@@ -1,7 +1,7 @@
 import { GoogleAuth } from "google-auth-library";
 import axios, { AxiosInstance } from "axios";
 import { content_v2 } from "googleapis";
-import path from 'path'
+import keyFile from "../../../content-api-key.json";
 
 export interface ProductCommerce extends content_v2.Schema$Product {
   productTypes?: string[];
@@ -9,7 +9,7 @@ export interface ProductCommerce extends content_v2.Schema$Product {
 }
 
 const auth = new GoogleAuth({
-  keyFile: path.resolve('../../../content-api-key.json'),
+  keyFile: JSON.stringify(keyFile),
   scopes: ["https://www.googleapis.com/auth/content"],
 });
 
@@ -17,12 +17,11 @@ const MERCHANT_ID = "5324782176";
 
 const getApi = (): Promise<AxiosInstance> => {
   return new Promise(async (resolve) => {
-    const access_token = await auth.getAccessToken()
+    const access_token = await auth.getAccessToken();
     resolve(
       axios.create({
         baseURL:
-          "https://shoppingcontent.googleapis.com/content/v2.1/" +
-          MERCHANT_ID,
+          "https://shoppingcontent.googleapis.com/content/v2.1/" + MERCHANT_ID,
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
