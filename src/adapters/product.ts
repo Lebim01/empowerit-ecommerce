@@ -67,6 +67,8 @@ export const productShopifyToStore = (
     name: product.title,
     order_amount: 0,
     orders_count: 0,
+    category: product.product_type,
+    brand: product.vendor,
     price:
       Math.ceil(Number(product.variants[0].price) * (1 + DISCOUNT) * 100) / 100,
     product_galleries: product.images.map((image, i) => ({

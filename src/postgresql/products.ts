@@ -1,12 +1,9 @@
-import { ShopifyProduct } from "@/types/shopify";
-
 import dbClient, {
   json,
   defaultEmptyArray,
   defaultEmptyString,
   defaultNull,
 } from "./db";
-import { productShopifyToStore } from "@/adapters/product";
 import { ProductStore, StockStatus } from "@/types/store";
 
 export const createTable = async () => {
@@ -18,6 +15,8 @@ export const createTable = async () => {
     .addColumn("description", "text")
     .addColumn("status", "int2", (col) => col.defaultTo(1))
     .addColumn("stock_status", "varchar(20)")
+    .addColumn("category", "varchar(100)")
+    .addColumn("brand", "varchar(100)")
     .addColumn("unit", "varchar(20)")
     .addColumn("can_review", "int2", (col) => col.defaultTo(1))
     .addColumn("product_thumbnail_id", "integer", (col) => col.defaultTo(1))

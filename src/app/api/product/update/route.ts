@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
   }
 
   const googleProduct = productGoogleCommerce(processedProduct);
+  console.log(googleProduct)
   if (exists) {
     if (exists.google_commerce_id) {
       await updateProductCommerce(exists.google_commerce_id, googleProduct);

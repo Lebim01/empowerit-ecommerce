@@ -13,6 +13,8 @@ export interface ProductStore {
   is_featured: number;
   shipping_days: null | number;
   is_cod: string;
+  category: string;
+  brand: string;
   is_free_shipping: number;
   is_sale_enable: number;
   is_return: number;
