@@ -1,22 +1,17 @@
 import dbClient from "./db";
 import { VariantStore, Variation } from "@/types/store";
 
-function cammel(str) {
+function capitalizeEachWord(str) {
   return str
-    .replace(/\s(.)/g, function ($1) {
-      return $1.toUpperCase();
-    })
-    .replace(/\s/g, "")
-    .replace(/^(.)/, function ($1) {
-      return $1.toLowerCase();
-    });
+    .toLocaleLowerCase()
+    .replace(/\b\w/g, (match) => match.toUpperCase());
 }
 
 export const getVariantStore = (variant: Variation): VariantStore => {
   return {
     id: variant.id,
     product_id: variant.product_id,
-    name: cammel(variant.name),
+    name: capitalizeEachWord(variant.name),
     price: variant.sale_price,
     compare_price: variant.price,
     created_at: variant.created_at,
