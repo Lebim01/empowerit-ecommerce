@@ -63,6 +63,7 @@ export const createTable = async () => {
     .addColumn("order_amount", "integer")
     .addColumn("orders_count", "integer")
     .addColumn("product_meta_image_id", "varchar(10)")
+    .addColumn("google_commerce_id", "varchar(50)")
     .addColumn("product_galleries", "jsonb")
     .addColumn("cross_sell_products", "jsonb", defaultEmptyArray)
     .addColumn("variations", "jsonb", defaultEmptyArray)
@@ -172,24 +173,20 @@ export const getProductBySlug = async (slug: string) => {
   return res;
 };
 
-export const insertNewProduct = async (product: ShopifyProduct) => {
-  const processedProduct = productShopifyToStore(product);
+export const insertNewProduct = async (product: ProductStore) => {
   const res = await dbClient
     .insertInto("products")
-    .values(convertToPSQL(processedProduct))
+    .values(convertToPSQL(product))
     .execute();
-  console.log(res);
   return res;
 };
 
-export const updateProduct = async (product: ShopifyProduct) => {
+export const updateProduct = async (product: ProductStore) => {
   const id = product.id;
-  const processedProduct = productShopifyToStore(product);
   const res = await dbClient
     .updateTable("products")
-    .set(convertToPSQL(processedProduct))
+    .set(convertToPSQL(product))
     .where("products.id", "=", id)
     .executeTakeFirst();
-  console.log(res);
   return res;
 };

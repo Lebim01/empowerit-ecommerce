@@ -62,6 +62,7 @@ export interface ProductStore {
   tags: string[];
   attributes: any[];
   variations: Variation[];
+  google_commerce_id?: string;
 }
 
 export interface Attribute {
