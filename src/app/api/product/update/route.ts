@@ -10,6 +10,7 @@ import {
   updateProduct,
   insertNewProduct,
 } from "@/postgresql/products";
+import { getProductVariant } from "@/postgresql/products_variant";
 import { ShopifyProduct } from "@/types/shopify";
 import { ProductStore } from "@/types/store";
 import { NextRequest, NextResponse } from "next/server";
@@ -27,16 +28,27 @@ export async function POST(req: NextRequest) {
     await insertNewProduct(processedProduct);
   }
 
-  /*const googleProduct = productGoogleCommerce(processedProduct);
-  if (exists) {
-    if (exists.google_commerce_id) {
-      await updateProductCommerce(exists.google_commerce_id, googleProduct);
+  const googleProducts = productGoogleCommerce(processedProduct);
+  for (const prod_commerce of googleProducts) {
+    if (processedProduct.variations.length > 0) {
+      const variant_db = await getProductVariant(Number(prod_commerce.offerId));
+      if (variant_db.google_commerce_id) {
+        await updateProductCommerce(
+          variant_db.google_commerce_id,
+          prod_commerce
+        );
+      } else {
+        await addProductCommerce(prod_commerce);
+      }
     } else {
-      await addProductCommerce(googleProduct);
+      const prod_db = await getProduct(processedProduct.id);
+      if (prod_db.google_commerce_id) {
+        await updateProductCommerce(prod_db.google_commerce_id, prod_commerce);
+      } else {
+        await addProductCommerce(prod_commerce);
+      }
     }
-  } else {
-    await addProductCommerce(googleProduct);
-  }*/
+  }
 
   return NextResponse.json("OK");
 }
