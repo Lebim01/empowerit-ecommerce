@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   await addLog(JSON.stringify(data));
 
-  const processedProduct = productShopifyToStore(data);
+  /*const processedProduct = productShopifyToStore(data);
   const exists: ProductStore = (await getProduct(data.id)) as ProductStore;
   if (exists) {
     await updateProduct(processedProduct);
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     }
   } else {
     await addProductCommerce(googleProduct);
-  }
+  }*/
 
   return NextResponse.json("OK");
 }
