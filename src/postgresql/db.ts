@@ -1,5 +1,5 @@
 import { createKysely } from "@vercel/postgres-kysely";
-import { ProductStore } from "@/types/store";
+import { ProductStore, VariantStore } from "@/types/store";
 import { ColumnDefinitionBuilder, RawBuilder, sql } from "kysely";
 import { User } from "./users";
 import { WhishList } from "./whishlist";
@@ -12,6 +12,7 @@ interface Database {
   whishlist: WhishList;
   orders: Orders;
   logs: Log;
+  products_variants: VariantStore;
 }
 
 const dbClient = createKysely<Database>();

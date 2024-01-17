@@ -140,7 +140,10 @@ const convertVariant = (
     sku: variation.title.replaceAll(" ", "").toLowerCase(),
     status: 1,
     product_id: variation.product_id,
-    stock_status: StockStatus.InStock,
+    stock_status:
+      variation.inventory_quantity > 0
+        ? StockStatus.InStock
+        : StockStatus.OutOfStock,
     attribute_values: [
       {
         attribute_id: product.options[0].id.toString(),

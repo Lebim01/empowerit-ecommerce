@@ -5,6 +5,7 @@ import dbClient, {
   defaultNull,
 } from "./db";
 import { ProductStore, StockStatus } from "@/types/store";
+import { getVariantStore, insertNewProductVariant } from "./products_variant";
 
 export const createTable = async () => {
   return dbClient.schema
@@ -178,6 +179,11 @@ export const insertNewProduct = async (product: ProductStore) => {
     .insertInto("products")
     .values(convertToPSQL(product))
     .execute();
+
+  for (const variant of product.variations) {
+    await insertNewProductVariant(product.id, getVariantStore(variant));
+  }
+
   return res;
 };
 

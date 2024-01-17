@@ -67,6 +67,17 @@ export interface ProductStore {
   google_commerce_id?: string;
 }
 
+export interface VariantStore {
+  id: number;
+  name: string;
+  google_commerce_id: string;
+  price: number;
+  compare_price: number;
+  barcode: string;
+  product_id: number;
+  created_at: Date;
+}
+
 export interface Attribute {
   id: number;
   name: string;
@@ -368,6 +379,7 @@ export type Variation = {
   created_at: Date;
   updated_at: Date;
   variation_image: null | ProductMetaImage;
+  google_commerce_id?: string;
   attribute_values: {
     id: number;
     value: string;

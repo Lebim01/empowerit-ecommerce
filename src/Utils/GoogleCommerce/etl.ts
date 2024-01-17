@@ -1,30 +1,52 @@
-import { ProductStore, StockStatus } from "@/types/store";
+import { ProductStore, StockStatus, Variation } from "@/types/store";
 import { ProductCommerce } from "./products";
 
 export const productGoogleCommerce = (
   payload: ProductStore
+): ProductCommerce[] => {
+  if (payload.variations.length > 0) {
+    return payload.variations.map((variant) => getJson(payload, variant));
+  } else {
+    return [getJson(payload)];
+  }
+};
+
+const getJson = (
+  payload: ProductStore,
+  variant?: Variation
 ): ProductCommerce => {
   return {
-    id: payload?.google_commerce_id,
-    offerId: payload.id.toString(),
-    title: payload.name,
+    id: variant?.google_commerce_id || payload?.google_commerce_id,
+    offerId: variant?.id.toString() || payload.id.toString(),
+    title: variant ? `Sabor ${variant.name}, ${payload.name}` : payload.name,
     description: payload.description,
     price: {
       currency: "MXN",
-      value: Number(payload.price).toString(),
+      value: variant
+        ? Number(variant.price).toString()
+        : Number(payload.price).toString(),
     },
     salePrice: {
       currency: "MXN",
       value: Number(payload.sale_price).toString(),
     },
     imageLink:
-      payload.product_galleries.length > 0
+      variant && variant.variation_image
+        ? variant.variation_image.original_url
+        : payload.product_galleries.length > 0
         ? payload.product_galleries[0].original_url
         : null,
     additionalImageLinks: payload.product_galleries.map((r) => r.original_url),
-    link: `https://www.suplemk.com/es/product/${payload.slug}`,
-    availability:
-      payload.stock_status == StockStatus.InStock ? "in_stock" : "out_of_stock",
+    link: `https://www.suplemk.com/es/product/${payload.slug}${
+      variant ? `?variant=${variant.id}` : ""
+    }`,
+    availability: variant
+      ? variant.stock_status == StockStatus.InStock
+        ? "in_stock"
+        : "out_of_stock"
+      : payload.stock_status == StockStatus.InStock
+      ? "in_stock"
+      : "out_of_stock",
     brand: payload.brand,
     adult: false,
     contentLanguage: "es",
@@ -32,7 +54,11 @@ export const productGoogleCommerce = (
     channel: "online",
     productTypes: payload.category ? [payload.category] : null,
     feedLabel: "MX",
-    sellOnGoogleQuantity: Math.floor(Number(payload.stock_status)).toString(),
+    sellOnGoogleQuantity: variant
+      ? Math.floor(Number(variant.quantity)).toString()
+      : payload.variations.length > 0
+      ? Math.floor(Number(payload.variations[0].quantity)).toString()
+      : null,
     source: "api",
     condition: "new",
     shipping: [
