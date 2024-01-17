@@ -5,7 +5,12 @@ import dbClient, {
   defaultNull,
 } from "./db";
 import { ProductStore, StockStatus } from "@/types/store";
-import { getVariantStore, insertNewProductVariant } from "./products_variant";
+import {
+  getProductVariant,
+  getVariantStore,
+  insertNewProductVariant,
+  updateProductVariant,
+} from "./products_variant";
 
 export const createTable = async () => {
   return dbClient.schema
@@ -194,5 +199,19 @@ export const updateProduct = async (product: ProductStore) => {
     .set(convertToPSQL(product))
     .where("products.id", "=", id)
     .executeTakeFirst();
+
+  for (const variant of product.variations) {
+    try {
+      const variant_db = await getProductVariant(variant.id);
+      if (variant_db) {
+        await updateProductVariant(getVariantStore(variant));
+      } else {
+        await insertNewProductVariant(product.id, getVariantStore(variant));
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return res;
 };

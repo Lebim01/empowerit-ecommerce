@@ -53,7 +53,7 @@ export const insertNewProductVariant = async (
   return res;
 };
 
-export const updateProduct = async (variant: VariantStore) => {
+export const updateProductVariant = async (variant: VariantStore) => {
   const id = variant.id;
   const res = await dbClient
     .updateTable("products_variants")
