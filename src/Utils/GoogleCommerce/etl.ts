@@ -15,8 +15,11 @@ const removeEmojis = (text) => {
 export const productGoogleCommerce = (
   payload: ProductStore
 ): ProductCommerce[] => {
-  if (payload.variations.length > 0) {
-    return payload.variations.map((variant) => getJson(payload, variant));
+  const real_variantions = payload.variations.filter(
+    (r) => !r.name.toLocaleLowerCase().includes("default")
+  );
+  if (real_variantions.length > 0) {
+    return real_variantions.map((variant) => getJson(payload, variant));
   } else {
     return [getJson(payload)];
   }
