@@ -1,5 +1,7 @@
 import { ProductStore, StockStatus, Variation } from "@/types/store";
 import { ProductCommerce } from "./products";
+import { convert } from "html-to-text";
+import { capitalizeEachWord } from "@/postgresql/products_variant";
 
 export const productGoogleCommerce = (
   payload: ProductStore
@@ -18,8 +20,10 @@ const getJson = (
   return {
     id: variant?.google_commerce_id || payload?.google_commerce_id,
     offerId: variant?.id.toString() || payload.id.toString(),
-    title: variant ? `Sabor ${variant.name}, ${payload.name}` : payload.name,
-    description: payload.description,
+    title: variant
+      ? `Sabor ${capitalizeEachWord(variant.name)}, ${payload.name}`
+      : payload.name,
+    description: convert(payload.description),
     price: {
       currency: "MXN",
       value: variant

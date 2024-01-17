@@ -1,7 +1,7 @@
 import dbClient from "./db";
 import { VariantStore, Variation } from "@/types/store";
 
-function capitalizeEachWord(str) {
+export function capitalizeEachWord(str) {
   return str
     .toLocaleLowerCase()
     .replace(/\b\w/g, (match) => match.toUpperCase());
