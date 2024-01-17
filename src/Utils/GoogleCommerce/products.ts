@@ -3,6 +3,10 @@ import axios, { AxiosInstance } from "axios";
 import { content_v2 } from "googleapis";
 import path from "path";
 import key from "../../../content-api-key.json";
+import {
+  getProductVariant,
+  updateProductVariant,
+} from "@/postgresql/products_variant";
 
 export interface ProductCommerce extends content_v2.Schema$Product {
   productTypes?: string[];
@@ -35,9 +39,6 @@ const getApi = (): Promise<AxiosInstance> => {
 export const addProductCommerce = async (payload: ProductCommerce) => {
   try {
     delete payload.source;
-    const { description, ...log } = payload;
-    console.log(log);
-    console.log(payload.source);
 
     const api = await getApi();
     const res = await api.post("products", payload);
@@ -61,10 +62,6 @@ export const updateProductCommerce = async (
     delete payload.channel;
     delete payload.source;
 
-    const { description, ...log } = payload;
-    console.log(log);
-    console.log(payload.source);
-
     const searchParams = new URLSearchParams();
     searchParams.append(
       "updateMask",
@@ -76,6 +73,7 @@ export const updateProductCommerce = async (
       `products/${productId}?${searchParams.toString()}`,
       payload
     );
+
     return res.data;
   } catch (err) {
     console.error(err.response.data.error.message);

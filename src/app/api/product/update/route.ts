@@ -10,7 +10,10 @@ import {
   updateProduct,
   insertNewProduct,
 } from "@/postgresql/products";
-import { getProductVariant } from "@/postgresql/products_variant";
+import {
+  getProductVariant,
+  updateProductVariant,
+} from "@/postgresql/products_variant";
 import { ShopifyProduct } from "@/types/shopify";
 import { ProductStore } from "@/types/store";
 import { NextRequest, NextResponse } from "next/server";
@@ -38,14 +41,18 @@ export async function POST(req: NextRequest) {
           prod_commerce
         );
       } else {
-        await addProductCommerce(prod_commerce);
+        const res = await addProductCommerce(prod_commerce);
+        variant_db.google_commerce_id = res.id;
+        await updateProductVariant(variant_db);
       }
     } else {
-      const prod_db = await getProduct(processedProduct.id);
+      const prod_db = (await getProduct(processedProduct.id)) as ProductStore;
       if (prod_db.google_commerce_id) {
         await updateProductCommerce(prod_db.google_commerce_id, prod_commerce);
       } else {
-        await addProductCommerce(prod_commerce);
+        const res = await addProductCommerce(prod_commerce);
+        prod_db.google_commerce_id = res.id;
+        await updateProduct(prod_db);
       }
     }
   }
