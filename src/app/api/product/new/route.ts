@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
 
   const processedProduct = productShopifyToStore(data);
   const googleProduct = productGoogleCommerce(processedProduct);
-  await addProductCommerce(googleProduct);
+  //await addProductCommerce(googleProduct);
   await insertNewProduct(processedProduct);
   return NextResponse.json("OK");
 }
