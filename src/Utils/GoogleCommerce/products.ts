@@ -1,13 +1,14 @@
 import { GoogleAuth } from "google-auth-library";
 import axios, { AxiosInstance } from "axios";
 import { content_v2 } from "googleapis";
-import keyFile from "../../../content-api-key.json";
+import path from "path";
 
 export interface ProductCommerce extends content_v2.Schema$Product {
   productTypes?: string[];
   feedLabel?: string;
 }
 
+const keyFile = path.join(process.cwd(), "content-api-key.json");
 const auth = new GoogleAuth({
   keyFile: JSON.stringify(keyFile),
   scopes: ["https://www.googleapis.com/auth/content"],
