@@ -10,7 +10,7 @@ export const createTable = async () => {
   return dbClient.schema
     .createTable("logs")
     .ifNotExists()
-    .addColumn("id", "int", (col) => col.primaryKey())
+    .addColumn("id", "bigint", (col) => col.primaryKey())
     .addColumn("payload", "text")
     .addColumn("created_at", "timestamptz", (col) => col.defaultTo(new Date()))
     .execute();
