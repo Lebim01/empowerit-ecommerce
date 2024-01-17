@@ -1,7 +1,16 @@
 import { ProductStore, StockStatus, Variation } from "@/types/store";
 import { ProductCommerce } from "./products";
-import { convert } from "html-to-text";
 import { capitalizeEachWord } from "@/postgresql/products_variant";
+
+const removeEmojis = (text) => {
+  if (!text) {
+    return "";
+  }
+  return text.replace(
+    /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g,
+    ""
+  );
+};
 
 export const productGoogleCommerce = (
   payload: ProductStore
@@ -23,7 +32,7 @@ const getJson = (
     title: variant
       ? `Sabor ${capitalizeEachWord(variant.name)}, ${payload.name}`
       : payload.name,
-    description: convert(payload.description),
+    description: removeEmojis(payload.description),
     price: {
       currency: "MXN",
       value: variant
