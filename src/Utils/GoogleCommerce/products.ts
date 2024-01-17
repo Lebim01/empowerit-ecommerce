@@ -11,7 +11,7 @@ export interface ProductCommerce extends content_v2.Schema$Product {
 
 const keyFile = path.join(process.cwd(), "content-api-key.json");
 const auth = new GoogleAuth({
-  keyFile: JSON.stringify(keyFile),
+  keyFile,
   scopes: ["https://www.googleapis.com/auth/content"],
 });
 
