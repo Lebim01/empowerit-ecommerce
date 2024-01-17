@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   await addLog(JSON.stringify(data));
 
-  /*const processedProduct = productShopifyToStore(data);
+  const processedProduct = productShopifyToStore(data);
   const exists: ProductStore = (await getProduct(data.id)) as ProductStore;
   if (exists) {
     await updateProduct(processedProduct);
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     await insertNewProduct(processedProduct);
   }
 
-  const googleProduct = productGoogleCommerce(processedProduct);
+  /*const googleProduct = productGoogleCommerce(processedProduct);
   if (exists) {
     if (exists.google_commerce_id) {
       await updateProductCommerce(exists.google_commerce_id, googleProduct);
