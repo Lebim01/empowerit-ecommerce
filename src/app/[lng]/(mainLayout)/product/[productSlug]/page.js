@@ -1,4 +1,5 @@
 import ProductDetailContent from "@/Components/ProductDetails";
+
 export async function generateMetadata({ params }) {
   // fetch data
   const productData = await fetch(
@@ -7,6 +8,8 @@ export async function generateMetadata({ params }) {
     .then((res) => res.json())
     .catch((err) => console.log("err", err));
   return {
+    title: productData?.meta_title,
+    description: productData?.meta_description,
     openGraph: {
       title: productData?.meta_title,
       description: productData?.meta_description,
@@ -16,7 +19,11 @@ export async function generateMetadata({ params }) {
 }
 
 const ProductDetails = ({ params }) => {
-  return <ProductDetailContent params={params?.productSlug} />;
+  return (
+    <>
+      <ProductDetailContent params={params?.productSlug} />
+    </>
+  );
 };
 
 export default ProductDetails;

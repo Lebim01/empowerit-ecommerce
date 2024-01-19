@@ -5,7 +5,6 @@ import CookiesComponent from "./Cookies";
 import MainFooter from "./Footer";
 import MainHeader from "./Header";
 import MobileMenu from "./MobileMenu";
-import NewsLetterModal from "./NewsLetter/NewsLetterModal";
 import RecentPurchase from "./RecentPurchase";
 import StickyCompare from "./StickyCompare";
 import TapTop from "./TapTop";
@@ -14,8 +13,9 @@ import ExitModal from "./ExitModal";
 const SubLayout = ({ children }) => {
   const isTabActive = TabFocusChecker();
   const { themeOption } = useContext(ThemeOptionContext);
+
   useEffect(() => {
-    const message = ["⚡ Come Back !!!", "🔥 Don't forget this....."];
+    const message = ["⚡ Vuelve !!!", "🔥 No olvides estó....."];
     let timer;
 
     const updateTitle = (index) => {
@@ -40,6 +40,7 @@ const SubLayout = ({ children }) => {
       clearTimeout(timer);
     };
   }, [isTabActive, themeOption]);
+
   return (
     <>
       <MainHeader />
