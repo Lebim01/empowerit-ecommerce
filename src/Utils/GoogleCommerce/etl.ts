@@ -33,7 +33,12 @@ const getJson = (
     id: variant?.google_commerce_id || payload?.google_commerce_id,
     offerId: variant?.id.toString() || payload.id.toString(),
     title: variant
-      ? `Sabor ${capitalizeEachWord(variant.name)}, ${payload.name}`
+      ? payload.name.includes("varios sabores")
+        ? payload.name.replace(
+            "varios sabores",
+            `Sabor ${capitalizeEachWord(variant.name)}`
+          )
+        : payload.name + `, Sabor ${capitalizeEachWord(variant.name)}`
       : payload.name,
     description: removeEmojis(payload.description),
     price: {
