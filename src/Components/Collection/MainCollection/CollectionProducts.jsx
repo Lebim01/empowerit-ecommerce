@@ -107,9 +107,9 @@ const CollectionProducts = ({ filter, grid }) => {
           data={{
             imageUrl: noProduct,
             customClass: "no-data-added collection-no-data",
-            title: "Sorry! Couldn't find the products you were looking For!",
-            description:
-              "Please check if you have misspelt something or try searching with other way.",
+            title: t("common:noDataFoundTitle"),
+            description: t("noDataFoundDescription"),
+              
             height: 345,
             width: 345,
           }}

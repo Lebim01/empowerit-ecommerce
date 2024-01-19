@@ -16,7 +16,7 @@ const LoginContent = () => {
   const { t } = useTranslation(i18Lang, "common");
   return (
     <>
-      <Breadcrumb title={"Login"} subNavigation={[{ name: "Login" }]} />
+      <Breadcrumb title={t("Login")} subNavigation={[{ name: "Login" }]} />
       <WrapperComponent
         classes={{
           sectionClass: "log-in-section background-image-2 section-b-space",

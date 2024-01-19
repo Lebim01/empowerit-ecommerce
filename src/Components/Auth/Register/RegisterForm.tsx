@@ -65,13 +65,13 @@ const RegisterForm = () => {
                 name: "first_name",
                 //placeholder: t("EmailAddress"),
                 title: "Name",
-                label: "FullName",
+                label: t("FirstName"),
               },
               {
                 name: "last_name",
                 //placeholder: t("EmailAddress"),
                 title: "Last Name",
-                label: "LastName",
+                label: t("LastName"),
               },
               {
                 name: "email",

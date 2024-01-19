@@ -30,7 +30,7 @@ const LoginForm = () => {
                 name: "email",
                 placeholder: t("EmailAddress"),
                 title: "Email",
-                label: "Email Address",
+                label:  t("EmailAddress"),
               },
               {
                 name: "password",
