@@ -1,4 +1,11 @@
 {
+  "noDataFoundTitle": "Sorry! Couldn't find the products you were looking For!",
+  "noDataFoundDescription":"Please check if you have misspelt something or try searching with other way.",
+  "Copyright": "©2023 SupleMK Todos los derechos reservados",
+  "Spanish": "Español",
+  "LastName": "Apellido",
+  "FirstName": "Nombre",
+  "popularCategoriesTranslated": "Categorías Populares",
   "section2_categories_list_description": "Descubre el bienestar en cada suplemento.",
   "section2_categories_list_title": "Explorar por Categorías",
   "Placeholder": "Buscar",

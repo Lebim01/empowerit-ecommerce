@@ -6,15 +6,17 @@ import Link from 'next/link';
 import { useContext } from 'react';
 import { placeHolderImage } from '../../../Data/CommonPath';
 import Avatar from '../Common/Avatar';
+import { useTranslation } from 'react-i18next';
 
 const TrendingProduct = ({ dataAPI }) => {
+  const { t } = useTranslation();
   const { i18Lang } = useContext(I18NextContext);
   const { convertCurrency } = useContext(SettingContext);
   const { filteredProduct } = useContext(ProductIdsContext);
   return (
     <div className='section-t-space'>
       <div className='category-menu'>
-        <h3>{dataAPI?.main_content?.sidebar?.sidebar_products?.title}</h3>
+      <h3>{t(dataAPI?.main_content?.sidebar?.sidebar_products?.title)}</h3>
         <ul className='product-list'>
           {filteredProduct
             ?.filter((el) => dataAPI?.main_content?.sidebar?.sidebar_products?.product_ids.includes(el.id))

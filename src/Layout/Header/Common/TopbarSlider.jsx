@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import ThemeOptionContext from '@/Helper/ThemeOptionsContext';
 import { Col } from 'reactstrap';
-import Slider from 'react-slick';
+import { useTranslation } from 'react-i18next';
 import { topBarContentSlider } from '../../../../Data/SliderSettingsData';
 
 const TopbarSlider = ({ customClass }) => {
+  const { t } = useTranslation(); 
   const { themeOption } = useContext(ThemeOptionContext);
   return (
     <>
