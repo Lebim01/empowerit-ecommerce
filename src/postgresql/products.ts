@@ -171,6 +171,9 @@ export const getProductBySlug = async (slug: string) => {
     .selectAll()
     .where("products.slug", "=", slug)
     .executeTakeFirst();
+  console.log(res.description);
+  console.log(res.meta_description);
+  console.log(res.meta_title);
   return res;
 };
 
