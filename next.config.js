@@ -39,6 +39,10 @@ module.exports = (phase) => {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "suplemk.com",
+      },
+      {
+        protocol: "https",
         hostname: "react.pixelstrap.net",
       },
       {
