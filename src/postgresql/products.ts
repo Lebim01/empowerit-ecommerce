@@ -1,9 +1,4 @@
-import dbClient, {
-  json,
-  defaultEmptyArray,
-  defaultEmptyString,
-  defaultNull,
-} from "./db";
+import dbClient, { json, defaultEmptyString, defaultNull } from "./db";
 import { ProductStore, StockStatus } from "@/types/store";
 import {
   getProductVariant,
@@ -88,19 +83,19 @@ export const createTable = async () => {
 const convertToPSQL = (processedProduct: ProductStore) => ({
   ...processedProduct,
   can_review: processedProduct.can_review ? 1 : 0,
-  attributes: json(processedProduct.attributes),
-  product_galleries: json(processedProduct.product_galleries),
-  cross_sell_products: json(processedProduct.cross_sell_products),
-  variations: json(processedProduct.variations),
-  categories: json(processedProduct.categories),
-  tags: json(processedProduct.tags),
-  tax: processedProduct.tax ? json(processedProduct.tax) : null,
-  store: json(processedProduct.store),
-  related_products: json(processedProduct.related_products),
-  reviews: json(processedProduct.reviews),
-  product_meta_image: json(processedProduct.product_meta_image),
-  product_thumbnail: json(processedProduct.product_thumbnail),
-  review_ratings: json(processedProduct.review_ratings),
+  attributes: JSON.stringify(processedProduct.attributes),
+  product_galleries: JSON.stringify(processedProduct.product_galleries),
+  cross_sell_products: JSON.stringify(processedProduct.cross_sell_products),
+  variations: JSON.stringify(processedProduct.variations),
+  categories: JSON.stringify(processedProduct.categories),
+  tags: JSON.stringify(processedProduct.tags),
+  tax: processedProduct.tax ? JSON.stringify(processedProduct.tax) : null,
+  store: JSON.stringify(processedProduct.store),
+  related_products: JSON.stringify(processedProduct.related_products),
+  reviews: JSON.stringify(processedProduct.reviews),
+  product_meta_image: JSON.stringify(processedProduct.product_meta_image),
+  product_thumbnail: JSON.stringify(processedProduct.product_thumbnail),
+  review_ratings: JSON.stringify(processedProduct.review_ratings),
 });
 
 type Queries = {
@@ -182,7 +177,7 @@ export const getProductBySlug = async (slug: string) => {
 export const insertNewProduct = async (product: ProductStore) => {
   const res = await dbClient
     .insertInto("products")
-    .values(convertToPSQL(product))
+    .values(convertToPSQL(product) as any)
     .execute();
 
   for (const variant of product.variations) {
@@ -196,7 +191,7 @@ export const updateProduct = async (product: ProductStore) => {
   const id = product.id;
   const res = await dbClient
     .updateTable("products")
-    .set(convertToPSQL(product))
+    .set(convertToPSQL(product) as any)
     .where("products.id", "=", id)
     .executeTakeFirst();
 
