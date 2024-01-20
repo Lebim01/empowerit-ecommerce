@@ -1,12 +1,14 @@
 import ProductDetailContent from "@/Components/ProductDetails";
 
 export async function generateMetadata({ params }) {
-  // fetch data
   const productData = await fetch(
     `${process.env.API_PROD_URL}product/${params?.productSlug}`
   )
     .then((res) => res.json())
     .catch((err) => console.log("err", err));
+
+  console.log(productData);
+
   return {
     title: productData?.meta_title,
     description: productData?.meta_description,
