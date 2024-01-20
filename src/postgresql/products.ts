@@ -1,4 +1,4 @@
-import dbClient, { json, defaultEmptyString, defaultNull } from "./db";
+import dbClient, { defaultEmptyString, defaultNull } from "./db";
 import { ProductStore, StockStatus } from "@/types/store";
 import {
   getProductVariant,

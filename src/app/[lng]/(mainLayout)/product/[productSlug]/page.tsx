@@ -6,22 +6,17 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     `${process.env.API_PROD_URL}product/${params?.productSlug}`
   )
     .then((res) => res.json())
-    .catch((err) => console.log("err", err));
-
-  console.log({
-    title: productData?.meta_title,
-    description: productData?.meta_description,
-    openGraph: {
-      title: productData?.meta_title,
-      description: productData?.meta_description,
-      images: [productData?.product_meta_image?.original_url, []],
-    },
-  });
+    .then((res) => ({
+      meta_title: res.meta_title,
+      meta_description: res.meta_description,
+      product_meta_image: res.product_meta_image,
+      tags: res.tags,
+    }));
 
   return {
     title: productData?.meta_title,
     description: productData?.meta_description,
-    keywords: productData?.tags?.join(', '),
+    keywords: productData?.tags?.join(", "),
     openGraph: {
       title: productData?.meta_title,
       description: productData?.meta_description,

@@ -2,11 +2,6 @@ import { GoogleAuth } from "google-auth-library";
 import axios, { AxiosInstance } from "axios";
 import { content_v2 } from "googleapis";
 import path from "path";
-import key from "../../../content-api-key.json";
-import {
-  getProductVariant,
-  updateProductVariant,
-} from "@/postgresql/products_variant";
 
 export interface ProductCommerce extends content_v2.Schema$Product {
   productTypes?: string[];
@@ -34,6 +29,31 @@ const getApi = (): Promise<AxiosInstance> => {
       })
     );
   });
+};
+
+export const getAll = async () => {
+  try {
+    const api = await getApi();
+
+    let products = [];
+    let response = null;
+
+    do {
+      const queryParams = new URLSearchParams();
+      queryParams.append("maxResults", "250");
+      if (response?.data.nextPageToken) {
+        queryParams.append("pageToken", response.data.nextPageToken);
+      }
+
+      response = await api.get("products?" + queryParams.toString());
+      products = products.concat(response.data.resources);
+    } while (response.data.nextPageToken);
+
+    return products;
+  } catch (err) {
+    console.error(err.response.data.error.message);
+    throw err;
+  }
 };
 
 export const addProductCommerce = async (payload: ProductCommerce) => {
