@@ -40,7 +40,7 @@ const getJson = (
           )
         : payload.name + `, Sabor ${capitalizeEachWord(variant.name)}`
       : payload.name,
-    description: removeEmojis(payload.description),
+    description: removeEmojis(payload.meta_description),
     price: {
       currency: "MXN",
       value: variant
