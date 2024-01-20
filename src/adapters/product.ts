@@ -2,7 +2,7 @@ import { STORE } from "@/Utils/Constants";
 import { Product } from "@/types/postgresql";
 import { ShopifyProduct, Variant } from "@/types/shopify";
 import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
-import sanitizeHtml from "sanitize-html";
+import { convert } from 'html-to-text'
 
 const DISCOUNT = 0.15;
 
@@ -62,7 +62,7 @@ export const productShopifyToStore = (
     is_return: 0,
     is_sale_enable: 1,
     is_trending: 1,
-    meta_description: sanitizeHtml(product.body_html),
+    meta_description: convert(product.body_html),
     meta_title: product.title,
     name: product.title,
     order_amount: 0,
