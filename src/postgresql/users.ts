@@ -51,7 +51,7 @@ export const createTable = async () => {
     .addColumn("password", "varchar(255)")
     .addColumn("phone", "varchar(12)")
     .addColumn("country_code", "varchar(5)")
-    .addColumn("created_at", "timestamptz")
+    .addColumn("created_at", "timestamp")
     .execute();
 };
 

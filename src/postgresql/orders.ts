@@ -1,5 +1,6 @@
 import { Order } from "@/types/shopify";
 import dbClient, { json } from "./db";
+import { sql } from "kysely";
 
 export type Orders = {
   id: number;
@@ -31,7 +32,9 @@ export const createTable = async () => {
     .ifNotExists()
     .addColumn("id", "bigint", (col) => col.primaryKey())
     .addColumn("id_user", "bigint")
-    .addColumn("created_at", "timestamptz", (col) => col.defaultTo(new Date()))
+    .addColumn("created_at", "timestamp", (col) =>
+      col.defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
     .execute();
 };
 

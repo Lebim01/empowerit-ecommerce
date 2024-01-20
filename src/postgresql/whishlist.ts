@@ -1,3 +1,4 @@
+import { sql } from "kysely";
 import dbClient from "./db";
 
 export type WhishList = {
@@ -14,7 +15,9 @@ export const createTable = async () => {
     .addColumn("id", "bigint", (col) => col.primaryKey())
     .addColumn("id_user", "bigint")
     .addColumn("id_product", "bigint")
-    .addColumn("created_at", "timestamptz", (col) => col.defaultTo(new Date()))
+    .addColumn("created_at", "timestamp", (col) =>
+      col.defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
     .execute();
 };
 

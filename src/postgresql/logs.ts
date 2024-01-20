@@ -1,3 +1,4 @@
+import { sql } from "kysely";
 import dbClient from "./db";
 import { v4 } from "uuid";
 
@@ -13,12 +14,14 @@ export const createTable = async () => {
     .ifNotExists()
     .addColumn("id", "varchar(50)", (col) => col.primaryKey())
     .addColumn("payload", "text")
-    .addColumn("created_at", "timestamptz", (col) => col.defaultTo(new Date()))
+    .addColumn("created_at", "timestamp", (col) =>
+      col.defaultTo(sql`CURRENT_TIMESTAMP`)
+    )
     .execute();
 };
 
 export const addLog = async (payload: string) => {
-  const id = v4()
+  const id = v4();
   return dbClient
     .insertInto("logs")
     .values({

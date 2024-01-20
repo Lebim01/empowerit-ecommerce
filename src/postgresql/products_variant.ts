@@ -33,7 +33,7 @@ export const createTable = async () => {
     .addColumn("barcode", "varchar(50)")
     .addColumn("stock", "numeric")
     .addColumn("product_id", "bigint")
-    .addColumn("created_at", "timestamptz")
+    .addColumn("created_at", "timestamp")
     .execute();
 };
 

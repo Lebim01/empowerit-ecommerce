@@ -9,8 +9,10 @@ import { ProductAPI } from "@/Utils/AxiosUtils/API";
 import { useQuery } from "@tanstack/react-query";
 import noProduct from "../../../../public/assets/svg/no-product.svg";
 import ProductSkeletonComponent from "@/Components/Common/SkeletonLoader/ProductSkeleton/ProductSkeletonComponent";
+import { useTranslation } from "@/app/i18n/client";
 
 const CollectionProducts = ({ filter, grid }) => {
+  const { t } = useTranslation();
   const { slug } = useParams();
   const [page, setPage] = useState(1);
 
@@ -109,7 +111,7 @@ const CollectionProducts = ({ filter, grid }) => {
             customClass: "no-data-added collection-no-data",
             title: t("common:noDataFoundTitle"),
             description: t("noDataFoundDescription"),
-              
+
             height: 345,
             width: 345,
           }}

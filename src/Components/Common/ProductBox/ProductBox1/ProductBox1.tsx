@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Dispatch, FC, useContext } from "react";
 import Link from "next/link";
 import { RiCloseLine } from "react-icons/ri";
 import ProductBoxAction from "./ProductBox1Action";
@@ -12,7 +12,16 @@ import ProductBagde from "./ProductBagde";
 import SettingContext from "@/Helper/SettingContext";
 import { ModifyString } from "@/Utils/CustomFunctions/ModifyString";
 
-const ProductBox1 = ({
+type Props = {
+  imgUrl: string;
+  productDetail: any;
+  isClose?: boolean;
+  classObj?: any;
+  addAction?: boolean;
+  setWishlistState?: Dispatch<any>;
+};
+
+const ProductBox1: FC<Props> = ({
   imgUrl,
   productDetail,
   isClose,
@@ -44,6 +53,7 @@ const ProductBox1 = ({
             data={imgUrl}
             placeHolder={placeHolderImage}
             customeClass={"img-fluid"}
+            customImageClass={""}
             name={productDetail.title}
             height={500}
             width={500}
