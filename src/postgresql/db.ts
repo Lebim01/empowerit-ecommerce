@@ -1,6 +1,6 @@
-import { createKysely } from "@vercel/postgres-kysely";
+import { PlanetScaleDialect } from "kysely-planetscale";
 import { ProductStore, VariantStore } from "@/types/store";
-import { ColumnDefinitionBuilder, RawBuilder, sql } from "kysely";
+import { Kysely, ColumnDefinitionBuilder, RawBuilder, sql } from "kysely";
 import { User } from "./users";
 import { WhishList } from "./whishlist";
 import { Orders } from "./orders";
@@ -15,7 +15,13 @@ interface Database {
   products_variants: VariantStore;
 }
 
-const dbClient = createKysely<Database>();
+const db = new Kysely<Database>({
+  dialect: new PlanetScaleDialect({
+    host: process.env.DATABASE_HOST,
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+  }),
+});
 
 export const defaultNull = (col: ColumnDefinitionBuilder) =>
   col.defaultTo(null);
@@ -28,4 +34,4 @@ export function json<T>(value: T): RawBuilder<T> {
   return sql`CAST(${JSON.stringify(value)} AS JSONB)`;
 }
 
-export default dbClient;
+export default db;

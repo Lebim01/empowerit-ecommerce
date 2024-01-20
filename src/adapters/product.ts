@@ -2,7 +2,7 @@ import { STORE } from "@/Utils/Constants";
 import { Product } from "@/types/postgresql";
 import { ShopifyProduct, Variant } from "@/types/shopify";
 import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
-import { convert } from 'html-to-text'
+import { convert } from "html-to-text";
 
 const DISCOUNT = 0.15;
 
