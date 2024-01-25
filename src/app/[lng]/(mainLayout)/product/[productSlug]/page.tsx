@@ -14,17 +14,6 @@ export async function generateMetadata({ params }): Promise<Metadata> {
       tags: res.tags,
     }));
 
-  console.log({
-    title: productData?.meta_title,
-    description: productData?.meta_description,
-    keywords: productData?.tags?.join(", "),
-    openGraph: {
-      title: productData?.meta_title,
-      description: productData?.meta_description,
-      images: [productData?.product_meta_image?.original_url, []],
-    },
-  });
-
   return {
     title: productData?.meta_title,
     description: productData?.meta_description,
