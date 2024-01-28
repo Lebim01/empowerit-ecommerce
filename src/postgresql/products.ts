@@ -108,8 +108,8 @@ type Queries = {
 
 const productsQuery = (queries: Queries) => {
   let query = dbClient
-    .selectFrom("products")
-    .where("products.stock_status", "=", StockStatus.InStock);
+    .selectFrom("products");
+    //.where("products.stock_status", "=", StockStatus.InStock);
 
   if (queries.querySearch) {
     query = query.where((eb) =>
