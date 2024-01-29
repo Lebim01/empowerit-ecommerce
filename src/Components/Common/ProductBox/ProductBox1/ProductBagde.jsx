@@ -8,7 +8,7 @@ const ProductBagde = ({ productDetail }) => {
   return (
     <>
       {productDetail?.is_sale_enable ? (
-        <div className='label-tag sale-tag'>
+        <div className='label-tag sale-tag' style={{ zIndex: 5 }}>
           <span>{t("SALE")}</span>
         </div>
       ) : productDetail?.is_featured ? (

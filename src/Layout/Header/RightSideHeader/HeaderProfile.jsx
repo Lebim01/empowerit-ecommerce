@@ -33,7 +33,20 @@ const HeaderProfile = () => {
               customImageClass="img-fluid rounded-circle"
             />
           ) : (
-            <h3>{accountData?.name?.charAt(0)?.toString()?.toUpperCase()}</h3>
+            <h3
+              style={{
+                height: 32,
+                width: 32,
+                backgroundColor: "#eee",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginRight: 12
+              }}
+              className="rounded-circle"
+            >
+              {accountData?.name?.charAt(0)?.toString()?.toUpperCase()}
+            </h3>
           )}
         </div>
         <div className="delivery-detail">
