@@ -1,19 +1,19 @@
-import { sql } from "kysely";
 import dbClient from "./db";
 import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 10;
 
 export type User = {
-  id: number;
+  id: string;
   shopify_id?: string;
   firstName: string;
-  lastName: string;
+  lastName?: string;
   password?: string;
   email: string;
-  phone: string;
-  country_code: string;
+  phone?: string;
+  country_code?: string;
   created_at?: Date;
+  picture?: string;
 };
 
 const hashPassword = async (password: string): Promise<string> => {
@@ -43,7 +43,7 @@ export const createTable = async () => {
   return dbClient.schema
     .createTable("users")
     .ifNotExists()
-    .addColumn("id", "bigint", (col) => col.primaryKey())
+    .addColumn("id", "varchar(50)", (col) => col.primaryKey())
     .addColumn("shopify_id", "varchar(50)")
     .addColumn("firstName", "varchar(100)")
     .addColumn("lastName", "varchar(100)")
@@ -52,6 +52,7 @@ export const createTable = async () => {
     .addColumn("phone", "varchar(12)")
     .addColumn("country_code", "varchar(5)")
     .addColumn("created_at", "timestamp")
+    .addColumn("picture", "varchar(255)")
     .execute();
 };
 
@@ -76,6 +77,7 @@ export const getUserByEmail = async (email: string): Promise<User> => {
       "phone",
       "country_code",
       "password",
+      "picture",
     ])
     .where("email", "=", email)
     .executeTakeFirstOrThrow()
@@ -87,7 +89,7 @@ export const getUserByEmail = async (email: string): Promise<User> => {
     });
 };
 
-export const getUser = async (id: number): Promise<User> => {
+export const getUser = async (id: string): Promise<User> => {
   return dbClient
     .selectFrom("users")
     .select(["id", "firstName", "lastName", "email", "phone", "country_code"])

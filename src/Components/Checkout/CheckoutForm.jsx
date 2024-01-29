@@ -8,7 +8,7 @@ import AccountContext from '@/Helper/AccountContext';
 import CheckoutSidebar from './CheckoutSidebar';
 
 const CheckoutForm = () => {
-  const { accountData, refetch } = useContext(AccountContext);
+  const { accountData } = useContext(AccountContext);
   const [address, setAddress] = useState([]);
   const [modal, setModal] = useState('');
   useEffect(() => {

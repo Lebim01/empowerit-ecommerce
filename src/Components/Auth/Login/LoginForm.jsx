@@ -7,30 +7,37 @@ import useHandleLogin, { LogInSchema } from "@/Utils/Hooks/Auth/useLogin";
 import { useContext } from "react";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
+import { signIn, useSession } from "next-auth/react";
 
-const LoginForm = () => {
+const LoginForm = ({ csrfToken }) => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
-  const { mutate, isLoading } = useHandleLogin();
+  const { status } = useSession();
+
+  const login = (data) => {
+    signIn("credentials", data);
+  };
 
   return (
     <Formik
       initialValues={{
-        email: "",
+        username: "",
         password: "",
       }}
       validationSchema={LogInSchema}
-      onSubmit={mutate}
+      onSubmit={login}
     >
       {() => (
         <Form className="row g-4">
+          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
           <SimpleInputField
             nameList={[
               {
-                name: "email",
+                name: "username",
                 placeholder: t("EmailAddress"),
                 title: "Email",
-                label:  t("EmailAddress"),
+                label: t("EmailAddress"),
               },
               {
                 name: "password",
@@ -65,7 +72,7 @@ const LoginForm = () => {
           <FormBtn
             title={"LogIn"}
             classes={{ btnClass: "btn btn-animation w-100" }}
-            loading={isLoading}
+            loading={status == "loading"}
           />
         </Form>
       )}

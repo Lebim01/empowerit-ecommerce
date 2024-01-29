@@ -4,12 +4,10 @@ import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
 import { useRouter } from "next/navigation";
 import { RiLogoutBoxRLine, RiUserLine } from "react-icons/ri";
-import { LogoutAPI } from "@/Utils/AxiosUtils/API";
-import useCreate from "@/Utils/Hooks/useCreate";
 import ConfirmationModal from "@/Components/Common/ConfirmationModal";
 import AccountContext from "@/Helper/AccountContext";
 import Avatar from "@/Components/Common/Avatar";
-import classNames from "classnames";
+import { signOut, useSession } from "next-auth/react";
 
 const HeaderProfile = () => {
   const { i18Lang } = useContext(I18NextContext);
@@ -17,19 +15,11 @@ const HeaderProfile = () => {
   const router = useRouter();
   const [modal, setModal] = useState(false);
   const { t } = useTranslation(i18Lang, "common");
-  const { mutate, isLoading } = useCreate(
-    LogoutAPI,
-    false,
-    false,
-    "Logout Successfully",
-    () => {
-      router.push(`/${i18Lang}/auth/login`);
-      setModal(false);
-    }
-  );
+  const { status } = useSession();
 
   const handleLogout = () => {
-    mutate({});
+    router.push(`/${i18Lang}/auth/login`);
+    signOut();
   };
 
   return (
@@ -40,7 +30,7 @@ const HeaderProfile = () => {
             <Avatar
               data={accountData?.profile_image}
               customeClass="user-box me-2"
-              customImageClass="img-fluid"
+              customImageClass="img-fluid rounded-circle"
             />
           ) : (
             <h3>{accountData?.name?.charAt(0)?.toString()?.toUpperCase()}</h3>
@@ -48,7 +38,7 @@ const HeaderProfile = () => {
         </div>
         <div className="delivery-detail">
           <h6>
-            {t("Hi")}, {accountData?.name ?? t("User")}
+            {t("Hi")}, {accountData?.firstName ?? t("User")}
           </h6>
           {accountData ? (
             <h5>{t("MyAccount")}</h5>
@@ -77,7 +67,7 @@ const HeaderProfile = () => {
               modal={modal}
               setModal={setModal}
               confirmFunction={handleLogout}
-              isLoading={isLoading}
+              isLoading={status == "loading"}
             />
           </ul>
         </div>

@@ -7,7 +7,7 @@ import EmailPasswordForm from './EmailPasswordForm';
 import UpdatePasswordForm from './UpdatePasswordForm';
 
 const EmailPasswordModal = ({ modal, setModal }) => {
-  const { accountData, setAccountData } = useContext(AccountContext);
+  const { accountData } = useContext(AccountContext);
   return (
     <>
       <CustomModal

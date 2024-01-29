@@ -10,22 +10,15 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import I18NextContext from "@/Helper/I18NextContext";
 import Cookies from "js-cookie";
-import AccountContext from "@/Helper/AccountContext";
 import CompareContext from "@/Helper/CompareContext";
 import request from "@/Utils/AxiosUtils";
 
 export const LogInSchema = YupObject({
-  email: emailSchema,
+  username: emailSchema,
   password: passwordSchema,
 });
 
-const LoginHandle = (
-  responseData,
-  router,
-  i18Lang,
-  refetch,
-  compareRefetch
-) => {
+export const LoginHandle = (responseData, router, i18Lang, compareRefetch) => {
   if (responseData.status === 200 || responseData.status === 201) {
     Cookies.set("uat", responseData.data?.access_token, {
       path: "/",
@@ -36,7 +29,6 @@ const LoginHandle = (
       Cookies.set("account", JSON.stringify(responseData.data));
       localStorage.setItem("account", JSON.stringify(responseData.data));
     }
-    refetch();
     compareRefetch();
     router.push(`/${i18Lang}/account/dashboard`);
   }
@@ -44,19 +36,18 @@ const LoginHandle = (
 
 const useHandleLogin = () => {
   const { i18Lang } = useContext(I18NextContext);
-  const { refetch } = useContext(AccountContext);
   const { refetch: compareRefetch } = useContext(CompareContext);
   const router = useRouter();
   return useMutation(
     (data) =>
       request({
-        url: LoginAPI,
+        url: "/auth/callback/credentials",
         method: "post",
         data,
       }),
     {
       onSuccess: (responseData) =>
-        LoginHandle(responseData, router, i18Lang, refetch, compareRefetch),
+        LoginHandle(responseData, router, i18Lang, compareRefetch),
     }
   );
 };

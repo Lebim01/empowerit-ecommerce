@@ -10,8 +10,9 @@ import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
 import LoginForm from "./LoginForm";
 import Breadcrumb from "@/Components/Common/Breadcrumb";
+import SocialLogin from "../Common/SocialLogin";
 
-const LoginContent = () => {
+const LoginContent = ({ csrfToken }) => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   return (
@@ -44,8 +45,10 @@ const LoginContent = () => {
             />
 
             <div className="input-box">
-              <LoginForm />
+              <LoginForm csrfToken={csrfToken} />
             </div>
+
+            <SocialLogin />
 
             <div className="other-log-in">
               <h6>{t("or")}</h6>

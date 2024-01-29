@@ -1,6 +1,6 @@
 // Auth
-export const RegisterAPI = '/auth/signup'
-export const LoginAPI = "/auth/login"
+export const RegisterAPI = '/signup'
+export const LoginAPI = "/auth/_login"
 export const SelfAPI = "/self"
 export const ForgotPasswordAPI = "/forgot-password"
 export const VerifyTokenAPI = "/verify-token"

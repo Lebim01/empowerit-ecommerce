@@ -4,16 +4,20 @@ import { fallbackLng, languages } from "./app/i18n/settings";
 
 acceptLanguage.languages(languages);
 
-const cookieName = "i18next";
+const langCookieName = "i18next";
 
-export async function middleware(request) {
+async function middleware(request) {
   const path = request.nextUrl.pathname;
+
   let lng;
-  if (request.cookies.has(cookieName))
-    lng = acceptLanguage.get(request.cookies.get(cookieName).value);
+  if (request.cookies.has(langCookieName))
+    lng = acceptLanguage.get(request.cookies.get(langCookieName).value);
   if (!lng) lng = acceptLanguage.get(request.headers.get("Accept-Language"));
   if (!lng) lng = fallbackLng;
 
+  /**
+   * Mantenimiento
+   */
   if (request.cookies.has("maintenance") && path !== `/${lng}/maintenance`) {
     let myHeaders = new Headers();
     myHeaders.append(
@@ -58,16 +62,19 @@ export async function middleware(request) {
       new URL(`/${lng}${request.nextUrl.pathname}`, request.url)
     );
   }
+
   if (request.headers.has("referer")) {
     const refererUrl = new URL(request.headers.get("referer"));
     const lngInReferer = languages.find((l) =>
       refererUrl.pathname.startsWith(`/${l}`)
     );
     const response = NextResponse.next();
-    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
+    if (lngInReferer) response.cookies.set(langCookieName, lngInReferer);
     return response;
   }
 }
+
+export default middleware
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico|assets).*)"],

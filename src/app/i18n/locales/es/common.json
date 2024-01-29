@@ -1,6 +1,6 @@
 {
   "noDataFoundTitle": "Sorry! Couldn't find the products you were looking For!",
-  "noDataFoundDescription":"Please check if you have misspelt something or try searching with other way.",
+  "noDataFoundDescription": "Please check if you have misspelt something or try searching with other way.",
   "Copyright": "©2023 SupleMK Todos los derechos reservados",
   "Spanish": "Español",
   "LastName": "Apellido",
@@ -481,5 +481,7 @@
   "EarningPoints": "Ganando puntos",
   "Hi": "Hola",
   "AskForRefund": "Solicitar reembolso",
-  "EnterReason": "Ingresar motivo"
+  "EnterReason": "Ingresar motivo",
+  "Optional": "Opcional",
+  "SocialLogin": "Redes Sociales"
 }

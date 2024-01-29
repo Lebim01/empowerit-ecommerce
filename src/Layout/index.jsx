@@ -18,6 +18,7 @@ import BlogProvider from "@/Helper/BlogContext/BlogProvider";
 import CompareProvider from "@/Helper/CompareContext/CompareProvider";
 import ProductIdsProvider from "@/Helper/ProductIdsContext/ProductIdsProvider";
 import CurrencyProvider from "@/Helper/CurrencyContext/CurrencyProvider";
+import { SessionProvider } from "next-auth/react";
 
 const MainLayout = ({ children, lng }) => {
   const { i18Lang, setI18Lang } = useContext(I18NextContext);
@@ -32,25 +33,27 @@ const MainLayout = ({ children, lng }) => {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={children.dehydratedState}>
           <ThemeOptionProvider>
-            <AccountProvider>
-              <BlogProvider>
-                <ProductIdsProvider>
-                  <CompareProvider>
-                    <CartProvider>
-                      <CategoryProvider>
-                        <ProductProvider>
-                          <SettingProvider>
-                            <CurrencyProvider>
-                              <SubLayout children={children} />
-                            </CurrencyProvider>
-                          </SettingProvider>
-                        </ProductProvider>
-                      </CategoryProvider>
-                    </CartProvider>
-                  </CompareProvider>
-                </ProductIdsProvider>
-              </BlogProvider>
-            </AccountProvider>
+            <SessionProvider>
+              <AccountProvider>
+                <BlogProvider>
+                  <ProductIdsProvider>
+                    <CompareProvider>
+                      <CartProvider>
+                        <CategoryProvider>
+                          <ProductProvider>
+                            <SettingProvider>
+                              <CurrencyProvider>
+                                <SubLayout children={children} />
+                              </CurrencyProvider>
+                            </SettingProvider>
+                          </ProductProvider>
+                        </CategoryProvider>
+                      </CartProvider>
+                    </CompareProvider>
+                  </ProductIdsProvider>
+                </BlogProvider>
+              </AccountProvider>
+            </SessionProvider>
           </ThemeOptionProvider>
         </Hydrate>
       </QueryClientProvider>

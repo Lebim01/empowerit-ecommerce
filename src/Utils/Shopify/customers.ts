@@ -16,6 +16,18 @@ type ResponseCreate = {
   };
 };
 
+type ResponseUpdateEmail = {
+  customerEmailMarketingConsentUpdate: {
+    customer: {
+      id: string;
+    };
+    userErrors: {
+      field: string[];
+      message: string;
+    }[];
+  };
+};
+
 export const createNewCustomer = async (customer: CustomerInput) => {
   const customerQuery = `
     mutation customerCreate($input: CustomerInput!) {
@@ -71,23 +83,21 @@ export const consentEmailMarketing = async (
     }
   `;
 
-  const { data, errors, extensions } = await client.request<ResponseCreate>(
-    query,
-    {
+  const { data, errors, extensions } =
+    await client.request<ResponseUpdateEmail>(query, {
       variables: {
         input,
       },
-    }
-  );
+    });
 
   if (errors) {
     console.log(errors.message);
     //throw new Error("No se pudo activar el email marketing");
   } else if (
-    data.customerCreate.userErrors &&
-    data.customerCreate.userErrors.length > 0
+    data.customerEmailMarketingConsentUpdate.userErrors &&
+    data.customerEmailMarketingConsentUpdate.userErrors.length > 0
   ) {
-    console.log(data.customerCreate.userErrors);
+    console.log(data.customerEmailMarketingConsentUpdate.userErrors);
     //throw data.customerCreate.userErrors[0].message;
   }
 };

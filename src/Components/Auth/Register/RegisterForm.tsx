@@ -7,17 +7,14 @@ import {
   YupObject,
   emailSchema,
   nameSchema,
+  lastnameSchema,
   passwordConfirmationSchema,
   passwordSchema,
-  phoneSchema,
 } from "@/Utils/Validation/ValidationSchemas";
 import FormBtn from "@/Components/Common/FormBtn";
 import SimpleInputField from "@/Components/Common/InputFields/SimpleInputField";
-import { AllCountryCode } from "../../../../Data/AllCountryCode";
-import SearchableSelectInput from "@/Components/Common/InputFields/SearchableSelectInput";
 import request from "@/Utils/AxiosUtils";
 import { RegisterAPI } from "@/Utils/AxiosUtils/API";
-import { useRouter } from "next/router";
 
 const RegisterForm = () => {
   const { i18Lang } = useContext(I18NextContext);
@@ -25,12 +22,12 @@ const RegisterForm = () => {
   const [agree, setAgree] = useState(false);
 
   const signUp = async (values) => {
-    console.log(values);
     const res = await request({
       url: RegisterAPI,
       method: "POST",
       data: values,
     });
+    console.log(res);
   };
 
   return (
@@ -42,15 +39,13 @@ const RegisterForm = () => {
         password: "",
         password_confirmation: "",
         country_code: "52",
-        phone: "",
       }}
       validationSchema={YupObject({
         first_name: nameSchema,
-        last_name: nameSchema,
+        last_name: lastnameSchema,
         email: emailSchema,
         password: passwordSchema,
         password_confirmation: passwordConfirmationSchema,
-        phone: phoneSchema,
       })}
       onSubmit={(values) => {
         // Add your logic here
@@ -63,15 +58,15 @@ const RegisterForm = () => {
             nameList={[
               {
                 name: "first_name",
-                //placeholder: t("EmailAddress"),
+                placeholder: "",
                 title: "Name",
                 label: t("FirstName"),
               },
               {
                 name: "last_name",
-                //placeholder: t("EmailAddress"),
+                placeholder: `(${t("Optional")})`,
                 title: "Last Name",
-                label: t("LastName"),
+                label: `${t("LastName")} (${t("Optional")})`,
               },
               {
                 name: "email",
@@ -95,35 +90,6 @@ const RegisterForm = () => {
               },
             ]}
           />
-          <Col xs="12">
-            <div className="country-input">
-              <SearchableSelectInput
-                nameList={[
-                  {
-                    name: "country_code",
-                    notitle: "true",
-                    inputprops: {
-                      name: "country_code",
-                      id: "country_code",
-                      options: AllCountryCode,
-                    },
-                  },
-                ]}
-              />
-              <SimpleInputField
-                nameList={[
-                  {
-                    name: "phone",
-                    type: "number",
-                    placeholder: t("EnterPhoneNumber"),
-                    colclass: "country-input-box",
-                    title: "Phone",
-                    label: "Phone",
-                  },
-                ]}
-              />
-            </div>
-          </Col>
 
           <Col xs={12}>
             <div className="forgot-box">

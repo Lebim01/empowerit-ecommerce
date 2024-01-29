@@ -4,11 +4,11 @@ export interface CustomerInput {
   email: string;
   emailMarketingConsent?: unknown;
   firstName: string;
-  lastName: String;
+  lastName?: String;
   locale?: String;
   metafields?: MetafieldInput[];
   note?: string;
-  phone: string;
+  phone?: string;
   privateMetafields?: unknown[];
   smsMarketingConsent?: unknown;
   tags?: string[];
