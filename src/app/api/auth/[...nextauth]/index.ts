@@ -1,8 +1,8 @@
-import { getUserByEmail, login } from "@/postgresql/users";
+import { getUserByEmail, login, signUp } from "@/postgresql/users";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signUp } from "../../signup/route";
+
 import generatePassword from "generate-password";
 
 export const authOptions: NextAuthOptions = {

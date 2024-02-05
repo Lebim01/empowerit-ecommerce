@@ -1,5 +1,13 @@
 import dbClient from "./db";
 import bcrypt from "bcrypt";
+import {
+  CustomerEmailMarketingState,
+  CustomerMarketingOptInLevel,
+} from "@/Utils/Shopify/customers_schema";
+import {
+  consentEmailMarketing,
+  createNewCustomer,
+} from "@/Utils/Shopify/customers";
 
 const SALT_ROUNDS = 10;
 
@@ -13,6 +21,17 @@ export type User = {
   phone?: string;
   country_code?: string;
   created_at?: Date;
+  picture?: string;
+};
+
+type SignupForm = {
+  first_name: string;
+  last_name?: string;
+  country_code?: string;
+  phone?: string;
+  password: string;
+  password_confirmation: string;
+  email: string;
   picture?: string;
 };
 
@@ -118,4 +137,36 @@ export const insertNewUser = async (user: User) => {
 export const updateNewUser = async (user: User) => {
   const res = await dbClient.insertInto("users").values(user).execute();
   return res;
+};
+
+export const signUp = async (data: SignupForm) => {
+  const res = await createNewCustomer({
+    firstName: data.first_name,
+    lastName: data.last_name || "",
+    email: data.email,
+    addresses: [],
+  });
+  console.log(res);
+
+  const user = await insertNewUser({
+    id: res.id.replace("gid://shopify/Customer/", ""),
+    shopify_id: res.id,
+    firstName: data.first_name,
+    lastName: data.last_name,
+    email: data.email,
+    password: data.password,
+    picture: data.picture,
+  });
+  console.log(user);
+
+  await consentEmailMarketing({
+    customerId: res.id,
+    emailMarketingConsent: {
+      consentUpdatedAt: new Date(),
+      marketingOptInLevel: CustomerMarketingOptInLevel.CONFIRMED_OPT_IN,
+      marketingState: CustomerEmailMarketingState.SUBSCRIBED,
+    },
+  });
+
+  return user;
 };

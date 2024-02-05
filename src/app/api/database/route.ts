@@ -6,10 +6,10 @@ import { createTable as createLogs } from "@/postgresql/logs";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  await createUsers();
+  /*await createUsers();
   await createProducts();
   await createWhishlist();
   await createLogs();
-  await createProductsVariants();
+  await createProductsVariants();*/
   return NextResponse.json("OK");
 }
