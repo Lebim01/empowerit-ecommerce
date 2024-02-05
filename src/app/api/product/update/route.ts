@@ -21,7 +21,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const data: ShopifyProduct = await req.json();
 
-  await addLog(JSON.stringify(data));
+  //await addLog(JSON.stringify(data));
+  console.log(data);
 
   const processedProduct = productShopifyToStore(data);
   const exists: ProductStore = (await getProduct(data.id)) as ProductStore;

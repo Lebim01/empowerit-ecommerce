@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Col, Input, Label } from "reactstrap";
 import FormBtn from "@/Components/Common/FormBtn";
 import SimpleInputField from "@/Components/Common/InputFields/SimpleInputField";
-import useHandleLogin, { LogInSchema } from "@/Utils/Hooks/Auth/useLogin";
+import { LogInSchema } from "@/Utils/Hooks/Auth/useLogin";
 import { useContext } from "react";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";

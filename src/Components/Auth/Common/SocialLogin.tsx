@@ -53,10 +53,6 @@ const SocialLogin = () => {
             width={28}
           />
         </button>
-
-        {accountData?.user && (
-          <button onClick={() => signOut()}>SignOut</button>
-        )}
       </div>
     </>
   );
