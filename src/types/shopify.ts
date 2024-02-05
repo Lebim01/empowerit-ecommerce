@@ -199,3 +199,9 @@ export type Order = {
     province_code: string;
   };
 };
+
+export type ShopifyProductMetafields = {
+  is_trending: boolean;
+  category: string | null;
+  is_pack: boolean;
+}

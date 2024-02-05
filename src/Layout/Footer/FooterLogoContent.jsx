@@ -1,27 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col } from "reactstrap";
 import Link from "next/link";
 import { RiHomeLine, RiMailLine } from "react-icons/ri";
 import Avatar from "@/Components/Common/Avatar";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import { placeHolderImage } from "../../../Data/CommonPath";
-import I18NextContext from "@/Helper/I18NextContext";
-import { usePathname } from "next/navigation";
-import ParisLogo from "../../../public/assets/images/logo/1.png";
-import TokyoLogo from "../../../public/assets/images/logo/2.png";
-import RomeLogo from "../../../public/assets/images/logo/3.png";
-import MadridLogo from "../../../public/assets/images/logo/4.png";
-import OtherLogo from "../../../public/assets/images/logo/6.png";
 
 const FooterLogoContent = () => {
   const { themeOption } = useContext(ThemeOptionContext);
-  const [logoAbc, setLogo] = useState("");
-  const { i18Lang } = useContext(I18NextContext);
-  const pathName = usePathname();
-  useEffect(() => {
-    let logo = themeOption?.logo?.footer_logo;
-    setLogo(logo);
-  }, []);
+  const [logoAbc, setLogo] = useState(themeOption?.logo?.footer_logo);
   return (
     <Col xl={3} sm={6}>
       <div className="footer-logo">

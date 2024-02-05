@@ -31,17 +31,17 @@ type ResponseUpdateEmail = {
 export const createNewCustomer = async (customer: CustomerInput) => {
   const customerQuery = `
     mutation customerCreate($input: CustomerInput!) {
-        customerCreate(input: $input) {
-          customer {
-            id
-          }
-          userErrors {
-            field
-            message
-          }
+      customerCreate(input: $input) {
+        customer {
+          id
+        }
+        userErrors {
+          field
+          message
         }
       }
-    `;
+    }
+  `;
 
   const { data, errors, extensions } = await client.request<ResponseCreate>(
     customerQuery,

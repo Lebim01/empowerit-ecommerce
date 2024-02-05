@@ -1,6 +1,6 @@
 import { STORE } from "@/Utils/Constants";
 import { Product } from "@/types/postgresql";
-import { ShopifyProduct, Variant } from "@/types/shopify";
+import { ShopifyProduct, ShopifyProductMetafields, Variant } from "@/types/shopify";
 import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
 import { convert } from "html-to-text";
 
@@ -15,7 +15,8 @@ export const productShopifyToSQL = (product: ShopifyProduct): Product => {
 };
 
 export const productShopifyToStore = (
-  product: ShopifyProduct
+  product: ShopifyProduct,
+  metafields: ShopifyProductMetafields
 ): ProductStore => {
   const stock_total = product.variants.reduce(
     (a, b) => a + b.inventory_quantity,
@@ -61,13 +62,14 @@ export const productShopifyToStore = (
     is_random_related_products: 0,
     is_return: 0,
     is_sale_enable: 1,
-    is_trending: 1,
+    is_trending: metafields.is_trending ? 1 : 0,
+    is_pack: metafields.is_pack ? 1 : 0,
     meta_description: convert(product.body_html),
     meta_title: product.title,
     name: product.title,
     order_amount: 0,
     orders_count: 0,
-    category: product.product_type,
+    category: metafields.category,
     brand: product.vendor,
     price:
       Math.ceil(Number(product.variants[0].price) * (1 + DISCOUNT) * 100) / 100,

@@ -20,6 +20,7 @@ export interface ProductStore {
   is_return: number;
   is_trending: number;
   is_approved: number;
+  is_pack: number;
   sale_starts_at: null | string;
   sale_expired_at: Date | null;
   sku: string;

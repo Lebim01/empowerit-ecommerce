@@ -3,8 +3,8 @@ import {
   addProductCommerce,
   updateProductCommerce,
 } from "@/Utils/GoogleCommerce/products";
+import { getProductMetafieldsFromShopify } from "@/Utils/Shopify/products";
 import { productShopifyToStore } from "@/adapters/product";
-import { addLog } from "@/postgresql/logs";
 import {
   getProduct,
   updateProduct,
@@ -21,10 +21,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const data: ShopifyProduct = await req.json();
 
-  //await addLog(JSON.stringify(data));
-  console.log(data);
-
-  const processedProduct = productShopifyToStore(data);
+  const metafieldsProduct = await getProductMetafieldsFromShopify(data.admin_graphql_api_id);
+  const processedProduct = productShopifyToStore(data, metafieldsProduct);
   const exists: ProductStore = (await getProduct(data.id)) as ProductStore;
   if (exists) {
     await updateProduct(processedProduct);

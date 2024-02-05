@@ -58,6 +58,7 @@ export const createTable = async () => {
     .addColumn("is_return", "int2")
     .addColumn("is_sale_enable", "int2")
     .addColumn("is_trending", "int2")
+    .addColumn("is_pack", "int2")
     .addColumn("meta_description", "text")
     .addColumn("meta_title", "text")
     .addColumn("order_amount", "integer")
