@@ -25,10 +25,10 @@ const TopLanguage = () => {
   const [selectedLang, setSelectedLang] = useState({});
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const language = [
+    { id: 4, title: t("Spanish"), icon: "es", image: Spanish, isLang: "/es/" },
     { id: 1, title: "English", icon: "en", image: English, isLang: "/en/" },
     //{ id: 2, title: 'Arabic', icon: 'ar', image: Arabic, isLang: '/ar/' },
     //{ id: 3, title: 'French', icon: 'fr', image: French, isLang: '/fr/' },
-    { id: 4, title: t('Spanish'), icon: "es", image: Spanish, isLang: "/es/" },
   ];
   const isLangIncludes = language.find((lang) =>
     pathname.includes(lang.isLang)
