@@ -7,23 +7,25 @@ import ProductContext from ".";
 const ProductProvider = (props) => {
   const [customProduct, setCustomProduct] = useState([]);
   const [totalDealIds, setTotalDealIds] = useState([]);
+  const [search, setSearch] = useState("");
   const [productAPIData, setProductAPIData] = useState({
     data: [],
     refetchProduct: "",
     params: { ...totalDealIds },
     productIsLoading: false,
   });
+
   const {
     data: productData,
     refetch: productRefetch,
     isLoading: productIsLoading,
   } = useQuery(
-    [ProductAPI],
-    () =>
+    [ProductAPI, search],
+    ({ queryKey: [url, search] }) =>
       request({
         url: ProductAPI,
         params: {
-          ...productAPIData.params,
+          search,
           status: 1,
           paginate:
             Object.keys(totalDealIds).length > 5
@@ -37,6 +39,9 @@ const ProductProvider = (props) => {
       select: (data) => data.data,
     }
   );
+
+  console.log({ search });
+
   useEffect(() => {
     if (productData) {
       setProductAPIData((prev) => ({
@@ -46,6 +51,7 @@ const ProductProvider = (props) => {
       }));
     }
   }, [productData]);
+
   return (
     <ProductContext.Provider
       value={{
@@ -58,6 +64,7 @@ const ProductProvider = (props) => {
         setTotalDealIds,
         productRefetch,
         productData,
+        setSearch,
       }}
     >
       {props.children}

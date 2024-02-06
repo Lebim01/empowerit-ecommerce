@@ -20,18 +20,14 @@ const SearchModule = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
 
-  const { productData, setProductAPIData, productRefetch } =
-    useContext(ProductContext);
+  const { productData, setSearch, productRefetch } = useContext(ProductContext);
 
   useEffect(() => {
-    setProductAPIData((data) => ({
-      ...data,
-      params: {
-        search,
-      },
-    }));
+    setSearch(search);
     setSearchState(search);
-    productRefetch();
+    setTimeout(() => {
+      productRefetch();
+    }, 200);
   }, [search]);
 
   const onHandleSearch = () => {
@@ -39,9 +35,6 @@ const SearchModule = () => {
   };
 
   const onChangeHandler = (value) => {
-    if (!value) {
-      router.push(`/${i18Lang}/search?search=`);
-    }
     setSearchState(value);
   };
 
