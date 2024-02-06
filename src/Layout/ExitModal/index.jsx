@@ -42,15 +42,41 @@ const ExitModal = () => {
   };
 
   return (
-    <CustomModal modal={showModal} setModal={setShowModal} classes={{ customChildren: true, modalClass: "modal-lg newsletter-modal theme-modal" }}>
+    <CustomModal
+      modal={showModal}
+      setModal={setShowModal}
+      classes={{
+        customChildren: true,
+        modalClass: "modal-lg newsletter-modal theme-modal",
+      }}
+    >
       <ModalHeader className="p-0" toggle={closeModal} />
       <div className="modal-box">
         <div className="modal-image">
-          <Image src={newsLetterImage} className="img-fluid" alt="NewsLetter Image" width={400} height={361} />
+          <Image
+            src={"/assets/images/register.jpg"}
+            className="img-fluid"
+            alt="NewsLetter Image"
+            width={600}
+            height={600}
+            quality={100}
+          />
         </div>
         <div className="modal-content">
           <div>
-            <Image src={Logo} className="modal-logo" alt="newsletter" height={17} width={100} />
+            <Image
+              src={"/assets/images/logo.png"}
+              className="modal-logo"
+              alt="newsletter"
+              height={100}
+              width={200}
+              quality={100}
+              style={{
+                height: 38,
+                width: 100,
+                objectFit: 'contain'
+              }}
+            />
             <h2 className="text-title">
               {t("Wait")}
               <span className="theme-color">!</span>

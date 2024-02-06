@@ -2,7 +2,7 @@
   "id": 1,
   "options": {
     "general": {
-      "site_title": "Suple Marketplace: Where Vendors Shine Together",
+      "site_title": "Suple Marketplace: Donde los vendedores brillan juntos",
       "site_tagline": "Shop Unique, Sell Exceptional – SupleMK",
       "cart_style": "cart_sidebar",
       "back_to_top_enable": true,
@@ -178,7 +178,7 @@
     "seller": {
       "about": {
         "status": true,
-        "title": "Become a seller on Fastkart...",
+        "title": "Become a seller on SupleMK...",
         "description": "Ready to showcase your products to the world? Join our dynamic marketplace and become a seller at our thriving multipurpose store. With a diverse customer base and a wide range of categories including groceries, fashion, electronics, and more, you'll have the perfect platform to reach a vast audience.\n\nAs a seller, you'll benefit from our user-friendly interface, seamless payment processing, and dedicated support to ensure your products shine. Whether you're a local artisan or a growing brand, our store provides the visibility and tools you need to succeed.\n\nTap into our established customer traffic, set up your shop with ease, and let your products take center stage. Join us in creating a shopping experience that caters to every need and taste. Your journey to success starts here – become a seller at our multipurpose store today!",
         "image_url": "https://react.pixelstrap.net/fastkart/assets/banner-2.jpg"
       },
