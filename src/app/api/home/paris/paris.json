@@ -70,7 +70,7 @@
         "categories_icon_list": {
           "title": "PopularCategories",
           "titleTranslationKey": "common:popularCategoriesTranslated",
-          "category_ids": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          "category_ids": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
           "status": true
         },
         "left_side_banners": {

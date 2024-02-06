@@ -105,12 +105,12 @@ type Queries = {
   queryCategory?: string;
   queryPage?: string;
   queryPaginate?: string;
+  queryPrice?: string;
 };
 
 const productsQuery = (queries: Queries) => {
-  let query = dbClient
-    .selectFrom("products");
-    //.where("products.stock_status", "=", StockStatus.InStock);
+  let query = dbClient.selectFrom("products");
+  //.where("products.stock_status", "=", StockStatus.InStock);
 
   if (queries.querySearch) {
     query = query.where((eb) =>
@@ -118,6 +118,26 @@ const productsQuery = (queries: Queries) => {
         eb("products.name", "like", "%" + queries.querySearch + "%"),
         eb("products.description", "like", "%" + queries.querySearch + "%"),
       ])
+    );
+  }
+
+  if (queries.queryCategory) {
+    const categories_ids = queries.queryCategory.split(",");
+    query = query.where("products.category", "in", categories_ids);
+  }
+
+  if (queries.queryPrice) {
+    const prices = queries.queryPrice.split(",");
+    query = query.where((eb) =>
+      eb.or(
+        prices.map((price) => {
+          const [min, max] = price.split("-");
+          return eb.and([
+            eb("products.sale_price", ">=", Number(min)),
+            eb("products.sale_price", "<=", Number(max)),
+          ]);
+        })
+      )
     );
   }
 
@@ -210,4 +230,13 @@ export const updateProduct = async (product: ProductStore) => {
   }
 
   return res;
+};
+
+export const countProductsByCategory = async (category: string) => {
+  const res = await dbClient
+    .selectFrom("products")
+    .select(({ fn, val, ref }) => [fn.count("products.id").as("count_all")])
+    .where("products.category", "=", category)
+    .executeTakeFirst();
+  return Number(res.count_all);
 };

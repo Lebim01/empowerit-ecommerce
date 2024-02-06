@@ -115,11 +115,11 @@ const CollectionSidebar = ({
                   setFilter={setFilter}
                   attributeAPIData={attributeAPIData}
                 />
-                <CollectionRating
+                {/*<CollectionRating
                   filter={filter}
                   setFilter={setFilter}
                   attributeAPIData={attributeAPIData}
-                />
+                />*/}
               </UncontrolledAccordion>
             )}
           </div>

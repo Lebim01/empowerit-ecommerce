@@ -34,8 +34,10 @@ export const filterPrice = [
   {
     id: 1,
     price: 100,
-    text: 'Below',
-    value: '100',
+    minPrice: 0,
+    maxPrice: 100,
+    text: 'Menos de',
+    value: '0-100',
   },
   {
     id: 2,
@@ -69,9 +71,11 @@ export const filterPrice = [
   },
   {
     id: 7,
+    minPrice: 1000,
+    maxPrice: 9999,
     price: 1000,
-    text: 'Above',
-    value: '1000',
+    text: 'Más de',
+    value: '1000-9999',
   },
 ];
 
