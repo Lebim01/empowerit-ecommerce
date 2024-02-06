@@ -9,11 +9,12 @@ import ThemeOptionContext from "../ThemeOptionsContext";
 import { useSession } from "next-auth/react";
 
 const CartProvider = (props) => {
-  const { data } = useSession();
+  const { data, status } = useSession();
   const [cartProducts, setCartProducts] = useState([]);
   const [variationModal, setVariationModal] = useState("");
   const [cartTotal, setCartTotal] = useState(0);
   const { setCartCanvas } = useContext(ThemeOptionContext);
+  const isCookie = status == "authenticated";
 
   // Getting data from Cart API
   const {

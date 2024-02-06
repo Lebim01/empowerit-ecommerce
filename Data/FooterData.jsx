@@ -29,7 +29,7 @@ export const footerMenuItems = [
   {
     id: 4,
     active: false,
-    title: "My Wish",
+    title: "MyWish",
     lineIcon: <RiHeart3Line className="deactivated" />,
     fillIcon: <RiHeart3Fill className="activated" />,
     path: "/wishlist",

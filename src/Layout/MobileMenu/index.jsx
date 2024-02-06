@@ -1,11 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import Link from 'next/link';
-import I18NextContext from '@/Helper/I18NextContext';
-import { footerMenuItems } from '../../../Data/FooterData';
-import { usePathname } from 'next/navigation';
+import { useContext, useEffect, useState } from "react";
+import Link from "next/link";
+import I18NextContext from "@/Helper/I18NextContext";
+import { footerMenuItems } from "../../../Data/FooterData";
+import { usePathname } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 
 const MobileMenu = () => {
   const { i18Lang } = useContext(I18NextContext);
+  const { t } = useTranslation(i18Lang, 'common');
   const pathName = usePathname();
   const [active, setActive] = useState({});
 
@@ -20,18 +22,24 @@ const MobileMenu = () => {
         }
       });
       if (!found) {
-        setActive(''); // Set to an empty string if the path is not found
+        setActive(""); // Set to an empty string if the path is not found
       }
     }
   }, [pathName, i18Lang, footerMenuItems]);
   return (
-    <div className='mobile-menu d-md-none d-block mobile-cart'>
+    <div className="mobile-menu d-md-none d-block mobile-cart">
       <ul>
         {footerMenuItems.map((data, index) => (
-          <li className={`${active?.title == data?.title ? 'active' : ''} ${data.className ? data.className : ''}`} key={index} onClick={() => setActive(data)}>
+          <li
+            className={`${active?.title == data?.title ? "active" : ""} ${
+              data.className ? data.className : ""
+            }`}
+            key={index}
+            onClick={() => setActive(data)}
+          >
             <Link href={`/${i18Lang}${data.path}`}>
               {active?.title == data?.title ? data.fillIcon : data.lineIcon}
-              <span>{data.title}</span>
+              <span>{t(data.title)}</span>
             </Link>
           </li>
         ))}

@@ -12,7 +12,7 @@ const ProductDetails = ({ productState }) => {
   return (
     <>
       <CustomerOrderCount productState={productState} />
-      <h2 className='name'>{productState?.selectedVariation?.name ?? productState?.product?.name}</h2>
+      <h2 className='name'>{productState?.product?.name}</h2>
       <div className='price-rating'>
         <h3 className='theme-color price'>
           {productState?.selectedVariation?.sale_price ? convertCurrency(productState?.selectedVariation?.sale_price) : convertCurrency(productState?.product?.sale_price)}
