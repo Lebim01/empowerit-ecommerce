@@ -41,7 +41,7 @@
         }
 
         img {
-            filter: invert(1) brightness(100);
+            //filter: invert(1) brightness(100);
         }
 
         h5 {
@@ -62,7 +62,7 @@
         margin: 0 auto;
 
         html.dark & {
-            filter: invert(1) brightness(100);
+            //filter: invert(1) brightness(100);
         }
     }
 
