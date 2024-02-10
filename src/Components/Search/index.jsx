@@ -20,7 +20,7 @@ const SearchModule = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
 
-  const { productData, setSearch, productRefetch } = useContext(ProductContext);
+  const { productData, setSearch, productRefetch, isLoading } = useContext(ProductContext);
 
   useEffect(() => {
     setSearch(search);
@@ -74,7 +74,7 @@ const SearchModule = () => {
           </InputGroup>
         </div>
       </WrapperComponent>
-      <SearchedData data={productData} />
+      <SearchedData data={productData} isLoading={isLoading} />
     </>
   );
 };

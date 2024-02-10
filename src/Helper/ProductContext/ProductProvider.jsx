@@ -27,10 +27,7 @@ const ProductProvider = (props) => {
         params: {
           search,
           status: 1,
-          paginate:
-            Object.keys(totalDealIds).length > 5
-              ? Object.keys(totalDealIds).length
-              : 5,
+          paginate: 20,
         },
       }),
     {
@@ -39,8 +36,6 @@ const ProductProvider = (props) => {
       select: (data) => data.data,
     }
   );
-
-  console.log({ search });
 
   useEffect(() => {
     if (productData) {
@@ -65,6 +60,7 @@ const ProductProvider = (props) => {
         productRefetch,
         productData,
         setSearch,
+        isLoading: productIsLoading
       }}
     >
       {props.children}
