@@ -11,6 +11,7 @@ import I18NextContext from "@/Helper/I18NextContext";
 import ProductBagde from "./ProductBagde";
 import SettingContext from "@/Helper/SettingContext";
 import { ModifyString } from "@/Utils/CustomFunctions/ModifyString";
+import { useTranslation } from "@/app/i18n/client";
 
 type Props = {
   imgUrl: string;
@@ -30,6 +31,7 @@ const ProductBox1: FC<Props> = ({
   setWishlistState,
 }) => {
   const { i18Lang } = useContext(I18NextContext);
+  const { t } = useTranslation(i18Lang, "common");
   const { convertCurrency } = useContext(SettingContext);
   const handelDelete = (currObj) => {
     setWishlistState((prev) => prev.filter((elem) => elem.id !== currObj?.id));
@@ -85,8 +87,14 @@ const ProductBox1: FC<Props> = ({
 
         <div className="product-rating mt-sm-2 mt-1">
           <ProductBox1Rating totalRating={productDetail?.rating_count || 0} />
-          <h6 className="theme-color">
-            {ModifyString(productDetail.stock_status, false, "_")}
+          <h6
+            className={
+              productDetail.stock_status == "in_stock"
+                ? "theme-color"
+                : "text-danger"
+            }
+          >
+            {t(productDetail.stock_status)}
           </h6>
         </div>
         {addAction && <ProductBox1Cart productObj={productDetail} />}

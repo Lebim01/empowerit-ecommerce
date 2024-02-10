@@ -484,5 +484,7 @@
   "FirstName": "First Name",
   "LastName": "Last Name",
   "SocialLogin": "Social Login",
-  "MyWish": "My Wish"
+  "MyWish": "My Wish",
+  "in_stock": "In Stock",
+  "out_of_stock": "Out Stock"
 }

@@ -68,18 +68,10 @@ const RightVariationModal = ({ cloneVariation }) => {
               </li>
             )}
             <li>
-              {t("StockStatus")} :
+              {t("StockStatus")}:{" "}
               {cloneVariation?.selectedVariation?.stock_status
-                ? ModifyString(
-                    cloneVariation?.selectedVariation?.stock_status,
-                    false,
-                    "_"
-                  )
-                : ModifyString(
-                    cloneVariation?.product?.stock_status,
-                    false,
-                    "_"
-                  )}
+                ? t(cloneVariation?.selectedVariation?.stock_status)
+                : t(cloneVariation?.product?.stock_status)}
             </li>
             <li>
               {t("Quantity")} :{" "}

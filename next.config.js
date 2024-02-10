@@ -29,7 +29,7 @@ module.exports = (phase) => {
     return [
       {
         source: "/",
-        destination: "/en/theme/paris",
+        destination: "/es/theme/paris",
         permanent: true,
       },
     ];

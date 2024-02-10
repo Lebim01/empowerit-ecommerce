@@ -9,6 +9,9 @@ import categories from "@Data/category.json";
 
 const VendorBox = ({ productState }) => {
   const { i18Lang } = useContext(I18NextContext);
+  const category = categories.data.find(
+    (r) => r.slug == productState?.product?.category
+  );
 
   return (
     <div className="vendor-box">
@@ -40,7 +43,15 @@ const VendorBox = ({ productState }) => {
         </div>
       </div>
 
-      <p className="vendor-detail">{productState?.product?.category}</p>
+      {category && (
+        <p className="vendor-detail">
+          <h3>{category?.name}</h3>
+          <br />
+          <div
+            dangerouslySetInnerHTML={{ __html: category.description_html }}
+          ></div>
+        </p>
+      )}
 
       {/*<div className='vendor-list'>
         <ul>

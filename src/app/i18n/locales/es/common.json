@@ -145,7 +145,7 @@
   "AddToWishlistReview": "Agregar a la Lista de Deseos",
   "AddToCompareReview": "Agregar a Comparar",
   "PleasehurryOnly": "¡Por favor apúrate! Solo",
-  "leftinstock": "quedan en stock",
+  "leftinstock": "en stock",
   "SizeChart": "Tabla de Tallas",
   "DeliveryReturn": "Entrega y Devolución",
   "Askaquestion": "Haz una pregunta",
@@ -484,5 +484,8 @@
   "EnterReason": "Ingresar motivo",
   "Optional": "Opcional",
   "SocialLogin": "Redes Sociales",
-  "MyWish": "Deseos"
+  "MyWish": "Deseos",
+  "in_stock": "En existencia",
+  "out_of_stock": "Agotado",
+  "Add": "Añadir"
 }
