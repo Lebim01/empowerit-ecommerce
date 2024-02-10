@@ -1,16 +1,17 @@
 import I18NextContext from "@/Helper/I18NextContext";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import { useTranslation } from "@/app/i18n/client";
-import Cookies from "js-cookie";
 import { useContext, useState } from "react";
 import { RiQuestionnaireLine, RiRulerLine, RiTruckLine } from "react-icons/ri";
 import { Progress } from "reactstrap";
 import DeliveryReturnModal from "./AllModal/DeliveryReturnModal";
 import QuestionAnswerModal from "./AllModal/QuestionAnswerModal";
 import SizeModal from "./AllModal/SizeModal";
+import { useSession } from "next-auth/react";
 
 const AddProductDetail = ({ productState }) => {
-  const isLogin = Cookies.get("uat");
+  const { status } = useSession();
+  const isAuth = status == "authenticated";
   const { i18Lang } = useContext(I18NextContext);
   const { themeOption } = useContext(ThemeOptionContext);
   const { t } = useTranslation(i18Lang, "common");
@@ -97,7 +98,7 @@ const AddProductDetail = ({ productState }) => {
               <RiTruckLine /> {t("DeliveryReturn")}
             </a>
           ) : null}
-          {isLogin &&
+          {isAuth &&
           themeOption?.product?.shipping_and_return &&
           productState?.product?.is_return ? (
             <a onClick={() => setModal("qna")}>

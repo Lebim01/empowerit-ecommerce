@@ -15,7 +15,11 @@ const AccountProvider = (props) => {
       track_pageview: true,
       persistence: "localStorage",
     });
-    if (data?.user?.id) mixpanel.identify(data.user.id);
+    if (data?.user?.id) {
+      mixpanel.identify(data.user.id);
+      mixpanel.people.set("name", data.user.name);
+      mixpanel.people.set("email", data.user.email);
+    }
   }, [data?.user?.id]);
 
   return (

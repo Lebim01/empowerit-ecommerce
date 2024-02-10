@@ -827,7 +827,7 @@
 
     .product-option {
       @include center(horizontal);
-      @include flex_common($dis: flex, $align: center, $justify: space-between);
+      @include flex_common($dis: flex, $align: center, $justify: center);
       position: absolute;
       bottom: -5px;
       background-color: $white;

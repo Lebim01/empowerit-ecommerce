@@ -65,7 +65,7 @@ const ProductDetailAction = ({ productState, setProductState, extraOption }) => 
         {extraOption !== false ? (
           <div className='wishlist-btn-group'>
             <AddToWishlist productObj={productState?.product} customClass={'wishlist-button btn'} />
-            <AddToCompare productObj={productState?.product} customClass={'wishlist-button btn'} />
+            {/*<AddToCompare productObj={productState?.product} customClass={'wishlist-button btn'} />*/}
           </div>
         ) : null}
       </div>
