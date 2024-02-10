@@ -1,5 +1,6 @@
 import { STORE } from "@/Utils/Constants";
 import { removeEmojis } from "@/Utils/Emojis";
+import { getAIMetaTitleAndDescription } from "@/openai";
 import { Product } from "@/types/postgresql";
 import {
   ShopifyProduct,
@@ -19,13 +20,18 @@ export const productShopifyToSQL = (product: ShopifyProduct): Product => {
   };
 };
 
-export const productShopifyToStore = (
+export const productShopifyToStore = async (
   product: ShopifyProduct,
   metafields: ShopifyProductMetafields
-): ProductStore => {
+): Promise<ProductStore> => {
   const stock_total = product.variants.reduce(
     (a, b) => a + b.inventory_quantity,
     0
+  );
+  const { meta_title, meta_description } = await getAIMetaTitleAndDescription(
+    product.title,
+    removeEmojis(convert(product.body_html)),
+    metafields.category
   );
   return {
     attributes: product.options.map((option) => ({
@@ -69,8 +75,8 @@ export const productShopifyToStore = (
     is_sale_enable: 1,
     is_trending: metafields.is_trending ? 1 : 0,
     is_pack: metafields.is_pack ? 1 : 0,
-    meta_description: removeEmojis(convert(product.body_html)),
-    meta_title: product.title,
+    meta_description,
+    meta_title,
     name: product.title,
     order_amount: 0,
     orders_count: 0,

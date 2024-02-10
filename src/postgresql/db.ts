@@ -6,7 +6,7 @@ import { WhishList } from "./whishlist";
 import { Orders } from "./orders";
 import { Log } from "./logs";
 
-interface Database {
+export interface Database {
   products: ProductStore;
   users: User;
   whishlist: WhishList;

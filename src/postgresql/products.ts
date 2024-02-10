@@ -1,4 +1,4 @@
-import dbClient, { defaultEmptyString, defaultNull } from "./db";
+import dbClient, { Database, defaultEmptyString, defaultNull } from "./db";
 import { ProductStore, StockStatus } from "@/types/store";
 import {
   getProductVariant,
@@ -6,6 +6,7 @@ import {
   insertNewProductVariant,
   updateProductVariant,
 } from "./products_variant";
+import { UpdateObject } from "kysely";
 
 export const createTable = async () => {
   return dbClient.schema
@@ -228,6 +229,19 @@ export const updateProduct = async (product: ProductStore) => {
       console.error(err);
     }
   }
+
+  return res;
+};
+
+export const updatePartialProduct = async (
+  product: UpdateObject<Database, "products", "products">
+) => {
+  const id = product.id;
+  const res = await dbClient
+    .updateTable("products")
+    .set(product)
+    .where("products.id", "=", id)
+    .executeTakeFirst();
 
   return res;
 };
