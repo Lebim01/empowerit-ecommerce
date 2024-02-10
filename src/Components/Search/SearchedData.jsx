@@ -12,7 +12,7 @@ const SearchedData = ({ data, isLoading }) => {
       noRowCol={true}
     >
       {isLoading ? (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <DNA
             visible={true}
             height="120"

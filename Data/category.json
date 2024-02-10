@@ -44,7 +44,7 @@
         "created_by_id": "1",
         "created_at": "2023-08-31T10:37:59.000000Z",
         "updated_at": "2023-08-31T10:37:59.000000Z",
-        "original_url": "/assets/categories/proteinas.png"
+        "original_url": "/assets/categories/proteinas.svg"
       },
       "subcategories": [],
       "parent": null
@@ -93,7 +93,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-05T03:56:38.000000Z",
         "updated_at": "2023-09-05T03:56:38.000000Z",
-        "original_url": "/assets/categories/proteinas-isoladas.png"
+        "original_url": "/assets/categories/proteinas-isoladas.svg"
       },
       "subcategories": [],
       "parent": null
@@ -142,7 +142,7 @@
         "created_by_id": "1",
         "created_at": "2023-08-31T11:19:15.000000Z",
         "updated_at": "2023-08-31T11:19:15.000000Z",
-        "original_url": "/assets/categories/ganadores-de-peso.png"
+        "original_url": "/assets/categories/ganadores-de-peso.svg"
       },
       "subcategories": [],
       "parent": null
@@ -240,7 +240,7 @@
         "created_by_id": "1",
         "created_at": "2023-08-31T10:36:42.000000Z",
         "updated_at": "2023-08-31T10:36:42.000000Z",
-        "original_url": "/assets/categories/BCAAS.png"
+        "original_url": "/assets/categories/BCAAS.svg"
       },
       "subcategories": [],
       "parent": null
@@ -276,7 +276,7 @@
         "created_by_id": "1",
         "created_at": "2023-08-31T10:37:59.000000Z",
         "updated_at": "2023-08-31T10:37:59.000000Z",
-        "original_url": "/assets/categories/creatinas.png"
+        "original_url": "/assets/categories/creatinas.svg"
       },
       "subcategories": [],
       "parent": null
@@ -505,7 +505,7 @@
         "created_by_id": "1",
         "created_at": "2023-08-26T12:19:23.000000Z",
         "updated_at": "2023-08-26T12:19:23.000000Z",
-        "original_url": "/assets/categories/vitaminas.png"
+        "original_url": "/assets/categories/vitaminas.svg"
       },
       "subcategories": [],
       "parent": null
