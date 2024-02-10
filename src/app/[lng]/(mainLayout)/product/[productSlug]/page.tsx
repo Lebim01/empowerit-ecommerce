@@ -9,7 +9,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     .then((res) => res.json())
     .then((res) => ({
       meta_title: res.meta_title,
-      meta_description: removeEmojis(res.meta_description),
+      meta_description: res.meta_description,
       product_meta_image: res.product_meta_image,
       tags: res.tags,
     }));

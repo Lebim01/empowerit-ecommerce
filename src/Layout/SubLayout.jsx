@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import TabFocusChecker from "@/Utils/CustomFunctions/TabFocus";
 import CookiesComponent from "./Cookies";
@@ -11,8 +11,14 @@ import TapTop from "./TapTop";
 import ExitModal from "./ExitModal";
 
 const SubLayout = ({ children }) => {
+  const [originalTitle] = useState(
+    document.title || "SupleMK Marketplace: Donde los vendedores brillan juntos"
+  );
+
   const isTabActive = TabFocusChecker();
   const { themeOption } = useContext(ThemeOptionContext);
+
+  useEffect(() => {}, []);
 
   useEffect(() => {
     const message = ["⚡ Vuelve !!!", "🔥 No olvides estó....."];
@@ -29,11 +35,7 @@ const SubLayout = ({ children }) => {
     if (!isTabActive) {
       updateTitle(0);
     } else {
-      let value =
-        themeOption?.general?.site_title && themeOption?.general?.site_tagline
-          ? `${themeOption?.general?.site_title} | ${themeOption?.general?.site_tagline}`
-          : "SupleMK Marketplace: Donde los vendedores brillan juntos";
-      document.title = value;
+      document.title = originalTitle;
       clearTimeout(timer);
     }
     return () => {

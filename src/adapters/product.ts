@@ -1,6 +1,11 @@
 import { STORE } from "@/Utils/Constants";
+import { removeEmojis } from "@/Utils/Emojis";
 import { Product } from "@/types/postgresql";
-import { ShopifyProduct, ShopifyProductMetafields, Variant } from "@/types/shopify";
+import {
+  ShopifyProduct,
+  ShopifyProductMetafields,
+  Variant,
+} from "@/types/shopify";
 import { ProductStore, StockStatus, Unit, Variation } from "@/types/store";
 import { convert } from "html-to-text";
 
@@ -64,7 +69,7 @@ export const productShopifyToStore = (
     is_sale_enable: 1,
     is_trending: metafields.is_trending ? 1 : 0,
     is_pack: metafields.is_pack ? 1 : 0,
-    meta_description: convert(product.body_html),
+    meta_description: removeEmojis(convert(product.body_html)),
     meta_title: product.title,
     name: product.title,
     order_amount: 0,

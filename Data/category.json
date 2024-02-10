@@ -247,7 +247,7 @@
     },
     {
       "id": 6,
-      "name": "Creatinas",
+      "name": "Creatinas Monohidratadas",
       "slug": "creatinas",
       "description": "creatinas",
       "category_image_id": null,
@@ -262,7 +262,7 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 20,
-      "description_html": "<p>Los <strong>suplementos de creatina</strong> potencian la fuerza, el rendimiento y el crecimiento muscular. Son ideales para:</p><ul><li><strong>Aumentar la potencia:</strong> Mejora el rendimiento en ejercicios de alta intensidad.</li><li><strong>Estimular el crecimiento muscular:</strong> Facilita el desarrollo de masa muscular magra.</li><li><strong>Mejorar la recuperación:</strong> Reduce el tiempo de recuperación entre entrenamientos.</li></ul><p>Integra la creatina a tu nutrición deportiva para llevar tus entrenamientos al próximo nivel y ver resultados más rápidos y efectivos.</p>",
+      "description_html": "<p>Los <strong>suplementos de creatina monohidratada</strong> potencian la fuerza, el rendimiento y el crecimiento muscular. Son ideales para:</p><ul><li><strong>Aumentar la potencia:</strong> Mejora el rendimiento en ejercicios de alta intensidad.</li><li><strong>Estimular el crecimiento muscular:</strong> Facilita el desarrollo de masa muscular magra.</li><li><strong>Mejorar la recuperación:</strong> Reduce el tiempo de recuperación entre entrenamientos.</li></ul><p>Integra la creatina a tu nutrición deportiva para llevar tus entrenamientos al próximo nivel y ver resultados más rápidos y efectivos.</p>",
       "category_image": {
         "id": 392,
         "collection_name": "attachment",
