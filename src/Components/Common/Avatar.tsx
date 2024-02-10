@@ -5,7 +5,7 @@ type Name = string | { name: string };
 
 type Props = {
   data: any;
-  placeHolder: string;
+  placeHolder: any;
   name?: Name;
   customeClass?: string;
   customImageClass?: string;
