@@ -56,7 +56,7 @@ const ProductThumbnailSlider = ({ productState }) => {
           </Col>
 
           <Col xs={12}>
-            <div className="bottom-slider-image left-slider slick-top no-arrow">
+            <div className="bottom-slider-image left-slider slick-top no-arrow d-none d-lg-block d-xl-block d-xxl-block">
               <Slider
                 {...productDetailSlider(
                   productState?.product?.product_galleries?.length < 3
@@ -71,6 +71,8 @@ const ProductThumbnailSlider = ({ productState }) => {
                 asNavFor={nav1}
                 ref={(slider) => (slider2.current = slider)}
                 variableWidth
+                adaptiveHeight
+                dots
               >
                 {productState?.product?.product_galleries?.map((elem, i) => (
                   <div
@@ -89,6 +91,7 @@ const ProductThumbnailSlider = ({ productState }) => {
                         src={elem?.original_url}
                         className="img-fluid"
                         alt={elem?.name}
+                        style={{ height: 200 }}
                       />
                     </div>
                   </div>
