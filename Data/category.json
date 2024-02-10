@@ -17,7 +17,7 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 7,
-      "description_html": "<p>Los <strong>suplementos de proteínas</strong> son esenciales para el crecimiento y reparación muscular. Aceleran la recuperación post-entrenamiento y apoyan el desarrollo de masa muscular magra. Son perfectos si buscas:</p><ul><li><strong>Mejorar tu rendimiento deportivo:</strong> Incrementando tu fuerza y resistencia.</li><li><strong>Optimizar la recuperación:</strong> Reduciendo el tiempo de recuperación muscular.</li><li><strong>Aumentar la ingesta de proteínas:</strong> Ideal para dietas con déficit de este macronutriente.</li></ul><p>Invierte en tu salud y rendimiento con suplementos de proteínas, el aliado perfecto para alcanzar tus objetivos físicos.</p>",
+      "description_html": "<p>Los <strong>suplementos de proteínas</strong> son esenciales para el crecimiento y reparación muscular. Aceleran la recuperación post-entrenamiento y apoyan el desarrollo de masa muscular magra. Son perfectos si buscas:</p><ul><li><strong>Mejorar tu rendimiento deportivo:</strong> Incrementando tu fuerza y resistencia.</li><li><strong>Optimizar la recuperación:</strong> Reduciendo el tiempo de recuperación muscular.</li><li><strong>Aumentar la ingesta de proteínas:</strong> Ideal para dietas con déficit de este macronutriente.</li></ul><br /><p>Invierte en tu salud y rendimiento con suplementos de proteínas, el aliado perfecto para alcanzar tus objetivos físicos.</p>",
       "category_image": {
         "id": 393,
         "collection_name": "attachment",
@@ -30,7 +30,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-01T06:10:14.000000Z",
         "updated_at": "2023-09-01T06:10:14.000000Z",
-        "original_url": "https://react.pixelstrap.net/fastkart/assets/product-2.png"
+        "original_url": "/assets/categories/proteinas-banner.jpeg"
       },
       "category_icon": {
         "id": 313,
@@ -79,7 +79,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-01T05:29:00.000000Z",
         "updated_at": "2023-09-01T05:29:00.000000Z",
-        "original_url": "https://react.pixelstrap.net/fastkart/assets/cate.png"
+        "original_url": "/assets/categories/proteinas-isoladas-banner.jpeg"
       },
       "category_icon": {
         "id": 661,
@@ -128,7 +128,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-01T05:29:18.000000Z",
         "updated_at": "2023-09-01T05:29:18.000000Z",
-        "original_url": "https://react.pixelstrap.net/fastkart/assets/cate.png"
+        "original_url": "/assets/categories/ganadores-de-peso-banner.jpeg"
       },
       "category_icon": {
         "id": 318,
@@ -177,7 +177,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-01T05:29:34.000000Z",
         "updated_at": "2023-09-01T05:29:34.000000Z",
-        "original_url": "https://react.pixelstrap.net/fastkart/assets/cate.png"
+        "original_url": "/assets/categories/aminoacidos-banner.jpeg"
       },
       "category_icon": {
         "id": 314,
@@ -226,7 +226,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-01T06:10:14.000000Z",
         "updated_at": "2023-09-01T06:10:14.000000Z",
-        "original_url": "https://react.pixelstrap.net/fastkart/assets/cate.png"
+        "original_url": "/assets/categories/BCAAS-banner.jpeg"
       },
       "category_icon": {
         "id": 311,
@@ -262,8 +262,21 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 20,
-      "category_image": null,
       "description_html": "<p>Los <strong>suplementos de creatina</strong> potencian la fuerza, el rendimiento y el crecimiento muscular. Son ideales para:</p><ul><li><strong>Aumentar la potencia:</strong> Mejora el rendimiento en ejercicios de alta intensidad.</li><li><strong>Estimular el crecimiento muscular:</strong> Facilita el desarrollo de masa muscular magra.</li><li><strong>Mejorar la recuperación:</strong> Reduce el tiempo de recuperación entre entrenamientos.</li></ul><p>Integra la creatina a tu nutrición deportiva para llevar tus entrenamientos al próximo nivel y ver resultados más rápidos y efectivos.</p>",
+      "category_image": {
+        "id": 392,
+        "collection_name": "attachment",
+        "name": "creatinas",
+        "file_name": "Beauty.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1680464",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/creatinas-banner.jpeg"
+      },
       "category_icon": {
         "id": 315,
         "collection_name": "attachment",
@@ -298,8 +311,21 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 1,
-      "category_image": null,
       "description_html": "<p>Para deportistas enfocados en superar sus límites, los <strong>suplementos de pre-entrenos</strong> son esenciales. Estos suplementos:</p><ul><li><strong>Aumentan la energía:</strong> Te cargan de vitalidad para enfrentar entrenamientos más exigentes.</li><li><strong>Mejoran el rendimiento:</strong> Elevan tu capacidad para realizar ejercicios de alta intensidad, mejorando resultados.</li><li><strong>Incrementan la concentración:</strong> Afina tu enfoque mental, clave para una sesión productiva.</li></ul><p>Los pre-entrenos son el impulso que necesitas para entrenar más duro, más largo y con mayor eficacia, llevando tu rendimiento deportivo al siguiente nivel.</p>",
+      "category_image": {
+        "id": 392,
+        "collection_name": "attachment",
+        "name": "creatinas",
+        "file_name": "Beauty.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1680464",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/pre-entrenos-banner.jpeg"
+      },
       "category_icon": {
         "id": 268,
         "collection_name": "attachment",
@@ -334,8 +360,21 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 20,
-      "category_image": null,
       "description_html": "<p>Los <strong>suplementos termogénicos</strong> impulsan la pérdida de peso acelerando el metabolismo y aumentando la quema de calorías. Son perfectos para:</p><ul><li><strong>Maximizar la quema de grasa:</strong> Aumenta la eficacia de tu régimen de pérdida de peso.</li><li><strong>Incrementar la energía:</strong> Proporciona un impulso energético para mejorar tu rendimiento en el entrenamiento.</li><li><strong>Controlar el apetito:</strong> Ayuda a reducir los antojos y facilita el seguimiento de una dieta equilibrada.</li></ul><p>Si buscas optimizar tu estrategia de pérdida de grasa y mejorar tu nivel de energía, los termogénicos pueden ser la solución.</p>",
+      "category_image": {
+        "id": 392,
+        "collection_name": "attachment",
+        "name": "creatinas",
+        "file_name": "Beauty.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1680464",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/termogenicos-banner.jpeg"
+      },
       "category_icon": {
         "id": 315,
         "collection_name": "attachment",
@@ -370,8 +409,21 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 9,
-      "category_image": null,
       "description_html": "<p>Para deportistas buscando optimizar su rendimiento y recuperación, los <strong>suplementos de glutamina y colágeno</strong> son vitales. Estos suplementos:</p><ul><li><strong>Mejoran la recuperación muscular:</strong> La glutamina acelera la reparación tras el entrenamiento intenso.</li><li><strong>Fortalecen articulaciones y ligamentos:</strong> El colágeno es esencial para la salud articular, reduciendo el riesgo de lesiones.</li><li><strong>Apoyan la salud de la piel:</strong> El colágeno ayuda a mantener la piel firme y resistente, crucial para los deportistas al aire libre.</li></ul><p>Estos suplementos son imprescindibles para cualquier deportista serio sobre su salud, recuperación y rendimiento a largo plazo.</p>",
+      "category_image": {
+        "id": 392,
+        "collection_name": "attachment",
+        "name": "creatinas",
+        "file_name": "Beauty.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1680464",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/glutatina-y-colagenos-banner.jpeg"
+      },
       "category_icon": {
         "id": 276,
         "collection_name": "attachment",
@@ -406,8 +458,21 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 7,
-      "category_image": null,
       "description_html": "<p>Deportistas en busca de una ventaja competitiva, los suplementos de <strong>Beta-alanina, Citrulina, Arginina</strong> y <strong>Cafeína</strong> son clave. Beneficios incluyen:</p><ul><li><strong>Beta-alanina:</strong> Retrasa la fatiga muscular, permitiendo entrenamientos más intensos y largos.</li><li><strong>Citrulina y Arginina:</strong> Mejoran el flujo sanguíneo y la entrega de oxígeno a los músculos, potenciando la resistencia.</li><li><strong>Cafeína:</strong> Aumenta la alerta y energía, mejorando el rendimiento general.</li></ul><p>Integrar estos suplementos en tu rutina te proporcionará un notable impulso en energía, resistencia y recuperación, llevando tus entrenamientos y competencias a un nivel superior.</p>",
+      "category_image": {
+        "id": 392,
+        "collection_name": "attachment",
+        "name": "creatinas",
+        "file_name": "Beauty.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1680464",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/cafeina-banner.svg"
+      },
       "category_icon": {
         "id": 275,
         "collection_name": "attachment",
@@ -420,7 +485,7 @@
         "created_by_id": "1",
         "created_at": "2023-08-26T12:19:23.000000Z",
         "updated_at": "2023-08-26T12:19:23.000000Z",
-        "original_url": "/assets/categories/cafeina.png"
+        "original_url": "/assets/categories/cafeina.svg"
       },
       "subcategories": [],
       "parent": null
@@ -442,8 +507,21 @@
       "deleted_at": null,
       "blogs_count": 0,
       "products_count": 1,
-      "category_image": null,
       "description_html": "<p>Para deportistas que necesitan un <strong>impulso rápido de energía</strong>, las bebidas energéticas y snacks son ideales. Estos productos:</p><ul><li><strong>Proporcionan energía instantánea:</strong> Perfecto para antes o durante entrenamientos prolongados.</li><li><strong>Mejoran el enfoque y la concentración:</strong> Los ingredientes activos mantienen tu mente aguda.</li><li><strong>Facilitan la recuperación:</strong> Snacks ricos en nutrientes ayudan a reponer lo que el cuerpo pierde durante el ejercicio.</li></ul><p>Incorporar bebidas energéticas y snacks en tu régimen deportivo te ayuda a mantener el ritmo, mejorar tu rendimiento y acelerar la recuperación.</p>",
+      "category_image": {
+        "id": 392,
+        "collection_name": "attachment",
+        "name": "creatinas",
+        "file_name": "Beauty.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1680464",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/snacks-banner.jpeg"
+      },
       "category_icon": {
         "id": 274,
         "collection_name": "attachment",
@@ -491,7 +569,7 @@
         "created_by_id": "1",
         "created_at": "2023-09-01T06:10:15.000000Z",
         "updated_at": "2023-09-01T06:10:15.000000Z",
-        "original_url": "https://react.pixelstrap.net/fastkart/assets/product-3.png"
+        "original_url": "/assets/categories/vitaminas-banner.jpeg"
       },
       "category_icon": {
         "id": 273,
