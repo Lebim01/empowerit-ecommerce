@@ -5,7 +5,7 @@
       "site_title": "Suple Marketplace: Donde los vendedores brillan juntos",
       "site_tagline": "Shop Unique, Sell Exceptional – SupleMK",
       "cart_style": "cart_sidebar",
-      "back_to_top_enable": true,
+      "back_to_top_enable": false,
       "language_direction": "ltr",
       "primary_color": "#c1a62f",
       "mode": "light"
