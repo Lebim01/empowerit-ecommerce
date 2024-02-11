@@ -3,7 +3,7 @@ import { Session } from "next-auth";
 
 type Status = "authenticated" | "loading" | "unauthenticated";
 
-interface CustomSession extends Session {
+export interface CustomSession extends Session {
   token: {
     accessToken: string;
   };
@@ -12,6 +12,7 @@ interface CustomSession extends Session {
     email: string;
     name: string;
     image: string;
+    shopify_id: string;
   };
 }
 

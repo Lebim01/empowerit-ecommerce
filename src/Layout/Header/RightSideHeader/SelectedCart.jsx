@@ -40,10 +40,11 @@ const SelectedCart = ({ modal, setSelectedVariation, setModal }) => {
 
               <div className='drop-contain'>
                 <Link href={`/${i18Lang}/product/${elem?.product?.slug}`}>
+                  <h5 style={{ fontSize: 12 }}>{elem?.product?.name}</h5>
                   <h5>{elem?.variation?.name ?? elem?.product?.name}</h5>
                 </Link>
                 <h6>{convertCurrency(elem?.variation?.sale_price ?? elem?.product?.sale_price)}</h6>
-                {elem?.variation && <h5 className='gram'>{elem?.variation?.selected_variation ?? elem?.product?.selected_variation}</h5>}
+                {/*elem?.variation && <h5 className='gram'>{elem?.variation?.selected_variation ?? elem?.product?.selected_variation}</h5>*/}
                 <ul>
                   <HandleQuantity productObj={elem?.product} elem={elem} customIcon={<RiDeleteBinLine />} />
                 </ul>

@@ -78,6 +78,7 @@ export const authOptions: NextAuthOptions = {
         user: user
           ? {
               id: user.id,
+              shopify_id: user.shopify_id,
               firstName: user.firstName,
               lastName: user.lastName,
               email: user.email,

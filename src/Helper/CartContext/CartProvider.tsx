@@ -11,6 +11,7 @@ import { AxiosResponse } from "axios";
 const CartProvider = (props) => {
   const { data, status } = useSession();
   const [cartID, setCartID] = useState(null);
+  const [invoiceURL, setInvoiceURL] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
   const [variationModal, setVariationModal] = useState("");
   const [cartTotal, setCartTotal] = useState(0);
@@ -18,14 +19,29 @@ const CartProvider = (props) => {
   const isCookie = status == "authenticated";
 
   // Getting data from Cart API
-  const { mutate: createNewCart } = useMutation(
-    (data: { items: any[] }) =>
-      request({ url: AddToCartAPI, method: "POST", data }),
+  const { mutate: updateCart } = useMutation(
+    (data: { id: string; items: any[] }) =>
+      request({
+        url: AddToCartAPI + "/" + data.id,
+        method: "PATCH",
+        data: data.items,
+      }),
     {
       onSuccess: (res: AxiosResponse<any>) => {
-        console.log("added", res);
-
         setCartID(res.data.id);
+        setInvoiceURL(res.data.invoiceUrl);
+        setCartTotal(Number(res.data.total));
+      },
+    }
+  );
+  const { mutate: createNewCart } = useMutation(
+    (data: { items: any[] }) =>
+      request({ url: AddToCartAPI, method: "POST", data: data.items }),
+    {
+      onSuccess: (res: AxiosResponse<any>) => {
+        setCartID(res.data.id);
+        setInvoiceURL(res.data.invoiceUrl);
+        setCartTotal(Number(res.data.total));
       },
     }
   );
@@ -46,10 +62,14 @@ const CartProvider = (props) => {
     }
   }, [data?.user]);
 
+  console.log(cartID, cartProducts);
+
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
     if (data?.user) {
       if (CartAPIData) {
+        setCartID(CartAPIData?.id);
+        setInvoiceURL(CartAPIData?.invoiceUrl);
         setCartProducts(CartAPIData?.items);
         setCartTotal(CartAPIData?.total);
       }
@@ -284,7 +304,18 @@ const CartProvider = (props) => {
     );
   };
 
-  const updateCartShopify = (items: any) => {};
+  const updateCartShopify = (items: any) => {
+    if (cartID) {
+      updateCart({
+        id: cartID,
+        items,
+      });
+    } else {
+      createNewCart({
+        items,
+      });
+    }
+  };
 
   return (
     <CartContext.Provider

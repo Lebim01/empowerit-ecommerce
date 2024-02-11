@@ -4,10 +4,7 @@ import {
   CustomerEmailMarketingState,
   CustomerMarketingOptInLevel,
 } from "@/Shopify/customers_schema";
-import {
-  consentEmailMarketing,
-  createNewCustomer,
-} from "@/Shopify/customers";
+import { consentEmailMarketing, createNewCustomer } from "@/Shopify/customers";
 
 const SALT_ROUNDS = 10;
 
@@ -90,6 +87,7 @@ export const getUserByEmail = async (email: string): Promise<User> => {
     .selectFrom("users")
     .select([
       "id",
+      "shopify_id",
       "firstName",
       "lastName",
       "email",
