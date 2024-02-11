@@ -3,9 +3,10 @@ import CartContext from ".";
 import { ToastNotification } from "@/Utils/CustomFunctions/ToastNotification";
 import { AddToCartAPI } from "@/Utils/AxiosUtils/API";
 import request from "@/Utils/AxiosUtils";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import ThemeOptionContext from "../ThemeOptionsContext";
 import { useSession } from "next-auth/react";
+import { AxiosResponse } from "axios";
 
 const CartProvider = (props) => {
   const { data, status } = useSession();
@@ -17,6 +18,17 @@ const CartProvider = (props) => {
   const isCookie = status == "authenticated";
 
   // Getting data from Cart API
+  const { mutate: createNewCart } = useMutation(
+    (data: { items: any[] }) =>
+      request({ url: AddToCartAPI, method: "POST", data }),
+    {
+      onSuccess: (res: AxiosResponse<any>) => {
+        console.log("added", res);
+
+        setCartID(res.data.id);
+      },
+    }
+  );
   const {
     data: CartAPIData,
     isLoading: getCartLoading,
@@ -73,6 +85,7 @@ const CartProvider = (props) => {
   // Remove and Delete cart data from API and State
   const removeCart = (id, cartId) => {
     const updatedCart = cartProducts?.filter((item) => item.product_id !== id);
+    updateCartShopify(updatedCart);
     setCartProducts(updatedCart);
   };
 
@@ -104,6 +117,7 @@ const CartProvider = (props) => {
 
     // Add data when not presence in Cart variable
     if (index === -1) {
+      // IS NEW PRODUCT
       const params = {
         id: null,
         product: productObj,
@@ -122,9 +136,18 @@ const CartProvider = (props) => {
           : updatedQty * productObj?.sale_price,
       };
       isCookie
-        ? setCartProducts((prev) => [...prev, params])
-        : setCartProducts((prev) => [...prev, params]);
+        ? setCartProducts((prev) => {
+            const newCartState = [...prev, params];
+            updateCartShopify(newCartState);
+            return newCartState;
+          })
+        : setCartProducts((prev) => {
+            const newCartState = [...prev, params];
+            updateCartShopify(newCartState);
+            return newCartState;
+          });
     } else {
+      // UPDATE PRODUCT
       // Checking the Stock QTY of paricular product
       const productStockQty = cart[index]?.variation?.quantity
         ? cart[index]?.variation?.quantity
@@ -164,7 +187,11 @@ const CartProvider = (props) => {
               ? cart[index]?.variation?.sale_price
               : cart[index]?.product?.sale_price),
         };
-        isCookie ? setCartProducts([...cart]) : setCartProducts([...cart]);
+        const newCartState = [...cart];
+        updateCartShopify(newCartState);
+        isCookie
+          ? setCartProducts(newCartState)
+          : setCartProducts(newCartState);
       }
     }
     // Update the productQty state immediately after updating the cartProducts state
@@ -256,6 +283,8 @@ const CartProvider = (props) => {
       JSON.stringify({ id: cartID, items: cartProducts, total: total })
     );
   };
+
+  const updateCartShopify = (items: any) => {};
 
   return (
     <CartContext.Provider

@@ -1,6 +1,4 @@
-import {
-  applyGoogleCommerceChanges,
-} from "@/Utils/GoogleCommerce/products";
+import { applyGoogleCommerceChanges } from "@/Utils/GoogleCommerce/products";
 import { getProductMetafieldsFromShopify } from "@/Shopify/products";
 import { productShopifyToStore } from "@/adapters/product";
 import {
@@ -18,8 +16,15 @@ export async function POST(req: NextRequest) {
   const metafieldsProduct = await getProductMetafieldsFromShopify(
     data.admin_graphql_api_id
   );
-  const processedProduct = await productShopifyToStore(data, metafieldsProduct);
   const exists: ProductStore = (await getProduct(data.id)) as ProductStore;
+  const processedProduct = await productShopifyToStore(
+    data,
+    metafieldsProduct,
+    {
+      meta_title: exists?.meta_title,
+      meta_description: exists?.meta_description,
+    }
+  );
   if (exists) {
     await updateProduct(processedProduct);
   } else {

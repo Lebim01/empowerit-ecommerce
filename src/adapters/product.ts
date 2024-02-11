@@ -22,17 +22,33 @@ export const productShopifyToSQL = (product: ShopifyProduct): Product => {
 
 export const productShopifyToStore = async (
   product: ShopifyProduct,
-  metafields: ShopifyProductMetafields
+  metafields: ShopifyProductMetafields,
+  prev_values?: {
+    meta_title?: string;
+    meta_description?: string;
+  }
 ): Promise<ProductStore> => {
   const stock_total = product.variants.reduce(
     (a, b) => a + b.inventory_quantity,
     0
   );
-  const { meta_title, meta_description } = await getAIMetaTitleAndDescription(
-    product.title,
-    removeEmojis(convert(product.body_html)),
-    metafields.category
+  let meta_title = prev_values?.meta_title || "";
+  let meta_description = prev_values?.meta_description || "";
+
+  if (!meta_title || !meta_description) {
+    const ai_result = await getAIMetaTitleAndDescription(
+      product.title,
+      removeEmojis(convert(product.body_html)),
+      metafields.category
+    );
+    meta_title = ai_result.meta_title;
+    meta_description = ai_result.meta_description;
+  }
+
+  const variants = product.variants.filter(
+    (r) => !r.title.toLocaleLowerCase().includes("default")
   );
+
   return {
     attributes: product.options.map((option) => ({
       id: option.id.toString(),
@@ -125,12 +141,12 @@ export const productShopifyToStore = async (
     tags: product.tags.split(",").map((tag) => tag.trim()),
     tax: null,
     tax_id: 1,
-    type: product.variants.length > 0 ? "classified" : "simple",
+    type: variants.length > 0 ? "classified" : "simple",
     unit: Unit.The1Item,
     updated_at: new Date(),
-    variations: product.variants
-      .filter((r) => !r.title.toLocaleLowerCase().includes("default"))
-      .map((variantion) => convertVariant(variantion, product)),
+    variations: variants.map((variantion) =>
+      convertVariant(variantion, product)
+    ),
     weight: null,
   };
 };

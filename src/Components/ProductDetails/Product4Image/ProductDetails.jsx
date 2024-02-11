@@ -15,7 +15,7 @@ const ProductDetails = ({ productState }) => {
       <h1 className='name'>{productState?.product?.name}</h1>
       <div className='price-rating'>
         <h3 className='theme-color price'>
-          {productState?.selectedVariation?.sale_price ? convertCurrency(productState?.selectedVariation?.sale_price) : convertCurrency(productState?.product?.sale_price)}
+          {productState?.selectedVariation?.sale_price ? convertCurrency(productState?.selectedVariation?.sale_price) : convertCurrency(productState?.product?.sale_price)} MXN
           <del className='text-content'>{productState?.selectedVariation ? convertCurrency(productState?.selectedVariation?.price) : convertCurrency(productState?.product?.price)}</del>
           {productState?.selectedVariation?.discount || productState?.product?.discount ? (
             <span className='offer-top'>
