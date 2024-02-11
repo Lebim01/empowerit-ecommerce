@@ -62,8 +62,6 @@ const CartProvider = (props) => {
     }
   }, [data?.user]);
 
-  console.log(cartID, cartProducts);
-
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
     if (data?.user) {
@@ -144,10 +142,12 @@ const CartProvider = (props) => {
         product_id: productObj?.id,
         variation: cloneVariation?.selectedVariation
           ? cloneVariation?.selectedVariation
-          : null,
+          : {
+              id: productObj?.variant_id,
+            },
         variation_id: cloneVariation?.selectedVariation?.id
           ? cloneVariation?.selectedVariation?.id
-          : null,
+          : productObj?.variant_id,
         quantity: cloneVariation?.selectedVariation?.productQty
           ? cloneVariation?.selectedVariation?.productQty
           : updatedQty,

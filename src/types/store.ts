@@ -1,5 +1,6 @@
 export interface ProductStore {
   id: number;
+  id_variant?: number | null;
   name: string;
   short_description: string;
   description: string;

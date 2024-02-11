@@ -82,6 +82,7 @@ export const productShopifyToStore = async (
     encourage_view: 0,
     estimated_delivery_text: "",
     id: product.id,
+    id_variant: variants.length == 0 ? product.variants[0].id : null,
     is_approved: 1,
     is_cod: "",
     is_featured: 1,

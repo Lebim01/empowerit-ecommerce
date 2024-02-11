@@ -13,6 +13,7 @@ export const createTable = async () => {
     .createTable("products")
     .ifNotExists()
     .addColumn("id", "bigint", (col) => col.primaryKey())
+    .addColumn("id_variant", "bigint")
     .addColumn("name", "varchar(255)")
     .addColumn("description", "text")
     .addColumn("status", "int2", (col) => col.defaultTo(1))

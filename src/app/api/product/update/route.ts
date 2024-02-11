@@ -9,12 +9,9 @@ import {
 import { ShopifyProduct } from "@/types/shopify";
 import { ProductStore } from "@/types/store";
 import { NextRequest, NextResponse } from "next/server";
-import { addLog } from "@/postgresql/logs";
 
 export async function POST(req: NextRequest) {
   const data: ShopifyProduct = await req.json();
-
-  await addLog(JSON.stringify(data));
 
   const metafieldsProduct = await getProductMetafieldsFromShopify(
     data.admin_graphql_api_id
