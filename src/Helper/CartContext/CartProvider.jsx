@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
-import Cookies from "js-cookie";
 import CartContext from ".";
 import { ToastNotification } from "@/Utils/CustomFunctions/ToastNotification";
 import { AddToCartAPI } from "@/Utils/AxiosUtils/API";
@@ -10,6 +9,7 @@ import { useSession } from "next-auth/react";
 
 const CartProvider = (props) => {
   const { data, status } = useSession();
+  const [cartID, setCartID] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
   const [variationModal, setVariationModal] = useState("");
   const [cartTotal, setCartTotal] = useState(0);
@@ -44,6 +44,7 @@ const CartProvider = (props) => {
     } else {
       const isCartAvaliable = JSON.parse(localStorage.getItem("cart"));
       if (isCartAvaliable?.items?.length > 0) {
+        setCartID(isCartAvaliable?.id);
         setCartProducts(isCartAvaliable?.items);
         setCartTotal(isCartAvaliable?.total);
       }
@@ -252,7 +253,7 @@ const CartProvider = (props) => {
     setCartTotal(total);
     localStorage.setItem(
       "cart",
-      JSON.stringify({ items: cartProducts, total: total })
+      JSON.stringify({ id: cartID, items: cartProducts, total: total })
     );
   };
 

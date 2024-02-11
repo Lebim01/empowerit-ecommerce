@@ -26,7 +26,8 @@ const HeaderProfile = () => {
     <li className="right-side onhover-dropdown">
       <div className="delivery-login-box">
         <div className="delivery-icon">
-          {accountData?.profile_image?.original_url ? (
+          {status != "authenticated" ? null : accountData?.profile_image
+              ?.original_url ? (
             <Avatar
               data={accountData?.profile_image}
               customeClass="user-box me-2"
@@ -41,7 +42,7 @@ const HeaderProfile = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                marginRight: 12
+                marginRight: 12,
               }}
               className="rounded-circle"
             >
