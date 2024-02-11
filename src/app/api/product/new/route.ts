@@ -1,7 +1,7 @@
 import {
   applyGoogleCommerceChanges,
 } from "@/Utils/GoogleCommerce/products";
-import { getProductMetafieldsFromShopify } from "@/Utils/Shopify/products";
+import { getProductMetafieldsFromShopify } from "@/Shopify/products";
 import { productShopifyToStore } from "@/adapters/product";
 import { insertNewProduct } from "@/postgresql/products";
 import { ShopifyProduct } from "@/types/shopify";

@@ -3,11 +3,11 @@ import bcrypt from "bcrypt";
 import {
   CustomerEmailMarketingState,
   CustomerMarketingOptInLevel,
-} from "@/Utils/Shopify/customers_schema";
+} from "@/Shopify/customers_schema";
 import {
   consentEmailMarketing,
   createNewCustomer,
-} from "@/Utils/Shopify/customers";
+} from "@/Shopify/customers";
 
 const SALT_ROUNDS = 10;
 

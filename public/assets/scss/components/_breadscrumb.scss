@@ -62,8 +62,6 @@
     }
 
     nav {
-      margin-left: auto;
-
       body[dir='rtl'] & {
         margin-left: unset;
         margin-right: auto;
