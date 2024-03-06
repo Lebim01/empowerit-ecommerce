@@ -15,9 +15,6 @@ const OfferBannerCustom = ({
         src={imgUrl}
         className={`img-fluid ${customRatioClass}`}
         alt="banner"
-        style={{
-          height: "100%",
-        }}
       />
     </div>
   );
