@@ -112,16 +112,23 @@
       "section3_two_column_banners": {
         "status": true,
         "banner_1": {
-          "image_url": "/assets/test/test-3.jpg",
+          "image_url": "/assets/promos/promo-1.jpg",
           "redirect_link": {
-            "link": "vegetables-fruits",
+            "link": "/es/product/dragon-pharma-venom-inferno-pre-entreno-extremo-40-20-servicios-500mg-de-cafeina-por-toma-3200mg-de-beta-alanina-3000mg-tyrosine-varios-sabores-suplemento-alimenticio",
             "link_type": "collection"
           }
         },
         "banner_2": {
-          "image_url": "https://react.pixelstrap.net/fastkart/assets/themes/paris/6.jpg",
+          "image_url": "/assets/promos/promo-2.jpg",
           "redirect_link": {
-            "link": "vegetables-fruits",
+            "link": "",
+            "link_type": "collection"
+          }
+        },
+        "banner_3": {
+          "image_url": "/assets/promos/promo-3.jpg",
+          "redirect_link": {
+            "link": "/es/product/bucket-up-mother-bucker-pre-entreno-390g-alto-estimulo-pumps-concentracion-fuerza-energia-varios-sabores-suplemento-alimenticio",
             "link_type": "collection"
           }
         }
@@ -132,27 +139,36 @@
         "status": false,
         "product_ids": [19, 17, 7, 9, 11, 13]
       },
-      "section5_coupons": {
-        "image_url": "/assets/test/test-1.jpg",
-        "redirect_link": {
-          "link": "vegetables-fruits",
-          "link_type": "collection"
+      "section5_two_column_banners": {
+        "banner_1": {
+          "image_url": "/assets/promos/promo-4.jpg",
+          "redirect_link": {
+            "link": "",
+            "link_type": "collection"
+          }
+        },
+        "banner_2": {
+          "image_url": "/assets/promos/promo-5.jpg",
+          "redirect_link": {
+            "link": "",
+            "link_type": "collection"
+          }
         },
         "status": true
       },
       "section6_two_column_banners": {
         "status": true,
         "banner_1": {
-          "image_url": "/assets/test/test-3.jpg",
+          "image_url": "/assets/promos/promo-6.png",
           "redirect_link": {
-            "link": "vegetables-fruits",
+            "link": "",
             "link_type": "collection"
           }
         },
         "banner_2": {
-          "image_url": "https://react.pixelstrap.net/fastkart/assets/themes/paris/9.jpg",
+          "image_url": "/assets/promos/promo-7.jpg",
           "redirect_link": {
-            "link": "vegetables-fruits",
+            "link": "https://api.whatsapp.com/send?phone=+526692142246&text=Hola,%20quiero%20mas%20informacion.",
             "link_type": "collection",
             "product_ids": "external_url"
           }

@@ -17,3 +17,7 @@
 .dark {
     @import 'dark.scss';
 }
+
+.aspect-square {
+    aspect-ratio: 1 / 1;
+}
