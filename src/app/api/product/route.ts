@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
   const querySortBy = searchParams.get("sortBy");
   const querySearch = searchParams.get("search");
   const queryPrice = searchParams.get("price");
+  const queryBrand = searchParams.get("brand");
 
   const queryPage = searchParams.get("page");
   const queryPaginate = searchParams.get("paginate");
@@ -18,6 +19,7 @@ export async function GET(request: NextRequest) {
     queryPage,
     queryPaginate,
     queryPrice,
+    queryBrand,
   });
   return NextResponse.json(products);
 }

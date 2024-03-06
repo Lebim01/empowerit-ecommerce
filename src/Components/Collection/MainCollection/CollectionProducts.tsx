@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { Col, Row } from "reactstrap";
 import NoDataFound from "@/Components/Common/NoDataFound";
 import Pagination from "@/Components/Common/Pagination";
@@ -14,6 +14,7 @@ import { useTranslation } from "@/app/i18n/client";
 const CollectionProducts = ({ filter, grid }) => {
   const { t } = useTranslation();
   const { slug } = useParams();
+  const searchParams = useSearchParams();
   const [page, setPage] = useState(1);
 
   const { data: pagination } = useQuery(
@@ -28,6 +29,7 @@ const CollectionProducts = ({ filter, grid }) => {
           field: filter?.field ?? "",
           price: filter?.price.join(",") ?? "",
           category: filter?.category.join(","),
+          brand: searchParams.get("brand") ?? "",
           sort: "",
           sortBy: filter?.sortBy ?? "",
           rating: filter?.rating.join(",") ?? "",
@@ -54,6 +56,7 @@ const CollectionProducts = ({ filter, grid }) => {
           field: filter?.field ?? "",
           price: filter?.price.join(",") ?? "",
           category: filter?.category.join(","),
+          brand: searchParams.get("brand") ?? "",
           sort: "",
           sortBy: filter?.sortBy ?? "",
           rating: filter?.rating.join(",") ?? "",

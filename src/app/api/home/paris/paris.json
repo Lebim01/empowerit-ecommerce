@@ -121,7 +121,7 @@
         "banner_2": {
           "image_url": "/assets/promos/promo-2.jpg",
           "redirect_link": {
-            "link": "",
+            "link": "/es/product/gat-omega-3-90-capsulas-aceite-de-pescado-purificado-1250mg-fish-oil-epa-dha-sin-sabor-suplemento-alimenticio",
             "link_type": "collection"
           }
         },
@@ -143,14 +143,14 @@
         "banner_1": {
           "image_url": "/assets/promos/promo-4.jpg",
           "redirect_link": {
-            "link": "",
+            "link": "/es/collections?brand=BIRDMAN",
             "link_type": "collection"
           }
         },
         "banner_2": {
           "image_url": "/assets/promos/promo-5.jpg",
           "redirect_link": {
-            "link": "",
+            "link": "/es/collections?brand=OPTIMUM%20NUTRITION",
             "link_type": "collection"
           }
         },
@@ -161,7 +161,7 @@
         "banner_1": {
           "image_url": "/assets/promos/promo-6.png",
           "redirect_link": {
-            "link": "",
+            "link": "/es/auth/register",
             "link_type": "collection"
           }
         },

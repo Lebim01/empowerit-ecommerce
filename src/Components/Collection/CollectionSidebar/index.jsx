@@ -11,7 +11,6 @@ import { AttributesAPI } from "@/Utils/AxiosUtils/API";
 import CollectionAttributes from "./CollectionAttributes";
 import CollectionFilter from "./CollectionFilter";
 import CollectionPrice from "./CollectionPrice";
-import CollectionRating from "./CollectionRating";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
@@ -52,7 +51,7 @@ const CollectionSidebar = ({
     { length: attributeAPIData?.length + 3 },
     (_, index) => (index + 1).toString()
   );
-  
+
   return (
     <>
       {collectionMobile && (

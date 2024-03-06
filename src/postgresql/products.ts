@@ -108,6 +108,7 @@ type Queries = {
   queryPage?: string;
   queryPaginate?: string;
   queryPrice?: string;
+  queryBrand?: string;
 };
 
 const productsQuery = (queries: Queries) => {
@@ -126,6 +127,10 @@ const productsQuery = (queries: Queries) => {
   if (queries.queryCategory) {
     const categories_ids = queries.queryCategory.split(",");
     query = query.where("products.category", "in", categories_ids);
+  }
+
+  if (queries.queryBrand) {
+    query = query.where("products.brand", "=", queries.queryBrand);
   }
 
   if (queries.queryPrice) {
