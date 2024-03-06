@@ -8,7 +8,8 @@ import generatePassword from "generate-password";
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    //signIn: "/es/auth/login",
+    signIn: "/es/auth/login",
+    error: "/es/auth/login",
     newUser: "/es/account",
   },
   providers: [
