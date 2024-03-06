@@ -1,31 +1,34 @@
 // Auth
-export const RegisterAPI = '/signup'
-export const LoginAPI = "/auth/_login"
-export const ForgotPasswordAPI = "/forgot-password"
-export const VerifyTokenAPI = "/verify-token"
-export const UpdatePasswordAPI = "/update-password"
+export const RegisterAPI = "/signup";
+export const LoginAPI = "/auth/_login";
+export const ForgotPasswordAPI = "/forgot-password";
+export const VerifyTokenAPI = "/verify-token";
+export const UpdatePasswordAPI = "/update-password";
 export const LogoutAPI = "/logout";
 
 // Theme Option
-export const ThemeOptionsAPI = "/themeOptions"
+export const ThemeOptionsAPI = "/themeOptions";
 
 // Category API
-export const CategoryAPI = "/category"
+export const CategoryAPI = "/category";
 
 // Product API
-export const ProductAPI = "/product"
+export const ProductAPI = "/product";
+
+// Trending API
+export const TrendingProductAPI = "/product/trending";
 
 // Pages API
-export const PageAPI = "/page"
+export const PageAPI = "/page";
 
 // Theme API
-export const ThemeAPI = "/theme"
+export const ThemeAPI = "/theme";
 
 // Home Pages API
-export const HomePageAPI = "/home"
+export const HomePageAPI = "/home";
 
 // Blogs API
-export const BlogAPI = "/blog"
+export const BlogAPI = "/blog";
 
 // Tags API
 export const TagAPI = "/tag";
@@ -34,82 +37,82 @@ export const TagAPI = "/tag";
 export const CurrencyAPI = "/currency";
 
 // Setting API
-export const SettingAPI = "/settings"
+export const SettingAPI = "/settings";
 
 // Wishlist API
-export const WishlistAPI = "/wishlist"
+export const WishlistAPI = "/wishlist";
 
 // Cart API
-export const AddToCartAPI = '/cart'
+export const AddToCartAPI = "/cart";
 
 // Contact Us API
-export const ContactUsAPI = '/contact-us'
+export const ContactUsAPI = "/contact-us";
 
 // Store API
-export const StoreAPI = "/store"
+export const StoreAPI = "/store";
 
 // Compare API
-export const CompareAPI = '/compare'
+export const CompareAPI = "/compare";
 
 // Attributes API
-export const AttributesAPI = '/attribute'
+export const AttributesAPI = "/attribute";
 
 // Wallet API
-export const WalletConsumerAPI = '/wallet/consumer'
+export const WalletConsumerAPI = "/wallet/consumer";
 
 // Address API
-export const AddressAPI = "/address"
+export const AddressAPI = "/address";
 
 // Country API
-export const CountryAPI = "/country"
+export const CountryAPI = "/country";
 
 // CheckoutAPI
 export const CheckoutAPI = "/checkout";
 
 // Orders API
-export const OrderAPI = '/order';
+export const OrderAPI = "/order";
 
 // Verify Payment API
-export const VerifyPayment = '/verifyPayment';
+export const VerifyPayment = "/verifyPayment";
 
 // Update Profile API
-export const UpdateProfileAPI = '/updateProfile'
+export const UpdateProfileAPI = "/updateProfile";
 
 // Update Profile API
-export const UpdateProfilePasswordAPI = '/updatePassword'
+export const UpdateProfilePasswordAPI = "/updatePassword";
 
 // Update Profile API
-export const NotificationAPI = '/notifications'
-export const MarkAsReadAPI = '/notifications/markAsRead'
+export const NotificationAPI = "/notifications";
+export const MarkAsReadAPI = "/notifications/markAsRead";
 
 // Payment Account API
-export const PaymentAccountAPI = "/paymentAccount"
+export const PaymentAccountAPI = "/paymentAccount";
 
 // Points API
-export const PointAPI = '/points/consumer'
+export const PointAPI = "/points/consumer";
 
 // Refund  API
-export const RefundAPI = "/refund"
+export const RefundAPI = "/refund";
 
 // Question And Answer API
-export const QuestionAnswerAPI = '/question-and-answer'
+export const QuestionAnswerAPI = "/question-and-answer";
 
 // Coupon API
-export const CouponAPI = "/coupon"
+export const CouponAPI = "/coupon";
 
 // FeedBack API
-export const FeedBackAPI = '/question-and-answer/feedback'
+export const FeedBackAPI = "/question-and-answer/feedback";
 
 // Review API
-export const ReviewAPI = '/review'
+export const ReviewAPI = "/review";
 
 // Order Status API
-export const OrderStatusAPI = '/orderStatus'
+export const OrderStatusAPI = "/orderStatus";
 
 // Replace Cart API
-export const ReplaceCartAPI = '/replace/cart'
+export const ReplaceCartAPI = "/replace/cart";
 
 // Faq API
-export const FaqAPI = '/faq'
+export const FaqAPI = "/faq";
 
-export const RePaymentAPI = "/rePayment"
+export const RePaymentAPI = "/rePayment";

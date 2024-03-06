@@ -6,7 +6,7 @@ import {
   insertNewProductVariant,
   updateProductVariant,
 } from "./products_variant";
-import { UpdateObject } from "kysely";
+import { UpdateObject, sql } from "kysely";
 
 export const createTable = async () => {
   return dbClient.schema
@@ -164,6 +164,17 @@ const productsQuery = (queries: Queries) => {
   }
 
   return query;
+};
+
+export const getTrendingProducts = async () => {
+  let query = dbClient
+    .selectFrom("products")
+    .where("is_trending", "=", 1)
+    .limit(5)
+    .selectAll()
+    .orderBy(sql`rand()`);
+  const res = await query.execute();
+  return res;
 };
 
 export const getProducts = async (queries: Queries) => {
