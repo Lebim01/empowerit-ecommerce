@@ -99,10 +99,6 @@
           "link": "wishlist"
         },
         {
-          "label": "Compare",
-          "link": "compare"
-        },
-        {
           "label": "FAQ's",
           "link": "faq"
         },
@@ -119,18 +115,6 @@
         {
           "label": "Catalog",
           "link": "collections"
-        },
-        {
-          "label": "About",
-          "link": "about-us"
-        },
-        {
-          "label": "Blogs",
-          "link": "blogs"
-        },
-        {
-          "label": "Offers",
-          "link": "offer"
         },
         {
           "label": "Search",
