@@ -48,7 +48,7 @@ const LoginContent = ({ csrfToken }) => {
               <LoginForm csrfToken={csrfToken} />
             </div>
 
-            <SocialLogin />
+            {/*<SocialLogin />*/}
 
             <div className="other-log-in">
               <h6>{t("or")}</h6>

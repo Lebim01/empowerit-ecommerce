@@ -14,16 +14,16 @@ module.exports = (phase) => {
 
   const env = {
     API_PROD_URL: (() => {
-      if (isDev) return "http://localhost:3000/api/";
+      if (isDev) return "http://localhost:3002/api/";
       if (isProd) {
         // Note: The code below needs to be uncommented, and you should use your domin where your API is hosted.
         // return 'Enter Your URL here'
         return "https://suplemk.vercel.app/api/";
       }
-      if (isStaging) return "http://localhost:3000/api/";
+      if (isStaging) return "http://localhost:3002/api/";
       return "RESTURL_SPEAKERS:not (isDev,isProd && !isStaging,isProd && isStaging)";
     })(),
-    API_BASE_URL: "http://localhost:3000/api",
+    API_BASE_URL: "http://localhost:3002/api",
   };
   const redirects = () => {
     return [

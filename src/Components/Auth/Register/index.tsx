@@ -11,7 +11,6 @@ import { useTranslation } from "@/app/i18n/client";
 import RegisterForm from "./RegisterForm";
 import AuthHeadings from "../Common/AuthHeadings";
 import SocialLogin from "../Common/SocialLogin";
-import NoSSR from "@/Utils/NoSSR";
 
 const RegisterContent = () => {
   const { i18Lang } = useContext(I18NextContext);
@@ -49,7 +48,7 @@ const RegisterContent = () => {
               <RegisterForm />
             </div>
 
-            <SocialLogin />
+            {/*<SocialLogin />*/}
 
             <div className="other-log-in">
               <h6>{t("or")}</h6>

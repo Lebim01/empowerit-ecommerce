@@ -15,19 +15,34 @@ import FormBtn from "@/Components/Common/FormBtn";
 import SimpleInputField from "@/Components/Common/InputFields/SimpleInputField";
 import request from "@/Utils/AxiosUtils";
 import { RegisterAPI } from "@/Utils/AxiosUtils/API";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const signUp = async (values) => {
-    const res = await request({
-      url: RegisterAPI,
-      method: "POST",
-      data: values,
-    });
-    console.log(res);
+    try {
+      setLoading(true);
+      const res = await request({
+        url: RegisterAPI,
+        method: "POST",
+        data: values,
+      });
+      signIn("credentials", {
+        username: values.email,
+        password: values.password,
+      });
+      router.push("/es/account/dashboard");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -111,8 +126,8 @@ const RegisterForm = () => {
           <FormBtn
             title={"SignUp"}
             classes={{ btnClass: "btn btn-animation w-100" }}
-            disabled={!agree}
-            loading={false}
+            disabled={!agree || loading}
+            loading={loading}
           />
         </Form>
       )}
