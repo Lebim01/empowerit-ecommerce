@@ -1,6 +1,5 @@
 import { useContext, useMemo, useState } from "react";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import { Progress } from "reactstrap";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
@@ -10,6 +9,7 @@ import SettingContext from "@/Helper/SettingContext";
 import CartContext from "@/Helper/CartContext";
 import SelectedCart from "./SelectedCart";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
+import { useSession } from "next-auth/react";
 
 const HeaderCartBottom = ({
   modal,
@@ -23,8 +23,8 @@ const HeaderCartBottom = ({
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   const { cartProducts, getTotal } = useContext(CartContext);
-  const isAuth = Cookies.get("uat");
-  // Getting total when cartProducts changes
+  const { status } = useSession();
+  const isAuth = status == "authenticated";
   const total = useMemo(() => {
     return getTotal(cartProducts);
   }, [cartProducts, modal]);

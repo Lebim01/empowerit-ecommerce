@@ -487,5 +487,7 @@
   "MyWish": "Deseos",
   "in_stock": "En existencia",
   "out_of_stock": "Agotado",
-  "Add": "Añadir"
+  "Add": "Añadir",
+  "DeliveryOption": "Opciones de Envio",
+  "Billing": "Facturación"
 }

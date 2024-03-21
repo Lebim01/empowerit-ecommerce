@@ -27,13 +27,13 @@
     "delivery": {
       "default_delivery": 1,
       "default": {
-        "title": "Standard Delivery",
-        "description": "Approx 5 to 7 Days"
+        "title": "Envio Standard",
+        "description": "3 a 7 Dias Aprox"
       },
-      "same_day_delivery": true,
+      "same_day_delivery": false,
       "same_day": {
-        "title": "Express Delivery",
-        "description": "Schedule"
+        "title": "Envio Express",
+        "description": "Programado"
       },
       "same_day_intervals": [
         {
@@ -77,7 +77,7 @@
     "payment_methods": [
       {
         "name": "cod",
-        "status": true
+        "status": false
       },
       {
         "name": "paypal",
@@ -85,15 +85,15 @@
       },
       {
         "name": "stripe",
-        "status": true
+        "status": false
       },
       {
         "name": "mollie",
-        "status": true
+        "status": false
       },
       {
         "name": "razorpay",
-        "status": true
+        "status": false
       }
     ]
   }
