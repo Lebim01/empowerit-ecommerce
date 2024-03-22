@@ -85,6 +85,9 @@ const CartProvider = (props) => {
     }
   }, [isCookie]);
 
+  console.log(data?.user);
+  console.log(status);
+
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
     if (status == "loading") return;
