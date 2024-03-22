@@ -8,6 +8,7 @@ import { useContext } from "react";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
 import { signIn, useSession } from "next-auth/react";
+import { eventLogin } from "@/gtag";
 
 const LoginForm = ({ csrfToken }) => {
   const { i18Lang } = useContext(I18NextContext);
@@ -15,6 +16,7 @@ const LoginForm = ({ csrfToken }) => {
   const { status } = useSession();
 
   const login = (data) => {
+    eventLogin("credentials");
     signIn("credentials", data);
   };
 

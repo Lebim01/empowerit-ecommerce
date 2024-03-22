@@ -17,6 +17,7 @@ import request from "@/Utils/AxiosUtils";
 import { RegisterAPI } from "@/Utils/AxiosUtils/API";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { eventLogin, eventSignUp } from "@/gtag";
 
 const RegisterForm = () => {
   const { i18Lang } = useContext(I18NextContext);
@@ -28,11 +29,13 @@ const RegisterForm = () => {
   const signUp = async (values) => {
     try {
       setLoading(true);
+      eventSignUp("credentials");
       const res = await request({
         url: RegisterAPI,
         method: "POST",
         data: values,
       });
+      eventLogin("credentials");
       signIn("credentials", {
         username: values.email,
         password: values.password,

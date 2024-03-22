@@ -165,3 +165,27 @@ export const eventPurchase = (
     });
   }
 };
+
+export const eventSearch = (search_term: string) => {
+  if (process.env.NODE_ENV == "production") {
+    gtag("event", "search", {
+      search_term,
+    });
+  }
+};
+
+export const eventSignUp = (method: string) => {
+  if (process.env.NODE_ENV == "production") {
+    gtag("event", "sign_up", {
+      method,
+    });
+  }
+};
+
+export const eventLogin = (method: string) => {
+  if (process.env.NODE_ENV == "production") {
+    gtag("event", "login", {
+      method,
+    });
+  }
+};
