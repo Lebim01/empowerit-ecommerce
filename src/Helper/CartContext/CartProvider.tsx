@@ -80,10 +80,10 @@ const CartProvider = (props) => {
 
   // Refetching Cart API
   useEffect(() => {
-    if (data?.user) {
+    if (status == "authenticated") {
       refetch();
     }
-  }, [status, data?.user]);
+  }, [status]);
 
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
