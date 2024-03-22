@@ -32,22 +32,33 @@ export default function CustomLayout({ children, params: { lng } }) {
     <>
       <html lang={lng}>
         <head>
-          {process.env.NODE_ENV == "production" && (
-            <>
-              <script src="https://www.googletagmanager.com/gtag/js?id=G-WLQ8FSF7JE" />
-              <script
-                id="google-analytics"
-                dangerouslySetInnerHTML={{
-                  __html: `
+          {process.env.NODE_ENV == "production"}
+          <>
+            <script src="https://www.googletagmanager.com/gtag/js?id=G-WLQ8FSF7JE" />
+            <script
+              id="google-analytics"
+              dangerouslySetInnerHTML={{
+                __html: `
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
                     gtag('config', 'G-WLQ8FSF7JE');
                   `,
-                }}
-              />
-            </>
-          )}
+              }}
+            />
+
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','GTM-P8RQ3LSZ');
+                `,
+              }}
+            />
+          </>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
