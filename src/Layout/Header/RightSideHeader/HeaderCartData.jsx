@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { RiCloseLine } from 'react-icons/ri';
-import CartContext from '@/Helper/CartContext';
-import I18NextContext from '@/Helper/I18NextContext';
-import { useTranslation } from '@/app/i18n/client';
-import ThemeOptionContext from '@/Helper/ThemeOptionsContext';
-import SettingContext from '@/Helper/SettingContext';
-import HeaderCartBottom from './HeaderCartBottom';
+import React, { useContext, useEffect, useState } from "react";
+import { RiCloseLine } from "react-icons/ri";
+import CartContext from "@/Helper/CartContext";
+import I18NextContext from "@/Helper/I18NextContext";
+import { useTranslation } from "@/app/i18n/client";
+import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
+import SettingContext from "@/Helper/SettingContext";
+import HeaderCartBottom from "./HeaderCartBottom";
+import { eventViewCart } from "@/gtag";
 
 const HeaderCartData = ({ cartStyle }) => {
   const { setCartCanvas, cartCanvas } = useContext(ThemeOptionContext);
@@ -16,20 +17,25 @@ const HeaderCartData = ({ cartStyle }) => {
   const [modal, setModal] = useState(false);
   const { settingData } = useContext(SettingContext);
   const { i18Lang } = useContext(I18NextContext);
-  const { t } = useTranslation(i18Lang, 'common');
-  const { cartProducts, getTotal } = useContext(CartContext);
+  const { t } = useTranslation(i18Lang, "common");
+  const { cartProducts, getTotal, cartTotal } = useContext(CartContext);
+
   useEffect(() => {
     setShippingFreeAmt(settingData?.general?.min_order_free_shipping);
     cartProducts?.filter((elem) => {
       if (elem?.variation) {
-        elem.variation.selected_variation = elem?.variation?.attribute_values?.map((values) => values.value).join('/');
+        elem.variation.selected_variation = elem?.variation?.attribute_values
+          ?.map((values) => values.value)
+          .join("/");
       }
     });
   }, [cartProducts, settingData?.general?.min_order_free_shipping]);
 
   // Effect 2: Calculate shippingCal and confetti
   useEffect(() => {
-    let tempCal = (getTotal(cartProducts) * 100) / (settingData?.general?.min_order_free_shipping || shippingFreeAmt);
+    let tempCal =
+      (getTotal(cartProducts) * 100) /
+      (settingData?.general?.min_order_free_shipping || shippingFreeAmt);
     let tempConfetti = confetti;
     let timer;
     if (tempCal > 100) {
@@ -48,18 +54,36 @@ const HeaderCartData = ({ cartStyle }) => {
     setShippingCal((prev) => tempCal);
     return () => clearTimeout(timer);
   }, [getTotal(cartProducts), cartCanvas]);
+
+  useEffect(() => {
+    eventViewCart(cartTotal, cartProducts);
+  }, []);
+
   return (
     <>
-      <div className={`onhover-div ${cartStyle == 'cart_sidebar' ? 'fixed-cart' : ''} ${cartCanvas ? 'show' : ''}`}>
-        <div className='cart-title'>
-          <h4>{t('ShoppingCart')}</h4>
+      <div
+        className={`onhover-div ${
+          cartStyle == "cart_sidebar" ? "fixed-cart" : ""
+        } ${cartCanvas ? "show" : ""}`}
+      >
+        <div className="cart-title">
+          <h4>{t("ShoppingCart")}</h4>
           <a onClick={() => setCartCanvas((prev) => !prev)}>
             <RiCloseLine />
           </a>
         </div>
-        <HeaderCartBottom modal={modal} setModal={setModal} shippingCal={shippingCal} shippingFreeAmt={shippingFreeAmt} />
+        <HeaderCartBottom
+          modal={modal}
+          setModal={setModal}
+          shippingCal={shippingCal}
+          shippingFreeAmt={shippingFreeAmt}
+        />
       </div>
-      <div className={`confetti-wrapper ${confetti == 1 && cartCanvas ? 'show' : ''} `}>
+      <div
+        className={`confetti-wrapper ${
+          confetti == 1 && cartCanvas ? "show" : ""
+        } `}
+      >
         {confettiItems?.map((elem, i) => (
           <div className={`confetti-${elem}`} key={i}></div>
         ))}

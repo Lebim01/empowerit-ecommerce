@@ -1,3 +1,4 @@
+import { CartItem } from "@/Helper/CartContext/CartProvider";
 import { ProductStore } from "@/types/store";
 
 var gtag;
@@ -67,51 +68,54 @@ export const eventSelectItem = (data: ProductStore, item_list_id: Lists) => {
   }
 };
 
-export const eventAddCart = (total: number, items: ProductStore[]) => {
+export const eventAddCart = (total: number, items: CartItem[]) => {
   if (process.env.NODE_ENV == "production") {
     gtag("event", "add_to_cart", {
       currency: "MXN",
       value: total,
       items: items.map((item, index) => ({
-        item_id: item.id,
-        item_name: item.name,
+        item_id: item.product.id,
+        item_name: item.product.name,
         index: Number(index),
-        item_brand: item.brand,
-        price: item.sale_price,
+        item_brand: item.product.brand,
+        item_variant: item.variation.id,
+        price: Number(item.variation.sale_price),
         quantity: item.quantity,
       })),
     });
   }
 };
 
-export const eventViewCart = (total: number, items: ProductStore[]) => {
+export const eventViewCart = (total: number, items: CartItem[]) => {
   if (process.env.NODE_ENV == "production") {
     gtag("event", "view_cart", {
       currency: "MXN",
       value: total,
       items: items.map((item, index) => ({
-        item_id: item.id,
-        item_name: item.name,
+        item_id: item.product.id,
+        item_name: item.product.name,
         index: Number(index),
-        item_brand: item.brand,
-        price: item.sale_price,
+        item_brand: item.product.brand,
+        item_variant: item.variation.id,
+        price: Number(item.variation.sale_price),
         quantity: item.quantity,
       })),
     });
   }
 };
 
-export const eventRemoveCart = (total: number, items: ProductStore[]) => {
+export const eventRemoveCart = (total: number, items: CartItem[]) => {
   if (process.env.NODE_ENV == "production") {
     gtag("event", "remove_from_cart", {
       currency: "MXN",
       value: total,
       items: items.map((item, index) => ({
-        item_id: item.id,
-        item_name: item.name,
+        item_id: item.product.id,
+        item_name: item.product.name,
         index: Number(index),
-        item_brand: item.brand,
-        price: item.sale_price,
+        item_brand: item.product.brand,
+        item_variant: item.variation.id,
+        price: Number(item.variation.sale_price),
         quantity: item.quantity,
       })),
     });

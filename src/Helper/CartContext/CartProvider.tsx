@@ -7,12 +7,35 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import ThemeOptionContext from "../ThemeOptionsContext";
 import { useSession } from "next-auth/react";
 import { AxiosResponse } from "axios";
+import { eventAddCart, eventRemoveCart } from "@/gtag";
+import { ProductStore } from "@/types/store";
+
+export type CartItem = {
+  id: null;
+  product: ProductStore;
+  product_id: number;
+  quantity: number;
+  sub_total: number;
+  variation: {
+    id: string;
+    name: string;
+    price: number;
+    sale_price: number;
+    quantity: number;
+    selected_variation?: any;
+    attribute_values?: any;
+  };
+  variation_id?: string;
+};
+
+const getCartTotal = (cart: CartItem[]) =>
+  cart.reduce((a, b) => a + Number(b.variation.sale_price) * b.quantity, 0);
 
 const CartProvider = (props) => {
   const { data, status } = useSession();
   const [cartID, setCartID] = useState(null);
   const [invoiceURL, setInvoiceURL] = useState(null);
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState<CartItem[]>([]);
   const [variationModal, setVariationModal] = useState("");
   const [cartTotal, setCartTotal] = useState(0);
   const { setCartCanvas } = useContext(ThemeOptionContext);
@@ -107,6 +130,7 @@ const CartProvider = (props) => {
     const updatedCart = cartProducts?.filter((item) => item.product_id !== id);
     updateCartShopify(updatedCart);
     setCartProducts(updatedCart);
+    eventRemoveCart(getCartTotal(updatedCart), updatedCart);
   };
 
   // Common Handler for Increment and Decerement
@@ -160,11 +184,13 @@ const CartProvider = (props) => {
       isCookie
         ? setCartProducts((prev) => {
             const newCartState = [...prev, params];
+            eventAddCart(getCartTotal(newCartState), newCartState);
             updateCartShopify(newCartState);
             return newCartState;
           })
         : setCartProducts((prev) => {
             const newCartState = [...prev, params];
+            eventAddCart(getCartTotal(newCartState), newCartState);
             updateCartShopify(newCartState);
             return newCartState;
           });
@@ -211,6 +237,7 @@ const CartProvider = (props) => {
         };
         const newCartState = [...cart];
         updateCartShopify(newCartState);
+        eventAddCart(getCartTotal(newCartState), newCartState);
         isCookie
           ? setCartProducts(newCartState)
           : setCartProducts(newCartState);
