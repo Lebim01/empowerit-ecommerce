@@ -72,11 +72,15 @@ const CartProvider = (props) => {
     data: CartAPIData,
     isLoading: getCartLoading,
     refetch,
-  } = useQuery([AddToCartAPI, status], () => axios.get(`/api${AddToCartAPI}`), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    select: (res) => res?.data,
-  });
+  } = useQuery(
+    [AddToCartAPI, status],
+    () => request({ url: AddToCartAPI, method: "GET" }),
+    {
+      enabled: false,
+      refetchOnWindowFocus: false,
+      select: (res) => res?.data,
+    }
+  );
 
   // Refetching Cart API
   useEffect(() => {
