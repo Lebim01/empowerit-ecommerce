@@ -91,7 +91,7 @@ export const createNewCart = async (draf: DraftOrderInput) => {
     }
   );
 
-  console.log(errors, data);
+  console.log(errors, data?.draftOrderCreate?.userErrors);
 
   if (errors?.message) {
     console.log(
