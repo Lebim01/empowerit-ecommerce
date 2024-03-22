@@ -13,7 +13,7 @@ const request = async (
   options: AxiosRequestConfig<any>,
   router?: NextRouter
 ) => {
-  client.defaults.headers.common.Authorization = `Bearer ${getCookie("uat")}`;
+  //client.defaults.headers.common.Authorization = `Bearer ${getCookie("uat")}`;
   const onSuccess = (response) => response;
   const onError = (error) => {
     if (error?.response?.status == 403) {
