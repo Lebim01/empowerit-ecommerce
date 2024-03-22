@@ -45,8 +45,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     lineItems: data.map((item) => ({
       quantity: item.quantity,
       variantId: item.variation
-        ? "gid://shopify/ProductVariant/" + item.variation.id
-        : "gid://shopify/Product/" + item.product.id,
+        ? "gid://shopify/ProductVariant/" + item.variation?.id
+        : "gid://shopify/Product/" + item.product?.id,
     })),
   });
 
