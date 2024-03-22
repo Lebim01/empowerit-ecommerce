@@ -14,6 +14,9 @@ import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import ProductIdsContext from "@/Helper/ProductIdsContext";
 import StickyCheckout from "./Common/StickyCheckout";
+import { eventViewDetails } from "@/gtag";
+
+var gtag;
 
 const ProductDetailContent = ({ params }) => {
   const router = useRouter();
@@ -91,6 +94,12 @@ const ProductDetailContent = ({ params }) => {
       document.body.classList?.remove("stickyCart");
     };
   }, []);
+
+  useEffect(() => {
+    if (productState) {
+      eventViewDetails(productState.product);
+    }
+  }, [productState]);
 
   if (isLoading) return <Loader />;
 

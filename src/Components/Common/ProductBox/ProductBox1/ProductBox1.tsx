@@ -5,13 +5,14 @@ import ProductBoxAction from "./ProductBox1Action";
 import ProductBox1Cart from "./ProductBox1Cart";
 import ProductBox1Rating from "./ProductBox1Rating";
 import Avatar from "../../Avatar";
-import { placeHolderImage } from "../../../../../Data/CommonPath";
 import Btn from "@/Elements/Buttons/Btn";
 import I18NextContext from "@/Helper/I18NextContext";
 import ProductBagde from "./ProductBagde";
 import SettingContext from "@/Helper/SettingContext";
-import { ModifyString } from "@/Utils/CustomFunctions/ModifyString";
 import { useTranslation } from "@/app/i18n/client";
+import { placeHolderImage } from "@Data/CommonPath";
+import { eventSelectItem } from "@/gtag";
+import { useRouter } from "next/navigation";
 
 type Props = {
   imgUrl: string;
@@ -30,12 +31,19 @@ const ProductBox1: FC<Props> = ({
   classObj,
   setWishlistState,
 }) => {
+  const router = useRouter();
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   const { convertCurrency } = useContext(SettingContext);
   const handelDelete = (currObj) => {
     setWishlistState((prev) => prev.filter((elem) => elem.id !== currObj?.id));
   };
+
+  const selectItem = () => {
+    eventSelectItem(productDetail, "catalog");
+    router.push(`/${i18Lang}/product/${productDetail?.slug}`);
+  };
+
   return (
     <div className={`product-box ${classObj?.productBoxClass}`}>
       <ProductBagde productDetail={productDetail} />
@@ -50,7 +58,7 @@ const ProductBox1: FC<Props> = ({
         </div>
       )}
       <div className="product-image">
-        <Link href={`/${i18Lang}/product/${productDetail?.slug}`}>
+        <div onClick={selectItem} className="cursor-pointer">
           <Avatar
             data={imgUrl}
             placeHolder={placeHolderImage}
@@ -60,21 +68,21 @@ const ProductBox1: FC<Props> = ({
             height={500}
             width={500}
           />
-        </Link>
+        </div>
         <ProductBoxAction
           productObj={productDetail}
           listClass="product-option"
         />
       </div>
       <div className="product-detail">
-        <Link href={`/${i18Lang}/product/${productDetail?.slug}`}>
+        <div onClick={selectItem} className="cursor-pointer">
           <h6 className="name">{productDetail.name}</h6>
           <p
             dangerouslySetInnerHTML={{
               __html: productDetail?.short_description,
             }}
           />
-        </Link>
+        </div>
         {productDetail?.unit && (
           <h6 className="unit mt-1">{productDetail?.unit}</h6>
         )}

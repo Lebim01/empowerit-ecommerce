@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { Col, Row } from "reactstrap";
 import NoDataFound from "@/Components/Common/NoDataFound";
@@ -10,6 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 import noProduct from "../../../../public/assets/svg/no-product.svg";
 import ProductSkeletonComponent from "@/Components/Common/SkeletonLoader/ProductSkeleton/ProductSkeletonComponent";
 import { useTranslation } from "@/app/i18n/client";
+import { eventViewList } from "@/gtag";
+
+var gtag;
 
 const CollectionProducts = ({ filter, grid }) => {
   const { t } = useTranslation();
@@ -70,6 +73,12 @@ const CollectionProducts = ({ filter, grid }) => {
       select: (data) => data.data,
     }
   );
+
+  useEffect(() => {
+    if (fetchStatus == "idle") {
+      eventViewList(data, "catalog");
+    }
+  }, [fetchStatus, data]);
 
   return (
     <>

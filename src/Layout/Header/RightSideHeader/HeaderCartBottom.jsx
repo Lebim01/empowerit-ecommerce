@@ -28,7 +28,6 @@ const HeaderCartBottom = ({
   const total = useMemo(() => {
     return getTotal(cartProducts);
   }, [cartProducts, modal]);
-  console.log({invoiceURL})
   return (
     <>
       {cartProducts?.length > 0 && (
