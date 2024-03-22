@@ -83,7 +83,7 @@ const CartProvider = (props) => {
     if (data?.user) {
       refetch();
     }
-  }, [data?.user]);
+  }, [status, data?.user]);
 
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
