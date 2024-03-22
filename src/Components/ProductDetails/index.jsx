@@ -94,7 +94,7 @@ const ProductDetailContent = ({ params }) => {
   }, []);
 
   useEffect(() => {
-    if (productState) {
+    if (productState.product.id) {
       eventViewDetails(productState.product);
     }
   }, [productState.product.id]);
