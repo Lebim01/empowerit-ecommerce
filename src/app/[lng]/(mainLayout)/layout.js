@@ -13,8 +13,8 @@ export default function RootLayout({ children, params: { lng } }) {
     <>
       {process.env.NODE_ENV == "production" && (
         <>
-          <Script src="https://www.googletagmanager.com/gtag/js?id=G-WLQ8FSF7JE" />
-          <Script id="google-analytics">
+          <script src="https://www.googletagmanager.com/gtag/js?id=G-WLQ8FSF7JE" />
+          <script id="google-analytics">
             {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
@@ -22,7 +22,7 @@ export default function RootLayout({ children, params: { lng } }) {
     
               gtag('config', 'G-WLQ8FSF7JE');
             `}
-          </Script>
+          </script>
         </>
       )}
       <MainLayout lng={lng}>{children}</MainLayout>

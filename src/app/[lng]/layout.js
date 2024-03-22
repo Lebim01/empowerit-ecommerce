@@ -35,10 +35,6 @@ export default function CustomLayout({ children, params: { lng } }) {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
           />
-          <meta
-            name="google-site-verification"
-            content="0LIGcMu_v04y1HoBdW0QVk0Nc7e3X3YkZY9lH2jZ47Y"
-          />
         </head>
         <body suppressHydrationWarning={true}>
           <I18NextProvider>
