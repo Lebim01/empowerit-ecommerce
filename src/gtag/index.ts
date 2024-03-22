@@ -1,7 +1,7 @@
 import { CartItem } from "@/Helper/CartContext/CartProvider";
 import { ProductStore } from "@/types/store";
 
-var gtag;
+declare let gtag: Function;
 
 type Lists = "catalog";
 
