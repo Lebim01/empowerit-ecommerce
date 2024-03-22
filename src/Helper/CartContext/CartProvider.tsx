@@ -64,6 +64,7 @@ const CartProvider = (props) => {
 
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
+    if (status == "loading") return;
     if (data?.user) {
       if (CartAPIData) {
         setCartID(CartAPIData?.id);
@@ -77,9 +78,10 @@ const CartProvider = (props) => {
         setCartID(isCartAvaliable?.id);
         setCartProducts(isCartAvaliable?.items);
         setCartTotal(isCartAvaliable?.total);
+        setInvoiceURL(isCartAvaliable?.invoiceURL || null);
       }
     }
-  }, [getCartLoading]);
+  }, [status, getCartLoading]);
 
   // Adding data in localstorage when not Login
   useEffect(() => {
@@ -300,7 +302,7 @@ const CartProvider = (props) => {
     setCartTotal(total);
     localStorage.setItem(
       "cart",
-      JSON.stringify({ id: cartID, items: cartProducts, total: total })
+      JSON.stringify({ id: cartID, items: cartProducts, total, invoiceURL })
     );
   };
 
@@ -331,6 +333,7 @@ const CartProvider = (props) => {
         variationModal,
         setVariationModal,
         replaceCart,
+        invoiceURL,
       }}
     >
       {props.children}

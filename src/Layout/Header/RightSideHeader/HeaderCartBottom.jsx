@@ -22,12 +22,13 @@ const HeaderCartBottom = ({
   const [selectedVariation, setSelectedVariation] = useState("");
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
-  const { cartProducts, getTotal } = useContext(CartContext);
+  const { cartProducts, getTotal, invoiceURL } = useContext(CartContext);
   const { status } = useSession();
   const isAuth = status == "authenticated";
   const total = useMemo(() => {
     return getTotal(cartProducts);
   }, [cartProducts, modal]);
+  console.log({invoiceURL})
   return (
     <>
       {cartProducts?.length > 0 && (
@@ -108,7 +109,9 @@ const HeaderCartBottom = ({
               </Link>
               <Link
                 href={
-                  isAuth ? `/${i18Lang}/checkout` : `/${i18Lang}/auth/login`
+                  isAuth
+                    ? invoiceURL ?? `/${i18Lang}/checkout`
+                    : `/${i18Lang}/auth/login`
                 }
                 className="btn btn-sm cart-button theme-bg-color text-white"
                 onClick={() => setCartCanvas("")}

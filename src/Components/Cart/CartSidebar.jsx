@@ -9,11 +9,12 @@ import { RiArrowLeftLine } from "react-icons/ri";
 import { useSession } from "next-auth/react";
 
 const CartSidebar = () => {
-  const { cartProducts, getTotal } = useContext(CartContext);
+  const { cartProducts, getTotal, invoiceURL } = useContext(CartContext);
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   const { status } = useSession();
   const isAuth = status == "authenticated";
+
   return (
     <Col xxl={3} xl={4}>
       <div className="summery-box p-sticky">
@@ -54,7 +55,9 @@ const CartSidebar = () => {
             <li>
               <Link
                 href={
-                  isAuth ? `/${i18Lang}/checkout` : `/${i18Lang}/auth/login`
+                  isAuth
+                    ? invoiceURL ?? `/${i18Lang}/checkout`
+                    : `/${i18Lang}/auth/login`
                 }
                 className="btn btn-animation proceed-btn fw-bold"
               >
