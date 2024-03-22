@@ -16,8 +16,6 @@ import ProductIdsContext from "@/Helper/ProductIdsContext";
 import StickyCheckout from "./Common/StickyCheckout";
 import { eventViewDetails } from "@/gtag";
 
-var gtag;
-
 const ProductDetailContent = ({ params }) => {
   const router = useRouter();
   const { themeOption } = useContext(ThemeOptionContext);
@@ -99,7 +97,7 @@ const ProductDetailContent = ({ params }) => {
     if (productState) {
       eventViewDetails(productState.product);
     }
-  }, [productState]);
+  }, [productState.product.id]);
 
   if (isLoading) return <Loader />;
 
