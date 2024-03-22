@@ -10,6 +10,7 @@ import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
 import SearchedData from "./SearchedData";
 import ProductContext from "@/Helper/ProductContext";
+import { eventSearch } from "@/gtag";
 
 const SearchModule = () => {
   const router = useRouter();
@@ -20,9 +21,11 @@ const SearchModule = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
 
-  const { productData, setSearch, productRefetch, isLoading } = useContext(ProductContext);
+  const { productData, setSearch, productRefetch, isLoading } =
+    useContext(ProductContext);
 
   useEffect(() => {
+    eventSearch(search);
     setSearch(search);
     setSearchState(search);
     setTimeout(() => {
