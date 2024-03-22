@@ -31,6 +31,20 @@ export default function CustomLayout({ children, params: { lng } }) {
     <>
       <html lang={lng}>
         <head>
+          {process.env.NODE_ENV == "production" && (
+            <>
+              <script src="https://www.googletagmanager.com/gtag/js?id=G-WLQ8FSF7JE" />
+              <script id="google-analytics">
+                {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+    
+              gtag('config', 'G-WLQ8FSF7JE');
+            `}
+              </script>
+            </>
+          )}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
