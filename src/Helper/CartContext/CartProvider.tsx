@@ -44,11 +44,7 @@ const CartProvider = (props) => {
   // Getting data from Cart API
   const { mutate: updateCart } = useMutation(
     (data: { id: string; items: any[] }) =>
-      request({
-        url: AddToCartAPI + "/" + data.id,
-        method: "PATCH",
-        data: data.items,
-      }),
+      axios.patch(`/api${AddToCartAPI}/${data.id}`, data.items),
     {
       onSuccess: (res: AxiosResponse<any>) => {
         setCartID(res.data.id);
@@ -58,8 +54,7 @@ const CartProvider = (props) => {
     }
   );
   const { mutate: createNewCart } = useMutation(
-    (data: { items: any[] }) =>
-      request({ url: AddToCartAPI, method: "POST", data: data.items }),
+    (data: { items: any[] }) => axios.post(`/api${AddToCartAPI}`, data.items),
     {
       onSuccess: (res: AxiosResponse<any>) => {
         setCartID(res.data.id);
@@ -72,15 +67,11 @@ const CartProvider = (props) => {
     data: CartAPIData,
     isLoading: getCartLoading,
     refetch,
-  } = useQuery(
-    [AddToCartAPI, status],
-    () => request({ url: AddToCartAPI, method: "GET" }),
-    {
-      enabled: false,
-      refetchOnWindowFocus: false,
-      select: (res) => res?.data,
-    }
-  );
+  } = useQuery([AddToCartAPI, status], () => axios.get(`/api${AddToCartAPI}`), {
+    enabled: false,
+    refetchOnWindowFocus: false,
+    select: (res) => res?.data,
+  });
 
   // Refetching Cart API
   useEffect(() => {
