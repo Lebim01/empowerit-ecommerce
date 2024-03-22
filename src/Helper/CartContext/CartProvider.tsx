@@ -72,7 +72,7 @@ const CartProvider = (props) => {
     data: CartAPIData,
     isLoading: getCartLoading,
     refetch,
-  } = useQuery([AddToCartAPI], () => request({ url: AddToCartAPI }), {
+  } = useQuery([AddToCartAPI, status], () => request({ url: AddToCartAPI }), {
     enabled: false,
     refetchOnWindowFocus: false,
     select: (res) => res?.data,
