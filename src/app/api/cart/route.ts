@@ -15,6 +15,8 @@ export type CartItem = {
 export async function GET() {
   const session = (await getServerSession(authOptions)) as CustomSession;
 
+  console.log(session);
+
   if (!session) {
     return NextResponse.json(
       {
