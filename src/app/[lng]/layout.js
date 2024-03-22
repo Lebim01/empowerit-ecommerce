@@ -1,6 +1,7 @@
 import I18NextProvider from "@/Helper/I18NextContext/I18NextProvider";
 import "../../../public/assets/scss/app.scss";
 import NoSSR from "@/Utils/NoSSR";
+import Head from "next/head";
 
 export async function generateMetadata() {
   // fetch data
@@ -41,7 +42,6 @@ export default function CustomLayout({ children, params: { lng } }) {
                     window.dataLayer = window.dataLayer || [];
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
-          
                     gtag('config', 'G-WLQ8FSF7JE');
                   `,
                 }}
