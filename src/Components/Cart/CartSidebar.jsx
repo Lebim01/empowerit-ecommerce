@@ -7,13 +7,24 @@ import { useTranslation } from "@/app/i18n/client";
 import Link from "next/link";
 import { RiArrowLeftLine } from "react-icons/ri";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { eventBeginCheckout } from "@/gtag";
 
 const CartSidebar = () => {
-  const { cartProducts, getTotal, invoiceURL } = useContext(CartContext);
+  const { cartProducts, getTotal, invoiceURL, cartTotal } =
+    useContext(CartContext);
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   const { status } = useSession();
   const isAuth = status == "authenticated";
+  const router = useRouter();
+
+  const goCheckout = () => {
+    eventBeginCheckout(cartTotal, cartProducts);
+    router.push(
+      isAuth ? invoiceURL ?? `/${i18Lang}/checkout` : `/${i18Lang}/auth/login`
+    );
+  };
 
   return (
     <Col xxl={3} xl={4}>
@@ -53,16 +64,12 @@ const CartSidebar = () => {
         <div className="button-group cart-button">
           <ul>
             <li>
-              <Link
-                href={
-                  isAuth
-                    ? invoiceURL ?? `/${i18Lang}/checkout`
-                    : `/${i18Lang}/auth/login`
-                }
-                className="btn btn-animation proceed-btn fw-bold"
+              <Btn
+                className="cursor-pointer btn btn-animation proceed-btn fw-bold"
+                onClick={goCheckout}
               >
                 {t("ProcessToCheckout")}
-              </Link>
+              </Btn>
             </li>
 
             <li>

@@ -41,15 +41,16 @@ const HeaderCartData = ({ cartStyle }) => {
     if (tempCal > 100) {
       tempCal = 100;
       if (tempConfetti === 0) {
-        setConfetti((prev) => 1);
+        /*setConfetti((prev) => 1);
         timer = setTimeout(() => {
           // Update the confetti state after the setTimeout completes
           setConfetti((prev) => 2);
-        }, 4500);
+        }, 4500);*/
       }
     } else {
-      tempConfetti = 0;
+      /*tempConfetti = 0;
       setConfetti((prev) => 0); // Update the confetti state immediately
+      */
     }
     setShippingCal((prev) => tempCal);
     return () => clearTimeout(timer);

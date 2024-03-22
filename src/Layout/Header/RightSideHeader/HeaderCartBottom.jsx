@@ -10,6 +10,8 @@ import CartContext from "@/Helper/CartContext";
 import SelectedCart from "./SelectedCart";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { eventBeginCheckout } from "@/gtag";
 
 const HeaderCartBottom = ({
   modal,
@@ -22,12 +24,24 @@ const HeaderCartBottom = ({
   const [selectedVariation, setSelectedVariation] = useState("");
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
-  const { cartProducts, getTotal, invoiceURL } = useContext(CartContext);
+  const { cartProducts, getTotal, invoiceURL, cartTotal } =
+    useContext(CartContext);
   const { status } = useSession();
   const isAuth = status == "authenticated";
+  const router = useRouter();
+
   const total = useMemo(() => {
     return getTotal(cartProducts);
   }, [cartProducts, modal]);
+
+  const goCheckout = () => {
+    setCartCanvas("");
+    eventBeginCheckout(cartTotal, cartProducts);
+    router.push(
+      isAuth ? invoiceURL ?? `/${i18Lang}/checkout` : `/${i18Lang}/auth/login`
+    );
+  };
+
   return (
     <>
       {cartProducts?.length > 0 && (
@@ -106,17 +120,12 @@ const HeaderCartBottom = ({
               >
                 {t("ViewCart")}
               </Link>
-              <Link
-                href={
-                  isAuth
-                    ? invoiceURL ?? `/${i18Lang}/checkout`
-                    : `/${i18Lang}/auth/login`
-                }
-                className="btn btn-sm cart-button theme-bg-color text-white"
-                onClick={() => setCartCanvas("")}
+              <div
+                className="cursor-pointer btn btn-sm cart-button theme-bg-color text-white"
+                onClick={goCheckout}
               >
                 {t("Checkout")}
-              </Link>
+              </div>
             </div>
           </>
         </div>
