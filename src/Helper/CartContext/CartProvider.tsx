@@ -6,7 +6,7 @@ import request from "@/Utils/AxiosUtils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import ThemeOptionContext from "../ThemeOptionsContext";
 import { useSession } from "next-auth/react";
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { eventAddCart, eventRemoveCart } from "@/gtag";
 import { ProductStore } from "@/types/store";
 
@@ -72,7 +72,7 @@ const CartProvider = (props) => {
     data: CartAPIData,
     isLoading: getCartLoading,
     refetch,
-  } = useQuery([AddToCartAPI, status], () => request({ url: AddToCartAPI }), {
+  } = useQuery([AddToCartAPI, status], () => axios.get(`/api${AddToCartAPI}`), {
     enabled: false,
     refetchOnWindowFocus: false,
     select: (res) => res?.data,
@@ -80,13 +80,10 @@ const CartProvider = (props) => {
 
   // Refetching Cart API
   useEffect(() => {
-    if (isCookie) {
+    if (data?.user) {
       refetch();
     }
-  }, [isCookie]);
-
-  console.log(data?.user);
-  console.log(status);
+  }, [data?.user]);
 
   // Setting CartAPI data to state and LocalStorage
   useEffect(() => {
