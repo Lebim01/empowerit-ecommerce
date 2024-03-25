@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 
 const ExitModal = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
 

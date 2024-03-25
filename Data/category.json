@@ -587,7 +587,56 @@
       },
       "subcategories": [],
       "parent": null
+    },
+    {
+      "id": 13,
+      "name": "Paquetes",
+      "slug": "packs",
+      "description": "Paquetes",
+      "category_image_id": 393,
+      "category_icon_id": 313,
+      "status": 1,
+      "type": "product",
+      "commission_rate": null,
+      "parent_id": null,
+      "created_by_id": "1",
+      "created_at": "2023-08-31T06:02:47.000000Z",
+      "updated_at": "2023-09-01T06:10:46.000000Z",
+      "deleted_at": null,
+      "blogs_count": 0,
+      "products_count": 7,
+      "description_html": "<p>Los <strong>suplementos de proteínas</strong> son esenciales para el crecimiento y reparación muscular. Aceleran la recuperación post-entrenamiento y apoyan el desarrollo de masa muscular magra. Son perfectos si buscas:</p><ul><li><strong>Mejorar tu rendimiento deportivo:</strong> Incrementando tu fuerza y resistencia.</li><li><strong>Optimizar la recuperación:</strong> Reduciendo el tiempo de recuperación muscular.</li><li><strong>Aumentar la ingesta de proteínas:</strong> Ideal para dietas con déficit de este macronutriente.</li></ul><br /><p>Invierte en tu salud y rendimiento con suplementos de proteínas, el aliado perfecto para alcanzar tus objetivos físicos.</p>",
+      "category_image": {
+        "id": 393,
+        "collection_name": "attachment",
+        "name": "Proteínas",
+        "file_name": "Electronics.png",
+        "mime_type": "image/png",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "1921080",
+        "created_by_id": "1",
+        "created_at": "2023-09-01T06:10:14.000000Z",
+        "updated_at": "2023-09-01T06:10:14.000000Z",
+        "original_url": "/assets/categories/proteinas-banner.jpeg"
+      },
+      "category_icon": {
+        "id": 313,
+        "collection_name": "attachment",
+        "name": "electronic",
+        "file_name": "packs.svg",
+        "mime_type": "image/svg+xml",
+        "disk": "public",
+        "conversions_disk": "public",
+        "size": "31460",
+        "created_by_id": "1",
+        "created_at": "2023-08-31T10:37:59.000000Z",
+        "updated_at": "2023-08-31T10:37:59.000000Z",
+        "original_url": "/assets/categories/packs.svg"
+      },
+      "subcategories": [],
+      "parent": null
     }
   ],
-  "total": 12
+  "total": 13
 }

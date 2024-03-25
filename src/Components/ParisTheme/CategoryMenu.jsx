@@ -16,7 +16,6 @@ const CategoryMenu = ({ dataAPI }) => {
      <h3>{t(dataAPI?.main_content?.sidebar?.categories_icon_list?.titleTranslationKey)}</h3>
       <ul>
         {categoryData
-          ?.filter((el) => dataAPI?.main_content?.sidebar?.categories_icon_list?.category_ids.includes(el.id))
           ?.map((elem) => (
             <li key={elem.id}>
               <div className='category-list'>
