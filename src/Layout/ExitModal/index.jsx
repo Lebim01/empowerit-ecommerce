@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { ModalHeader } from "reactstrap";
+import Btn from "@/Elements/Buttons/Btn";
 import CustomModal from "@/Components/Common/CustomModal";
-import newsLetterImage from "../../../public/assets/images/newsletter/3.jpg";
 import { useTranslation } from "@/app/i18n/client";
 import I18NextContext from "@/Helper/I18NextContext";
-import Logo from "../../../public/assets/images/logo/1.png";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const ExitModal = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
 
@@ -74,7 +74,7 @@ const ExitModal = () => {
               style={{
                 height: 38,
                 width: 100,
-                objectFit: 'contain'
+                objectFit: "contain",
               }}
             />
             <h2 className="text-title">
@@ -83,6 +83,12 @@ const ExitModal = () => {
             </h2>
             <h5>{t("ImSorry")}</h5>
             <p>{t("imSorryDescription")}</p>
+
+            <Link href="/es/auth/register">
+              <Btn className="btn setting-button theme-bg-color text-white" style={{ marginTop: 16 }}>
+                REGISTRARSE
+              </Btn>
+            </Link>
           </div>
         </div>
       </div>

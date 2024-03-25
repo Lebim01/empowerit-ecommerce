@@ -13,10 +13,7 @@ const OfferBanner = ({
 }) => {
   const { i18Lang } = useContext(I18NextContext);
   const { filteredProduct } = useContext(ProductIdsContext);
-  const redirectToProduct = (productId) => {
-    const product = filteredProduct.find((elem) => elem?.id == productId);
-    return "product/" + product?.slug;
-  };
+  
   return (
     <div className={`${classes?.customClass ? classes?.customClass : ""}`}>
       {elem?.redirect_link?.link_type === "external_url" ? (
@@ -75,7 +72,7 @@ const OfferBanner = ({
       ) : elem?.redirect_link?.link_type === "product" ? (
         <Link
           href={
-            `/${i18Lang}/${redirectToProduct(elem?.redirect_link?.link)}` || "/"
+            `/${i18Lang}/product/${elem?.redirect_link?.link}` || "/"
           }
         >
           <div
