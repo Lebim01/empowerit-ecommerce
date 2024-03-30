@@ -1,6 +1,6 @@
 import { STORE } from "@/Utils/Constants";
-import { removeEmojis } from "@/Utils/Emojis";
-import { getAIMetaTitleAndDescription } from "@/openai";
+//import { removeEmojis } from "@/Utils/Emojis";
+//import { getAIMetaTitleAndDescription } from "@/openai";
 import { Product } from "@/types/postgresql";
 import {
   ShopifyProduct,
@@ -35,7 +35,7 @@ export const productShopifyToStore = async (
   let meta_title = prev_values?.meta_title || "";
   let meta_description = prev_values?.meta_description || "";
 
-  if (!meta_title || !meta_description) {
+  /*if (!meta_title || !meta_description) {
     const ai_result = await getAIMetaTitleAndDescription(
       product.title,
       removeEmojis(convert(product.body_html)),
@@ -43,7 +43,7 @@ export const productShopifyToStore = async (
     );
     meta_title = ai_result.meta_title;
     meta_description = ai_result.meta_description;
-  }
+  }*/
 
   const variants = product.variants.filter(
     (r) => !r.title.toLocaleLowerCase().includes("default")
