@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     data.admin_graphql_api_id
   );
   const processedProduct = await productShopifyToStore(data, metafieldsProduct);
-  await applyGoogleCommerceChanges(processedProduct);
+  //await applyGoogleCommerceChanges(processedProduct);
   await insertNewProduct(processedProduct);
   return NextResponse.json("OK");
 }

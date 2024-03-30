@@ -31,6 +31,6 @@ export async function POST(req: NextRequest) {
     await insertNewProduct(processedProduct);
   }
 
-  await applyGoogleCommerceChanges(processedProduct);
+  //await applyGoogleCommerceChanges(processedProduct);
   return NextResponse.json("OK");
 }
