@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { RiEyeLine } from "react-icons/ri";
 import VariationModal from "./ProductBox1/VariationModal";
-import mixpanel from "mixpanel-browser";
 import { eventViewDetails } from "@/gtag";
 
 const QuickView = ({ productObj }) => {
@@ -11,9 +10,6 @@ const QuickView = ({ productObj }) => {
       <li
         title="View"
         onClick={() => {
-          mixpanel.track("Open product detail", {
-            id: productObj.id,
-          });
           eventViewDetails(productObj);
           setVariationModal(productObj?.id);
         }}

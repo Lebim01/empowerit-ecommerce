@@ -6,7 +6,6 @@ import HeaderCartData from "./HeaderCartData";
 import CartContext from "@/Helper/CartContext";
 import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import { RiShoppingCartLine } from "react-icons/ri";
-import mixpanel from "mixpanel-browser";
 
 const HeaderCart = () => {
   const { themeOption, cartCanvas, setCartCanvas } =
@@ -21,7 +20,6 @@ const HeaderCart = () => {
   });
 
   const openCart = () => {
-    mixpanel.track("Open cart");
     cartStyle == "cart_sidebar" && setCartCanvas(!cartCanvas);
   };
 

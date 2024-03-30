@@ -4,7 +4,7 @@ export const footerUseFulLink = [
   { value: 'order', name: 'YourOrder' },
   { value: 'account', name: 'YourAccount' },
   { value: 'track-order', name: 'TrackOrder' },
-  { value: 'wishlist', name: 'YourWishlist' },
+  //{ value: 'wishlist', name: 'YourWishlist' },
   { value: 'search', name: 'Search' },
   { value: 'faq', name: 'FAQ' },
 ];
@@ -13,7 +13,7 @@ export const optionList = [
   { id: 1, path: '/', customClass: 'user-icon search-icon', icon: <RiUser3Line /> },
   { id: 2, path: '/', customClass: 'search-box search-icon', icon: <RiSearchLine /> },
   //{ id: 3, path: '/compare', icon: <RiArrowLeftRightLine /> },
-  { id: 4, path: '/wishlist', customClass: 'swap-icon', icon: <RiHeartLine /> },
+  //{ id: 4, path: '/wishlist', customClass: 'swap-icon', icon: <RiHeartLine /> },
   { id: 5, customClass: 'bag-icon', icon: <RiShoppingCartLine />, isBadge: true },
 ];
 
@@ -26,7 +26,7 @@ export const categoryTags = [
 export const optionListMinimal = [
   { id: 1, icon: <RiSearchLine />, customClass: 'search-box search-icon' },
   //{ id: 2, path: '/compare', icon: <RiArrowLeftRightLine /> },
-  { id: 3, path: '/wishlist', icon: <RiHeartLine />, customClass: 'swap-icon' },
+  //{ id: 3, path: '/wishlist', icon: <RiHeartLine />, customClass: 'swap-icon' },
   { id: 4, icon: <RiShoppingCartLine />, customClass: 'bag-icon', isBadge: true },
 ];
 

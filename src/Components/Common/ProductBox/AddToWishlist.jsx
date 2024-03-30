@@ -3,7 +3,6 @@ import { RiHeartLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import I18NextContext from "@/Helper/I18NextContext";
 import Btn from "@/Elements/Buttons/Btn";
-import mixpanel from "mixpanel-browser";
 import { useSession } from "next-auth/react";
 
 const AddToWishlist = ({ productObj, customClass }) => {
@@ -12,9 +11,6 @@ const AddToWishlist = ({ productObj, customClass }) => {
   const router = useRouter();
 
   const handelWishlist = (productObj) => {
-    mixpanel.track("Add wishlist", {
-      id: productObj.id,
-    });
     if (status == "authenticated") {
       // Add your add to wishlist logic here
     } else {

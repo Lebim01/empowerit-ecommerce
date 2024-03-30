@@ -95,12 +95,12 @@ const CollectionSidebar = ({
                 stayOpen
                 defaultOpen={defaultOpenList}
               >
-                <AccordionItem>
+                {/*<AccordionItem>
                   <AccordionHeader targetId="1">
                     <span>{t("Categories")}</span>
                   </AccordionHeader>
                   <CollectionCategory filter={filter} setFilter={setFilter} />
-                </AccordionItem>
+                </AccordionItem>*/}
                 {isAttributes ? (
                   <CollectionAttributes
                     attributeAPIData={attributeAPIData}

@@ -37,6 +37,7 @@ const HeaderMenu = () => {
                 href={{
                   pathname: `/`,
                 }}
+                style={{fontSize: 18}}
               >
                 {t('Home')}
               </Link>
@@ -45,6 +46,7 @@ const HeaderMenu = () => {
                 href={{
                   pathname: `/${i18Lang}/collections`,
                 }}
+                style={{fontSize: 18}}
               >
                 {t('Catalog')}
               </Link>

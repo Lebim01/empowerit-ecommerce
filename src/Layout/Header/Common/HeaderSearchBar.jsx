@@ -4,9 +4,7 @@ import Btn from "@/Elements/Buttons/Btn";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useRouter } from "next/navigation";
 import { RiSearchLine } from "react-icons/ri";
-import CategoryDropdown from "./CategoryDropdown";
 import { useTranslation } from "react-i18next";
-import mixpanel from "mixpanel-browser";
 
 const HeaderSearchBar = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -15,9 +13,6 @@ const HeaderSearchBar = () => {
   const { t } = useTranslation();
 
   const onHandleSearch = () => {
-    mixpanel.track("Searchbox top-header", {
-      searchValue,
-    });
     if (searchValue) {
       router.push(`/${i18Lang}/search?search=${searchValue}`);
     } else {

@@ -14,21 +14,27 @@ const FooterCategory = ({ footerMenu, setFooterMenu }) => {
   const categoryData = filterCategory('product');
   return (
     <Col xl={2} lg={3} md={4} sm={6}>
-      <div className={`footer-title ${footerMenu == 'category' ? 'show' : ''}`} onClick={() => setFooterMenu((prev) => (prev !== 'category' ? 'category' : ''))}>
-        <h4>{t('Categories')}</h4>
+      <div
+        className={`footer-title ${footerMenu == "category" ? "show" : ""}`}
+        onClick={() =>
+          setFooterMenu((prev) => (prev !== "category" ? "category" : ""))
+        }
+      >
+        <h4>{t("Categories")}</h4>
       </div>
 
-      <div className='footer-contain'>
+      <div className="footer-contain">
         <ul>
-          {categoryData
-            ?.filter((elem) => themeOption?.footer?.footer_categories.includes(elem.id))
-            .map((result, i) => (
-              <li key={i}>
-                <Link href={`/${i18Lang}/collections?category=${result?.slug}`} className='text-content'>
-                  {result?.name}
-                </Link>
-              </li>
-            ))}
+          {categoryData.map((result, i) => (
+            <li key={i}>
+              <Link
+                href={`/${i18Lang}/collections?category=${result?.slug}`}
+                className="text-content"
+              >
+                {result?.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </Col>

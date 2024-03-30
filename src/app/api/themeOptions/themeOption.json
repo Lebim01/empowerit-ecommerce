@@ -84,7 +84,9 @@
       "footer_about": "Discover convenience redefined at our multipurpose store. From fresh groceries to the latest fashion trends, find everything you need under one roof. Your one-stop shopping destination for a diverse range of products.",
       "about_address": "Mazatlán, Sinaloa, MX",
       "about_email": "soporte@empoweritup.com",
-      "footer_categories": [6, 5, 4, 3, 2, 1],
+      "footer_categories": {
+        "status": false
+      },
       "help_center": [
         {
           "label": "MyAccount",
