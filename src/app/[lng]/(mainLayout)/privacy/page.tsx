@@ -85,7 +85,7 @@ const PrivacyPage = () => {
         <p>
           Usted tiene derecho a acceder, corregir, eliminar o limitar el uso de
           su información personal. Si desea ejercer estos derechos, póngase en
-          contacto con nosotros en hello@suplemk.com.
+          contacto con nosotros en soporte@empoweritup.com.
         </p>
 
         <h2>Cambios en la Política de Privacidad</h2>
@@ -102,7 +102,7 @@ const PrivacyPage = () => {
           contáctenos en:
         </p>
         <ul>
-          <li>Correo electrónico: hello@suplemk.com</li>
+          <li>Correo electrónico: soporte@empoweritup.com</li>
           <li>Dirección: Mazatlán, Sinaloa, MX</li>
         </ul>
       </div>

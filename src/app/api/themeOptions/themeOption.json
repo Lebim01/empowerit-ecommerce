@@ -83,7 +83,7 @@
       "copyright_content": "©2024 Empowerit TOP All rights reserved",
       "footer_about": "Discover convenience redefined at our multipurpose store. From fresh groceries to the latest fashion trends, find everything you need under one roof. Your one-stop shopping destination for a diverse range of products.",
       "about_address": "Mazatlán, Sinaloa, MX",
-      "about_email": "hello@suplemk.com",
+      "about_email": "soporte@empoweritup.com",
       "footer_categories": [6, 5, 4, 3, 2, 1],
       "help_center": [
         {
@@ -122,7 +122,7 @@
         }
       ],
       "support_number": "+52-669-214-2246",
-      "support_email": "hello@suplemk.com",
+      "support_email": "soporte@empoweritup.com",
       "play_store_url": "https://play.google.com/",
       "app_store_url": "https://apple.com/",
       "social_media_enable": true,
@@ -223,7 +223,7 @@
       "detail_2": {
         "label": "Email",
         "icon": "ri-mail-line",
-        "text": "hello@suplemk.com"
+        "text": "soporte@empoweritup.com"
       },
       "detail_3": {
         "label": "London Office",
