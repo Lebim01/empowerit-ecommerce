@@ -38,6 +38,7 @@
     "kysely": "^0.26.3",
     "kysely-planetscale": "^1.4.0",
     "mixpanel-browser": "^2.49.0",
+    "mysql2": "^3.9.3",
     "next": "^14.0.3",
     "next-auth": "^4.24.5",
     "patch-package": "^8.0.0",

@@ -1,6 +1,6 @@
-import { PlanetScaleDialect } from "kysely-planetscale";
+import { createPool } from 'mysql2'
 import { ProductStore, VariantStore } from "@/types/store";
-import { Kysely, ColumnDefinitionBuilder, RawBuilder, sql } from "kysely";
+import { Kysely, ColumnDefinitionBuilder, RawBuilder, sql, MysqlDialect } from "kysely";
 import { User } from "./users";
 import { WhishList } from "./whishlist";
 import { Orders } from "./orders";
@@ -15,12 +15,19 @@ export interface Database {
   products_variants: VariantStore;
 }
 
-const db = new Kysely<Database>({
-  dialect: new PlanetScaleDialect({
+const dialect = new MysqlDialect({
+  pool: createPool({
+    database: process.env.DATABASE_NAME,
     host: process.env.DATABASE_HOST,
-    username: process.env.DATABASE_USERNAME,
+    user: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
-  }),
+    port: 3306,
+    connectionLimit: 10,
+  })
+})
+
+const db = new Kysely<Database>({
+  dialect,
 });
 
 export const defaultNull = (col: ColumnDefinitionBuilder) =>

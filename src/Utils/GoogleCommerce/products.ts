@@ -21,7 +21,7 @@ const auth = new GoogleAuth({
   scopes: ["https://www.googleapis.com/auth/content"],
 });
 
-const MERCHANT_ID = "5324782176";
+const MERCHANT_ID = "";
 
 const getApi = (): Promise<AxiosInstance> => {
   return new Promise(async (resolve) => {
