@@ -23,7 +23,8 @@ const dialect = new MysqlDialect({
     password: process.env.DATABASE_PASSWORD,
     port: 3306,
     connectionLimit: 30,
-  })
+    enableKeepAlive: false,
+  }),
 })
 
 const db = new Kysely<Database>({
