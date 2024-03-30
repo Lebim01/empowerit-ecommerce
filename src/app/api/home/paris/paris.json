@@ -71,7 +71,7 @@
           "title": "PopularCategories",
           "titleTranslationKey": "common:popularCategoriesTranslated",
           "category_ids": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-          "status": true
+          "status": false
         },
         "left_side_banners": {
           "status": false,
@@ -107,7 +107,7 @@
         "title": "common:section2_categories_list_title",
         "description": "common:section2_categories_list_description",
         "category_ids": [1, 2, 3, 4, 5, 6, 7, 10, 9],
-        "status": true
+        "status": false
       },
       "section3_two_column_banners": {
         "status": true,
