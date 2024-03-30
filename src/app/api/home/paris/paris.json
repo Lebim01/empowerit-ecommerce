@@ -34,7 +34,8 @@
             "link": "optimum-nutrition-gold-standard-100-whey-proteina-premium-5lb-birdman-creatina-monohidratada-90-servicios-raw-cbum-essential-pre-work-pre-entreno-30-servicios-on-amino-energy-aminoacidos-30-servicios-animal-pak-multivitaminico-44-servicios",
             "link_type": "product"
           },
-          "status": true,          "image_url": "/assets/promos/premium-master.jpeg"
+          "status": true,
+          "image_url": "/assets/promos/pack-energy.png"
         },
         {
           "redirect_link": {
@@ -42,7 +43,7 @@
             "link_type": "product"
           },
           "status": true,
-          "image_url": "/assets/promos/premium-pro.jpeg"
+          "image_url": "/assets/promos/pack-quick-start.png"
         },
         {
           "redirect_link": {
@@ -50,7 +51,7 @@
             "link_type": "product"
           },
           "status": true,
-          "image_url": "/assets/promos/premium-intermedio.jpeg"
+          "image_url": "/assets/promos/pack-bussines.png"
         },
         {
           "redirect_link": {

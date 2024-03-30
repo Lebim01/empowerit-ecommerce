@@ -7,14 +7,14 @@ const PrivacyPage = () => {
       colProps={{ xxl: 6, xl: 8 }}
     >
       <div style={{ paddingBottom: 40 }}>
-        <h1>Política de Privacidad de SupleMK</h1>
+        <h1>Política de Privacidad de Empowerit TOP</h1>
         <p>Última actualización: 2024-03-06</p>
         <p>
-          En SupleMK, nos comprometemos a proteger la privacidad y
+          En Empowerit TOP, nos comprometemos a proteger la privacidad y
           seguridad de nuestros clientes y visitantes. Esta Política de
           Privacidad describe cómo recopilamos, utilizamos, protegemos y, en
           ciertos casos, divulgamos su información personal. Al utilizar nuestro
-          sitio web https://suplemk.com, usted acepta la recopilación y uso de
+          sitio web https://empowerit-ecommerce.vercel.app/, usted acepta la recopilación y uso de
           información de acuerdo con esta política.
         </p>
 

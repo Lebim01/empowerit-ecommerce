@@ -49,7 +49,7 @@ const getJson = (
         ? payload.product_galleries[0].original_url
         : null,
     additionalImageLinks: payload.product_galleries.map((r) => r.original_url),
-    link: `https://www.suplemk.com/es/product/${payload.slug}${
+    link: `https://empowerit-ecommerce.vercel.app/es/product/${payload.slug}${
       variant ? `?variant=${variant.id}` : ""
     }`,
     availability: variant

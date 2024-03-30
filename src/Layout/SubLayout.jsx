@@ -12,7 +12,7 @@ import ExitModal from "./ExitModal";
 
 const SubLayout = ({ children }) => {
   const [originalTitle] = useState(
-    document.title || "SupleMK Marketplace: Donde los vendedores brillan juntos"
+    document.title || "Empowerit TOP Marketplace: Donde los vendedores brillan juntos"
   );
 
   const isTabActive = TabFocusChecker();
