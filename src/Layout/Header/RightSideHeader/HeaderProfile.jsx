@@ -52,7 +52,7 @@ const HeaderProfile = () => {
         </div>
         <div className="delivery-detail">
           <h6>
-            {t("Hi")}, {accountData?.firstName ?? t("User")}
+            {t("Hi")}, {accountData?.name ?? t("User")}
           </h6>
           {accountData ? (
             <h5>{t("MyAccount")}</h5>

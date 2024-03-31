@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AccountContext from ".";
 import { useSession } from "next-auth/react";
-import { UseSession } from "@/types/nextAuth";
 
 const AccountProvider = (props) => {
-  const { data } = useSession() as UseSession;
+  const { data } = useSession();
   const [mobileSideBar, setMobileSideBar] = useState(false);
 
   return (

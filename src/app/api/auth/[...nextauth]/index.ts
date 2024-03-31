@@ -1,9 +1,9 @@
-import { getUserByEmail, login, signUp } from "@/postgresql/users";
 import type { NextAuthOptions } from "next-auth";
-import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-import generatePassword from "generate-password";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/firebase/firebaseConfig";
+import { db } from "@/firebase/admin";
+import { toToastItem } from "react-toastify/dist/utils";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -24,76 +24,46 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        return login(credentials.username, credentials.password);
+      async authorize(credentials) {
+        return signInWithEmailAndPassword(
+          auth,
+          credentials.username,
+          credentials.password
+        )
+          .then(async (userCredential: any) => {
+            const _user = await db
+              .collection("users")
+              .doc(userCredential.user.uid)
+              .get();
+            return {
+              ..._user.data(),
+              id: userCredential.user.uid,
+              accessToken: userCredential.user.accessToken,
+            };
+          })
+          .catch((err) => {
+            return null;
+          });
       },
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
   callbacks: {
-    async signIn({ account, profile }) {
-      console.log(account, profile);
+    async signIn({ account, profile, user }) {
       try {
-        if (account.provider == "google") {
-          let googleProfile = profile as GoogleProfile;
-          if (googleProfile.email_verified) {
-            try {
-              const user = await getUserByEmail(profile.email);
-            } catch (err) {
-              // Create if not exists
-              const password = generatePassword.generate({
-                length: 12,
-                numbers: true,
-                symbols: true,
-              });
-              const user = await signUp({
-                email: profile.email,
-                first_name: googleProfile.given_name || googleProfile.name,
-                last_name: googleProfile.family_name || "",
-                password,
-                password_confirmation: password,
-                picture: googleProfile.picture,
-              });
-            }
-          }
-        }
         return true;
       } catch (err) {
-        console.error(err);
         return false;
       }
     },
-    async session({ session, token }) {
-      let user = null;
-      try {
-        user = await getUserByEmail(session.user?.email);
-      } catch (err) {
-        console.error(err);
-      }
+    async session({ session, token, user }) {
       return {
         ...session,
-        token,
-        user: user
-          ? {
-              id: user.id,
-              shopify_id: user.shopify_id,
-              firstName: user.firstName,
-              lastName: user.lastName,
-              email: user.email,
-              profile_image: {
-                original_url: user.picture,
-              },
-              name: user.firstName + " " + user.lastName,
-            }
-          : null,
       };
     },
-    async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token;
+    async jwt({ token, user }) {
+      if (user) {
+        token.name = user.name;
+        token.picture = user.avatar;
       }
       return token;
     },

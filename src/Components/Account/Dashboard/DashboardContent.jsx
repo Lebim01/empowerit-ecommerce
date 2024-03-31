@@ -5,15 +5,14 @@ import { useTranslation } from "@/app/i18n/client";
 import Image from "next/image";
 import { useContext } from "react";
 import { Col, Row } from "reactstrap";
-import coinSvg from "../../../../public/assets/images/svg/coin.svg";
 import orderSvg from "../../../../public/assets/images/svg/order.svg";
-import wallerSvg from "../../../../public/assets/images/svg/wallet.svg";
 import ProfileInformation from "./ProfileInformation";
 
 const DashboardContent = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
   const { accountData } = useContext(AccountContext);
+  
   return (
     <div className="dashboard-home">
       <AccountHeading title="MyDashboard" />
