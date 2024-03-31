@@ -58,6 +58,7 @@
     "remixicon": "^3.5.0",
     "sanitize-html": "^2.11.0",
     "sass": "^1.63.4",
+    "sharp": "^0.33.3",
     "slick-carousel": "^1.8.1",
     "uuid": "^9.0.1",
     "yup": "^0.32.11"
@@ -66,7 +67,7 @@
     "@types/html-to-text": "^9.0.4",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/mixpanel-browser": "^2.49.0",
-    "@types/node": "^20.10.5",
+    "@types/node": "^20.12.2",
     "@types/react-slick": "^0.23.13",
     "@types/sanitize-html": "^2.9.5",
     "@types/uuid": "^9.0.7",
