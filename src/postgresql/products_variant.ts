@@ -39,10 +39,14 @@ export const createTable = async () => {
 
 export const getProductVariant = async (id: number) => {
   const res = await dbClient
-    .selectFrom("products_variants")
-    .selectAll()
-    .where("products_variants.id", "=", id)
-    .executeTakeFirst();
+    .connection()
+    .execute((db) =>
+      db
+        .selectFrom("products_variants")
+        .selectAll()
+        .where("products_variants.id", "=", id)
+        .executeTakeFirst()
+    );
   return res;
 };
 
@@ -50,13 +54,14 @@ export const insertNewProductVariant = async (
   product_id: number,
   variant: VariantStore
 ) => {
-  const res = await dbClient
-    .insertInto("products_variants")
-    .values({
-      product_id,
-      ...variant,
-    })
-    .execute();
+  const res = await dbClient.connection().execute((db) =>
+    db.executeQuery(
+      dbClient.insertInto("products_variants").values({
+        product_id,
+        ...variant,
+      })
+    )
+  );
   return res;
 };
 

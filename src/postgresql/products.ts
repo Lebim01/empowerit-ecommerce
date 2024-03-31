@@ -173,23 +173,32 @@ export const getTrendingProducts = async () => {
     .limit(5)
     .selectAll()
     .orderBy(sql`rand()`);
-  const res = await query.execute();
+  const res = await dbClient
+    .connection()
+    .execute((db) => db.executeQuery(query));
   return res;
 };
 
 export const getProducts = async (queries: Queries) => {
   let query = productsQuery(queries).selectAll();
-  const res = await query.execute();
-  return res;
+  let client = dbClient.connection();
+  let result = await client.execute((db) => {
+    return db.executeQuery(query);
+  });
+  return result.rows;
 };
 
 export const getProductsPagination = async (queries: Queries) => {
   let query = productsQuery(queries).select(({ fn, val, ref }) => [
     fn.count("products.id").as("count_all"),
   ]);
-  const res = await query.executeTakeFirst();
+  const client = dbClient.connection();
+  const result = await client.execute((db) => {
+    return db.executeQuery(query);
+  });
+  const count_all = result.rows[0].count_all;
   return {
-    total: Number(res.count_all),
+    total: Number(count_all),
     current_page: Number(queries.queryPage),
     per_page: Number(queries.queryPaginate),
   };
@@ -197,27 +206,37 @@ export const getProductsPagination = async (queries: Queries) => {
 
 export const getProduct = async (id: number) => {
   const res = await dbClient
-    .selectFrom("products")
-    .selectAll()
-    .where("products.id", "=", id)
-    .executeTakeFirst();
+    .connection()
+    .execute((db) =>
+      db
+        .selectFrom("products")
+        .selectAll()
+        .where("products.id", "=", id)
+        .executeTakeFirst()
+    );
   return res;
 };
 
 export const getProductBySlug = async (slug: string) => {
   const res = await dbClient
-    .selectFrom("products")
-    .selectAll()
-    .where("products.slug", "=", slug)
-    .executeTakeFirst();
+    .connection()
+    .execute((db) =>
+      db
+        .selectFrom("products")
+        .selectAll()
+        .where("products.slug", "=", slug)
+        .executeTakeFirst()
+    );
   return res;
 };
 
 export const insertNewProduct = async (product: ProductStore) => {
-  const res = await dbClient
-    .insertInto("products")
-    .values(convertToPSQL(product) as any)
-    .execute();
+  const res = await dbClient.connection().execute((db) => {
+    return db
+      .insertInto("products")
+      .values(convertToPSQL(product) as any)
+      .execute();
+  });
 
   for (const variant of product.variations) {
     await insertNewProductVariant(product.id, getVariantStore(variant));
@@ -228,11 +247,13 @@ export const insertNewProduct = async (product: ProductStore) => {
 
 export const updateProduct = async (product: ProductStore) => {
   const id = product.id;
-  const res = await dbClient
-    .updateTable("products")
-    .set(convertToPSQL(product) as any)
-    .where("products.id", "=", id)
-    .executeTakeFirst();
+  const res = await dbClient.connection().execute((db) =>
+    db
+      .updateTable("products")
+      .set(convertToPSQL(product) as any)
+      .where("products.id", "=", id)
+      .executeTakeFirst()
+  );
 
   for (const variant of product.variations) {
     try {
@@ -255,19 +276,25 @@ export const updatePartialProduct = async (
 ) => {
   const id = product.id;
   const res = await dbClient
-    .updateTable("products")
-    .set(product)
-    .where("products.id", "=", id)
-    .executeTakeFirst();
+    .connection()
+    .execute((db) =>
+      db
+        .updateTable("products")
+        .set(product)
+        .where("products.id", "=", id)
+        .executeTakeFirst()
+    );
 
   return res;
 };
 
 export const countProductsByCategory = async (category: string) => {
-  const res = await dbClient
-    .selectFrom("products")
-    .select(({ fn, val, ref }) => [fn.count("products.id").as("count_all")])
-    .where("products.category", "=", category)
-    .executeTakeFirst();
+  const res = await dbClient.connection().execute((db) =>
+    db
+      .selectFrom("products")
+      .select(({ fn, val, ref }) => [fn.count("products.id").as("count_all")])
+      .where("products.category", "=", category)
+      .executeTakeFirst()
+  );
   return Number(res.count_all);
 };
