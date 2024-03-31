@@ -4,7 +4,6 @@ import CompareContext from "@/Helper/CompareContext";
 import I18NextContext from "@/Helper/I18NextContext";
 import { LoginHandle } from "@/Utils/Hooks/Auth/useLogin";
 import { useTranslation } from "@/app/i18n/client";
-import { UseSession } from "@/types/nextAuth";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -12,7 +11,7 @@ import { useContext, useEffect } from "react";
 
 const SocialLogin = () => {
   const router = useRouter();
-  const { data: session, status: statusSession } = useSession() as UseSession;
+  const { data: session, status: statusSession } = useSession();
   const { i18Lang } = useContext(I18NextContext);
   const { accountData } = useContext(AccountContext);
   const { refetch: compareRefetch } = useContext(CompareContext);
@@ -24,8 +23,8 @@ const SocialLogin = () => {
         {
           status: 200,
           data: {
-            ...session.token,
-            access_token: session.token.accessToken,
+            ...session,
+            access_token: session.accessToken,
           },
         },
         router,

@@ -3,11 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "../../auth/[...nextauth]";
 import { deleteCart, updateNewCart } from "@/Shopify/cart";
 import { CartItem } from "../route";
-import { CustomSession } from "@/types/nextAuth";
 
 export async function PATCH(req: NextRequest, { params }) {
   const cartID = params.id;
-  const session = (await getServerSession(authOptions)) as CustomSession;
+  const session = await getServerSession(authOptions);
 
   const data: CartItem[] = await req.json();
 

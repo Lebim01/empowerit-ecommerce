@@ -3,7 +3,6 @@ import { authOptions } from "../auth/[...nextauth]";
 import { NextRequest, NextResponse } from "next/server";
 import { createNewCart, getShopifyCart } from "@/Shopify/cart";
 import { ProductStore } from "@/types/store";
-import { CustomSession } from "@/types/nextAuth";
 
 export type CartItem = {
   product: ProductStore;
@@ -13,7 +12,7 @@ export type CartItem = {
 };
 
 export async function GET() {
-  const session = (await getServerSession(authOptions)) as CustomSession;
+  const session = await getServerSession(authOptions);
 
   if (!session) {
     return NextResponse.json(
@@ -31,7 +30,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest, res: NextResponse) {
-  const session = (await getServerSession(authOptions)) as CustomSession;
+  const session = await getServerSession(authOptions);
 
   const data: CartItem[] = await req.json();
 
