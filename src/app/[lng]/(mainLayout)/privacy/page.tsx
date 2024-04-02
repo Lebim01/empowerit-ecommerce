@@ -103,7 +103,7 @@ const PrivacyPage = () => {
         </p>
         <ul>
           <li>Correo electrónico: soporte@empoweritup.com</li>
-          <li>Dirección: Mazatlán, Sinaloa, MX</li>
+          <li>Dirección: Monterrey, Nuevo León, MX</li>
         </ul>
       </div>
     </WrapperComponent>

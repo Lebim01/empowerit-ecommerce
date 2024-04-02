@@ -2,7 +2,7 @@ import { Currency, Flag, Store } from "@/types/store";
 
 export const STORE: Store = {
   address: "",
-  city: "Mazatlán",
+  city: "Monterrey",
   country: {
     calling_code: "52",
     currency: Currency.MXPeso,

@@ -35,23 +35,10 @@ module.exports = (phase) => {
     ];
   };
   const images = {
-    domains: ["react.pixelstrap.net"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "empowerit-ecommerce.vercel.app",
-      },
-      {
-        protocol: "https",
-        hostname: "react.pixelstrap.net",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.shopify.com",
-      },
-      {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
+        hostname: "**",
       },
     ],
   };
@@ -62,4 +49,3 @@ module.exports = (phase) => {
     images,
   };
 };
-
