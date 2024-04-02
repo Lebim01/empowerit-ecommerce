@@ -65,6 +65,7 @@
   "devDependencies": {
     "@types/html-to-text": "^9.0.4",
     "@types/jsonwebtoken": "^9.0.5",
+    "@types/mime": "^4.0.0",
     "@types/mixpanel-browser": "^2.49.0",
     "@types/node": "^20.12.2",
     "@types/react-slick": "^0.23.13",

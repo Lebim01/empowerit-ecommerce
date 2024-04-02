@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { Col, Row } from "reactstrap";
-import { productDetailSlider } from "../../../../Data/SliderSettingsData";
+import { productDetailSlider } from "@Data/SliderSettingsData";
 import I18NextContext from "@/Helper/I18NextContext";
 import { useTranslation } from "@/app/i18n/client";
 
@@ -36,7 +36,7 @@ const ProductThumbnailSlider = ({ productState }) => {
               ) : null}
               <Slider
                 asNavFor={nav2}
-                ref={(slider) => (slider1.current = slider)}
+                ref={slider1}
               >
                 {productState?.product?.product_galleries?.map((elem, i) => (
                   <div key={i}>
@@ -69,7 +69,7 @@ const ProductThumbnailSlider = ({ productState }) => {
                     : 3
                 }
                 asNavFor={nav1}
-                ref={(slider) => (slider2.current = slider)}
+                ref={slider2}
                 variableWidth
                 adaptiveHeight
                 dots
