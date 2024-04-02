@@ -39,6 +39,7 @@
     "jsonwebtoken": "^9.0.2",
     "kysely": "^0.26.3",
     "kysely-planetscale": "^1.4.0",
+    "mime-types": "^2.1.35",
     "mixpanel-browser": "^2.49.0",
     "mysql2": "^3.9.3",
     "next": "^14.0.3",
