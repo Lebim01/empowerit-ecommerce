@@ -39,10 +39,11 @@ export const createTable = async () => {
 };
 
 export const insertNewOrder = async (order: Order) => {
-  return dbClient
-    .insertInto("orders")
-    .values({
-      ...order,
-    })
-    .execute();
+  return dbClient.connection().execute((db) =>
+    db.executeQuery(
+      db.insertInto("orders").values({
+        ...order,
+      })
+    )
+  );
 };

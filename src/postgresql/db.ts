@@ -1,6 +1,12 @@
-import { createPool } from 'mysql2'
+import { createPool } from "mysql2";
 import { ProductStore, VariantStore } from "@/types/store";
-import { Kysely, ColumnDefinitionBuilder, RawBuilder, sql, MysqlDialect } from "kysely";
+import {
+  Kysely,
+  ColumnDefinitionBuilder,
+  RawBuilder,
+  sql,
+  MysqlDialect,
+} from "kysely";
 import { User } from "./users";
 import { WhishList } from "./whishlist";
 import { Orders } from "./orders";
@@ -24,8 +30,9 @@ const dialect = new MysqlDialect({
     port: 3306,
     connectionLimit: 30,
     enableKeepAlive: false,
+    idleTimeout: 5000,
   }),
-})
+});
 
 const db = new Kysely<Database>({
   dialect,

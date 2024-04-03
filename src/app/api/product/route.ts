@@ -1,3 +1,4 @@
+import db from "@/postgresql/db";
 import { getProducts } from "@/postgresql/products";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,5 +22,6 @@ export async function GET(request: NextRequest) {
     queryPrice,
     queryBrand,
   });
+
   return NextResponse.json(products);
 }

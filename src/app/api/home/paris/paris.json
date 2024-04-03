@@ -112,14 +112,14 @@
       "section3_two_column_banners": {
         "status": true,
         "banner_1": {
-          "image_url": "/assets/promos/promo-1.jpg",
+          "image_url": "/assets/promos/promo-1.png",
           "redirect_link": {
             "link": "/es/product/dragon-pharma-venom-inferno-pre-entreno-extremo-40-20-servicios-500mg-de-cafeina-por-toma-3200mg-de-beta-alanina-3000mg-tyrosine-varios-sabores-suplemento-alimenticio",
             "link_type": "collection"
           }
         },
         "banner_2": {
-          "image_url": "/assets/promos/promo-2.jpg",
+          "image_url": "/assets/promos/promo-2.png",
           "redirect_link": {
             "link": "/es/product/gat-omega-3-90-capsulas-aceite-de-pescado-purificado-1250mg-fish-oil-epa-dha-sin-sabor-suplemento-alimenticio",
             "link_type": "collection"
@@ -159,7 +159,7 @@
       "section6_two_column_banners": {
         "status": true,
         "banner_1": {
-          "image_url": "/assets/promos/promo-6.png",
+          "image_url": "/assets/promos/General_Productos_Cápsulas-2.png",
           "redirect_link": {
             "link": "/es/auth/register",
             "link_type": "collection"

@@ -5,6 +5,7 @@ import {
   CustomerMarketingOptInLevel,
 } from "@/Shopify/customers_schema";
 import { consentEmailMarketing, createNewCustomer } from "@/Shopify/customers";
+import { db } from "@/firebase/admin";
 
 const SALT_ROUNDS = 10;
 
@@ -83,57 +84,52 @@ export const login = async (email: string, password: string) => {
 };
 
 export const getUserByEmail = async (email: string): Promise<User> => {
-  return dbClient
-    .selectFrom("users")
-    .select([
-      "id",
-      "shopify_id",
-      "firstName",
-      "lastName",
-      "email",
-      "phone",
-      "country_code",
-      "password",
-      "picture",
-    ])
-    .where("email", "=", email)
-    .executeTakeFirstOrThrow()
-    .then((r) => {
-      return {
-        ...r,
-        name: `${r.firstName} ${r.lastName}`,
-      };
-    });
+  const res = await db.collection("users").where("email", "==", email).get();
+
+  if (!res.empty) {
+    return { ...res.docs[0].data(), id: res.docs[0].id } as any;
+  }
+
+  return null;
 };
 
 export const getUser = async (id: string): Promise<User> => {
-  return dbClient
-    .selectFrom("users")
-    .select(["id", "firstName", "lastName", "email", "phone", "country_code"])
-    .where("id", "=", id)
-    .executeTakeFirstOrThrow()
-    .then((r) => {
-      return {
-        ...r,
-        name: `${r.firstName} ${r.lastName}`,
-      };
-    });
+  const conn = dbClient.connection();
+  const res = conn.execute((db) =>
+    db
+      .selectFrom("users")
+      .select(["id", "firstName", "lastName", "email", "phone", "country_code"])
+      .where("id", "=", id)
+      .executeTakeFirstOrThrow()
+      .then((r) => {
+        return {
+          ...r,
+          name: `${r.firstName} ${r.lastName}`,
+        };
+      })
+  );
+
+  return res;
 };
 
 export const insertNewUser = async (user: User) => {
-  const res = await dbClient
-    .insertInto("users")
-    .values({
-      ...user,
-      password: await hashPassword(user.password),
-      created_at: new Date(),
-    })
-    .execute();
+  const res = await dbClient.connection().execute(async (db) =>
+    db
+      .insertInto("users")
+      .values({
+        ...user,
+        password: await hashPassword(user.password),
+        created_at: new Date(),
+      })
+      .execute()
+  );
   return res;
 };
 
 export const updateNewUser = async (user: User) => {
-  const res = await dbClient.insertInto("users").values(user).execute();
+  const res = await dbClient
+    .connection()
+    .execute((db) => db.insertInto("users").values(user).execute());
   return res;
 };
 

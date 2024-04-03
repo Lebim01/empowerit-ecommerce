@@ -1,3 +1,4 @@
+import db from "@/postgresql/db";
 import { getProducts, getProductsPagination } from "@/postgresql/products";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,7 +11,6 @@ export async function GET(request: NextRequest) {
 
   const queryPage = searchParams.get("page");
   const queryPaginate = searchParams.get("paginate");
-
   let products = await getProductsPagination({
     querySearch,
     querySortBy,

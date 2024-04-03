@@ -241,7 +241,6 @@ export const insertNewProduct = async (product: ProductStore) => {
   for (const variant of product.variations) {
     await insertNewProductVariant(product.id, getVariantStore(variant));
   }
-
   return res;
 };
 
@@ -284,7 +283,6 @@ export const updatePartialProduct = async (
         .where("products.id", "=", id)
         .executeTakeFirst()
     );
-
   return res;
 };
 

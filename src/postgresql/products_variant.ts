@@ -68,9 +68,13 @@ export const insertNewProductVariant = async (
 export const updateProductVariant = async (variant: VariantStore) => {
   const id = variant.id;
   const res = await dbClient
-    .updateTable("products_variants")
-    .set(variant)
-    .where("products_variants.id", "=", id)
-    .executeTakeFirst();
+    .connection()
+    .execute((db) =>
+      db
+        .updateTable("products_variants")
+        .set(variant)
+        .where("products_variants.id", "=", id)
+        .executeTakeFirst()
+    );
   return res;
 };

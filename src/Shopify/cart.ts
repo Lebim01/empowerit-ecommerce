@@ -316,8 +316,8 @@ export const getShopifyCart = async (customer_id: string) => {
               price: Number(productDB?.price),
               unit: "1 Articulo",
               product_meta_image: {
-                name: item.image.id,
-                original_url: item.image.url,
+                name: item.image?.id,
+                original_url: item.image?.url,
               },
             },
             variation: item.variant.id
@@ -327,12 +327,12 @@ export const getShopifyCart = async (customer_id: string) => {
                     ""
                   ),
                   unit: "1 Articulo",
-                  name: item.variant.title,
+                  name: item.name,
                   sale_price: Number(item.variant.price),
                   price: Number(item.variant.compareAtPrice),
                   variation_image: {
-                    name: item.variant.image.id,
-                    original_url: item.variant.image.url,
+                    name: item.image?.id,
+                    original_url: item.image?.url,
                   },
                 }
               : null,

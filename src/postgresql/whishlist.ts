@@ -22,11 +22,13 @@ export const createTable = async () => {
 };
 
 export const addToWishlist = async (id_user: number, id_product: number) => {
-  return dbClient
-    .insertInto("whishlist")
-    .values({
-      id_product,
-      id_user,
-    })
-    .execute();
+  return dbClient.connection().execute((db) =>
+    db
+      .insertInto("whishlist")
+      .values({
+        id_product,
+        id_user,
+      })
+      .execute()
+  );
 };

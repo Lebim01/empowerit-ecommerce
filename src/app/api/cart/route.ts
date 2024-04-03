@@ -3,6 +3,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import { NextRequest, NextResponse } from "next/server";
 import { createNewCart, getShopifyCart } from "@/Shopify/cart";
 import { ProductStore } from "@/types/store";
+import db from "@/postgresql/db";
 
 export type CartItem = {
   product: ProductStore;
@@ -26,6 +27,7 @@ export async function GET() {
   }
 
   const cart = await getShopifyCart(session.user.id);
+
   return NextResponse.json(cart);
 }
 
@@ -44,7 +46,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
     lineItems: data.map((item) => ({
       quantity: item.quantity,
       variantId: item.variation
-        ? "gid://shopify/ProductVariant/" + item.variation?.id
+        ? "gid://shopify/ProductVariant/" +
+          (item.variation?.id ?? item.product.id_variant ?? "")
         : "gid://shopify/Product/" + item.product?.id,
     })),
   });

@@ -3,7 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
 import { db } from "@/firebase/admin";
-import { toToastItem } from "react-toastify/dist/utils";
+import { getUserByEmail } from "@/postgresql/users";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -56,6 +56,13 @@ export const authOptions: NextAuthOptions = {
       }
     },
     async session({ session, token, user }) {
+      if (token?.email) {
+        const _user = await getUserByEmail(token.email);
+        session.user = _user;
+      } else if (user?.email) {
+        const _user = await getUserByEmail(user.email);
+        session.user = _user;
+      }
       return {
         ...session,
       };

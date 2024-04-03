@@ -9,6 +9,7 @@ import {
 import { ShopifyProduct } from "@/types/shopify";
 import { ProductStore } from "@/types/store";
 import { NextRequest, NextResponse } from "next/server";
+import db from "@/postgresql/db";
 
 export async function POST(req: NextRequest) {
   const data: ShopifyProduct = await req.json();

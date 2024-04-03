@@ -35,23 +35,21 @@ const MainLayout = ({ children, lng }) => {
           <ThemeOptionProvider>
             <SessionProvider>
               <AccountProvider>
-                <BlogProvider>
-                  <ProductIdsProvider>
-                    <CompareProvider>
-                      <CartProvider>
-                        <CategoryProvider>
-                          <ProductProvider>
-                            <SettingProvider>
-                              <CurrencyProvider>
-                                <SubLayout children={children} />
-                              </CurrencyProvider>
-                            </SettingProvider>
-                          </ProductProvider>
-                        </CategoryProvider>
-                      </CartProvider>
-                    </CompareProvider>
-                  </ProductIdsProvider>
-                </BlogProvider>
+                <ProductIdsProvider>
+                  <CompareProvider>
+                    <CartProvider>
+                      <CategoryProvider>
+                        <ProductProvider>
+                          <SettingProvider>
+                            <CurrencyProvider>
+                              <SubLayout children={children} />
+                            </CurrencyProvider>
+                          </SettingProvider>
+                        </ProductProvider>
+                      </CategoryProvider>
+                    </CartProvider>
+                  </CompareProvider>
+                </ProductIdsProvider>
               </AccountProvider>
             </SessionProvider>
           </ThemeOptionProvider>
