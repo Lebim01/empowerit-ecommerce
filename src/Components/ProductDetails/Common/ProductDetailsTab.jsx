@@ -11,7 +11,7 @@ const ProductDetailsTab = ({ productState }) => {
   const ProductDetailsTabTitle = [
     { id: 1, name: 'Description' },
     { id: 2, name: 'Review' },
-    { id: 3, name: 'QA' },
+    //{ id: 3, name: 'QA' },
   ];
   return (
     <Col xs={12}>

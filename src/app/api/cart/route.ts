@@ -3,7 +3,6 @@ import { authOptions } from "../auth/[...nextauth]";
 import { NextRequest, NextResponse } from "next/server";
 import { createNewCart, getShopifyCart } from "@/Shopify/cart";
 import { ProductStore } from "@/types/store";
-import db from "@/postgresql/db";
 
 export type CartItem = {
   product: ProductStore;
