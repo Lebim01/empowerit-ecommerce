@@ -167,16 +167,17 @@ const productsQuery = (queries: Queries) => {
 };
 
 export const getTrendingProducts = async () => {
-  let query = dbClient
-    .selectFrom("products")
-    .where("is_trending", "=", 1)
-    .limit(5)
-    .selectAll()
-    .orderBy(sql`rand()`);
   const res = await dbClient
     .connection()
-    .execute((db) => db.executeQuery(query));
-  return res.rows;
+    .execute((db) =>
+      db
+        .selectFrom("products")
+        .where("is_trending", "=", 1)
+        .limit(5)
+        .selectAll()
+        .execute()
+    );
+  return res;
 };
 
 export const getProducts = async (queries: Queries) => {
