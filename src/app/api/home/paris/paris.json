@@ -31,24 +31,24 @@
       "banners": [
         {
           "redirect_link": {
-            "link": "pack-energy",
-            "link_type": "product"
+            "link": "https://backoffice.empowerittop.com/sign-up/pMoAZo3SSeTFcXnvexbPcceQNJq2/8b3a9577-d73f-4c90-98f1-2df26985ac8b",
+            "link_type": "external_url"
           },
           "status": true,
           "image_url": "/assets/promos/pack-energy.png"
         },
         {
           "redirect_link": {
-            "link": "birdman-falcon-performance-proteina-whey-2-1kg-gat-creatina-monohidratada-200-servicios-raw-pre-extreme-potente-pre-entreno-30-servicios-bsn-aminox-aminoacidos-esenciales-30-servicios-ronnie-coleman-vitaxs-multivitaminico-120-tabletas",
-            "link_type": "product"
+            "link": "https://backoffice.empowerittop.com/sign-up/pMoAZo3SSeTFcXnvexbPcceQNJq2/8b3a9577-d73f-4c90-98f1-2df26985ac8b",
+            "link_type": "external_url"
           },
           "status": true,
           "image_url": "/assets/promos/pack-quick-start.png"
         },
         {
           "redirect_link": {
-            "link": "mutant-100-whey-gourmet-5lb-meta-nutrition-creatina-monohidratada-100-servicios-gat-nitraflex-pre-entreno-30-servicios-ronnie-coleman-bcaas-30-servicios",
-            "link_type": "product"
+            "link": "https://backoffice.empowerittop.com/sign-up/pMoAZo3SSeTFcXnvexbPcceQNJq2/8b3a9577-d73f-4c90-98f1-2df26985ac8b",
+            "link_type": "external_url"
           },
           "status": true,
           "image_url": "/assets/promos/pack-bussines.png"
