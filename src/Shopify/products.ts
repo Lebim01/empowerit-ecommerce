@@ -18,7 +18,7 @@ export const getProductMetafieldsFromShopify = async (
           type
           value
         }
-        is_trending: metafield(namespace: "custom", key: "tendencia") {
+        is_trending: metafield(namespace: "custom", key: "is_trending") {
           id
           key
           type
