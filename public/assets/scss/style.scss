@@ -83,3 +83,11 @@
 .cursor-pointer:hover {
   cursor: pointer;
 }
+
+.product-main-1 {
+  & .slick-slider {
+    & .slick-slide img {
+      height: 580px;
+    }
+  }
+}

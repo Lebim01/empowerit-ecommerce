@@ -112,24 +112,24 @@
       "section3_two_column_banners": {
         "status": true,
         "banner_1": {
-          "image_url": "/assets/promos/promo-1.png",
+          "image_url": "/assets/promos/Gluco.jpg",
           "redirect_link": {
-            "link": "/es/product/dragon-pharma-venom-inferno-pre-entreno-extremo-40-20-servicios-500mg-de-cafeina-por-toma-3200mg-de-beta-alanina-3000mg-tyrosine-varios-sabores-suplemento-alimenticio",
+            "link": "/es/product/gluco",
             "link_type": "collection"
           }
         },
         "banner_2": {
-          "image_url": "/assets/promos/promo-2.png",
+          "image_url": "/assets/promos/Relaxing.jpg",
           "redirect_link": {
-            "link": "/es/product/gat-omega-3-90-capsulas-aceite-de-pescado-purificado-1250mg-fish-oil-epa-dha-sin-sabor-suplemento-alimenticio",
+            "link": "/es/product/relaxing",
             "link_type": "collection"
           }
         },
         "banner_3": {
-          "image_url": "/assets/promos/promo-3.jpg",
+          "image_url": "/assets/promos/Repair.jpg",
           "redirect_link": {
-            "link": "/es/product/bucket-up-mother-bucker-pre-entreno-390g-alto-estimulo-pumps-concentracion-fuerza-energia-varios-sabores-suplemento-alimenticio",
-            "link_type": "collection"
+            "link": "/es/product/repair",
+            "link_type": "product"
           }
         }
       },
@@ -141,17 +141,17 @@
       },
       "section5_two_column_banners": {
         "banner_1": {
-          "image_url": "/assets/promos/promo-4.jpg",
+          "image_url": "/assets/promos/Vitamin.jpg",
           "redirect_link": {
-            "link": "/es/collections?brand=BIRDMAN",
-            "link_type": "collection"
+            "link": "/es/product/vitamin",
+            "link_type": "product"
           }
         },
         "banner_2": {
-          "image_url": "/assets/promos/promo-5.jpg",
+          "image_url": "/assets/promos/Inmun.jpg",
           "redirect_link": {
-            "link": "/es/collections?brand=OPTIMUM%20NUTRITION",
-            "link_type": "collection"
+            "link": "/es/product/inmun",
+            "link_type": "product"
           }
         },
         "status": true
