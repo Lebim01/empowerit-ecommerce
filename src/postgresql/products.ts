@@ -176,7 +176,7 @@ export const getTrendingProducts = async () => {
   const res = await dbClient
     .connection()
     .execute((db) => db.executeQuery(query));
-  return res;
+  return res.rows;
 };
 
 export const getProducts = async (queries: Queries) => {
