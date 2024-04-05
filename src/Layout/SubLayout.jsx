@@ -9,16 +9,29 @@ import RecentPurchase from "./RecentPurchase";
 import StickyCompare from "./StickyCompare";
 import TapTop from "./TapTop";
 import ExitModal from "./ExitModal";
+import { signIn, useSession } from "next-auth/react";
+import { signInWithCustomToken } from "firebase/auth";
 
 const SubLayout = ({ children }) => {
+  const { data } = useSession()
   const [originalTitle] = useState(
-    document.title || "Empowerit TOP Marketplace: Donde los vendedores brillan juntos"
+    document.title ||
+      "Empowerit TOP Marketplace: Donde los vendedores brillan juntos"
   );
 
   const isTabActive = TabFocusChecker();
   const { themeOption } = useContext(ThemeOptionContext);
 
-  useEffect(() => {}, []);
+  const searchParams = useSearchParams();
+  const accessToken = searchParams.get("accessToken");
+
+  useEffect(() => {
+    if(accessToken && !data?.user) {
+      signInWithCustomToken(accessToken).then(userCredentials => {
+        
+      })
+    }
+  }, [accessToken]);
 
   useEffect(() => {
     const message = ["⚡ Vuelve !!!", "🔥 No olvides estó....."];

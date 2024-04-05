@@ -13,7 +13,7 @@ const ExitModal = () => {
   const { i18Lang } = useContext(I18NextContext);
   const { t } = useTranslation(i18Lang, "common");
 
-  useEffect(() => {
+  /*useEffect(() => {
     const handleMouseOut = (event) => {
       if (event.clientY <= 0) {
         openModal();
@@ -30,7 +30,7 @@ const ExitModal = () => {
     return () => {
       window.removeEventListener("mouseout", handleMouseOut);
     };
-  }, []);
+  }, []);*/
 
   const openModal = () => {
     setShowModal(true);
@@ -85,7 +85,10 @@ const ExitModal = () => {
             <p>{t("imSorryDescription")}</p>
 
             <Link href="/es/auth/register">
-              <Btn className="btn setting-button theme-bg-color text-white" style={{ marginTop: 16 }}>
+              <Btn
+                className="btn setting-button theme-bg-color text-white"
+                style={{ marginTop: 16 }}
+              >
                 REGISTRARSE
               </Btn>
             </Link>
