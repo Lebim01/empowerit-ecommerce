@@ -23,9 +23,7 @@ const FooterContactUs = () => {
 
       <div className='footer-contact'>
         <ul>
-          <FooterSupportNumber />
           <FooterSupportEmail />
-          {/*<FooterDownloadAppLink />*/}
         </ul>
       </div>
     </Col>

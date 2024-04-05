@@ -112,23 +112,44 @@
       "section3_two_column_banners": {
         "status": true,
         "banner_1": {
-          "image_url": "/assets/promos/Gluco.jpg",
+          "image_url": "/assets/promos/Digest.jpg",
           "redirect_link": {
-            "link": "/es/product/gluco",
-            "link_type": "collection"
+            "link": "/es/product/digest",
+            "link_type": "product"
           }
         },
         "banner_2": {
-          "image_url": "/assets/promos/Relaxing.jpg",
+          "image_url": "/assets/promos/Premium_Protein.jpg",
           "redirect_link": {
-            "link": "/es/product/relaxing",
-            "link_type": "collection"
+            "link": "/es/product/premium-protein",
+            "link_type": "product"
           }
         },
         "banner_3": {
-          "image_url": "/assets/promos/Repair.jpg",
+          "image_url": "/assets/promos/Uritea.jpg",
           "redirect_link": {
-            "link": "/es/product/repair",
+            "link": "/es/product/uritea",
+            "link_type": "product"
+          }
+        },
+        "banner_4": {
+          "image_url": "/assets/promos/Wakeup_coffee.jpg",
+          "redirect_link": {
+            "link": "/es/product/wakeup-coffe",
+            "link_type": "product"
+          }
+        },
+        "banner_5": {
+          "image_url": "/assets/promos/Your_energy.jpg",
+          "redirect_link": {
+            "link": "/es/product/your-energy",
+            "link_type": "product"
+          }
+        },
+        "banner_6": {
+          "image_url": "/assets/promos/Piurakama.jpg",
+          "redirect_link": {
+            "link": "/es/product/piurakama",
             "link_type": "product"
           }
         }
@@ -154,10 +175,38 @@
             "link_type": "product"
           }
         },
+        "banner_3": {
+          "image_url": "/assets/promos/Gluco.jpg",
+          "redirect_link": {
+            "link": "/es/product/gluco",
+            "link_type": "collection"
+          }
+        },
+        "banner_4": {
+          "image_url": "/assets/promos/Relaxing.jpg",
+          "redirect_link": {
+            "link": "/es/product/relaxing",
+            "link_type": "collection"
+          }
+        },
+        "banner_5": {
+          "image_url": "/assets/promos/Repair.jpg",
+          "redirect_link": {
+            "link": "/es/product/repair",
+            "link_type": "product"
+          }
+        },
+        "banner_6": {
+          "image_url": "/assets/promos/Body_Clean.jpg",
+          "redirect_link": {
+            "link": "/es/product/body-clean",
+            "link_type": "product"
+          }
+        },
         "status": true
       },
       "section6_two_column_banners": {
-        "status": true,
+        "status": false,
         "banner_1": {
           "image_url": "/assets/promos/General_Productos_Cápsulas-2.png",
           "redirect_link": {

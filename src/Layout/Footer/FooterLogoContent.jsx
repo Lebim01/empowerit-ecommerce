@@ -32,14 +32,6 @@ const FooterLogoContent = () => {
           )}
 
           <ul className="address">
-            {themeOption?.footer?.about_address && (
-              <li>
-                <RiHomeLine />
-                <Link href="https://www.google.com/maps" target="_blank">
-                  {themeOption?.footer?.about_address}
-                </Link>
-              </li>
-            )}
             {themeOption?.footer?.about_email && (
               <li>
                 <RiMailLine />
