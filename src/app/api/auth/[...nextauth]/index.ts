@@ -1,6 +1,9 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithCustomToken,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
 import { db } from "@/firebase/admin";
 import { getUserByEmail } from "@/postgresql/users";
@@ -23,27 +26,46 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
+        accessToken: { label: "Password", type: "text" },
       },
       async authorize(credentials) {
-        return signInWithEmailAndPassword(
-          auth,
-          credentials.username,
-          credentials.password
-        )
-          .then(async (userCredential: any) => {
-            const _user = await db
-              .collection("users")
-              .doc(userCredential.user.uid)
-              .get();
-            return {
-              ..._user.data(),
-              id: userCredential.user.uid,
-              accessToken: userCredential.user.accessToken,
-            };
-          })
-          .catch((err) => {
-            return null;
-          });
+        if (credentials.accessToken) {
+          return signInWithCustomToken(auth, credentials.accessToken)
+            .then(async (userCredential: any) => {
+              const _user = await db
+                .collection("users")
+                .doc(userCredential.user.uid)
+                .get();
+              return {
+                ..._user.data(),
+                id: userCredential.user.uid,
+                accessToken: userCredential.user.accessToken,
+              };
+            })
+            .catch((err) => {
+              return null;
+            });
+        } else {
+          return signInWithEmailAndPassword(
+            auth,
+            credentials.username,
+            credentials.password
+          )
+            .then(async (userCredential: any) => {
+              const _user = await db
+                .collection("users")
+                .doc(userCredential.user.uid)
+                .get();
+              return {
+                ..._user.data(),
+                id: userCredential.user.uid,
+                accessToken: userCredential.user.accessToken,
+              };
+            })
+            .catch((err) => {
+              return null;
+            });
+        }
       },
     }),
   ],

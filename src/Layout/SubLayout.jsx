@@ -10,14 +10,12 @@ import StickyCompare from "./StickyCompare";
 import TapTop from "./TapTop";
 import ExitModal from "./ExitModal";
 import { signIn, useSession } from "next-auth/react";
-import { signInWithCustomToken } from "firebase/auth";
 import { useSearchParams } from "next/navigation";
 
 const SubLayout = ({ children }) => {
   const { data } = useSession();
   const [originalTitle] = useState(
-    document.title ||
-      "Empowerit TOP Marketplace: Donde los vendedores brillan juntos"
+    document.title || "Empowerit TOP Marketplace"
   );
 
   const isTabActive = TabFocusChecker();
@@ -26,11 +24,12 @@ const SubLayout = ({ children }) => {
   const searchParams = useSearchParams();
   const accessToken = searchParams.get("accessToken");
 
+  console.log(data);
+
   useEffect(() => {
-    console.log(accessToken, data);
     if (accessToken && !data?.user) {
-      signInWithCustomToken(accessToken).then((userCredentials) => {
-        console.log(userCredentials);
+      signIn("credentials", {
+        accessToken,
       });
     }
   }, [accessToken]);

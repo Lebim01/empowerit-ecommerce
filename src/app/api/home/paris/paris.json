@@ -35,7 +35,7 @@
             "link_type": "external_url"
           },
           "status": true,
-          "image_url": "/assets/promos/pack-energy.png"
+          "image_url": "/assets/promos/alive-pack.png"
         },
         {
           "redirect_link": {
@@ -43,7 +43,7 @@
             "link_type": "external_url"
           },
           "status": true,
-          "image_url": "/assets/promos/pack-quick-start.png"
+          "image_url": "/assets/promos/freedom-pack.png"
         },
         {
           "redirect_link": {
@@ -51,7 +51,7 @@
             "link_type": "external_url"
           },
           "status": true,
-          "image_url": "/assets/promos/pack-bussines.png"
+          "image_url": "/assets/promos/business-pack.png"
         },
         {
           "redirect_link": {

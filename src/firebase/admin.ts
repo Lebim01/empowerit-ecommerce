@@ -10,9 +10,9 @@ const app =
             /\\n/gm,
             "\n"
           ),
-          projectId: process.env.NEXT_FIREBASE_PROJECTID,
+          projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
         }),
-        projectId: process.env.NEXT_FIREBASE_PROJECTID,
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
       })
     : admin.apps[0];
 
