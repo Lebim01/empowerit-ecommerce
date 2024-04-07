@@ -22,16 +22,19 @@ const HeaderProfile = () => {
     signOut();
   };
 
+  console.log(accountData);
+
   return (
     <li className="right-side onhover-dropdown">
       <div className="delivery-login-box">
         <div className="delivery-icon">
-          {status != "authenticated" ? null : accountData?.profile_image
-              ?.original_url ? (
+          {status != "authenticated" ? null : accountData?.avatar ? (
             <Avatar
-              data={accountData?.profile_image}
+              data={{ original_url: accountData?.avatar }}
               customeClass="user-box me-2"
-              customImageClass="img-fluid rounded-circle"
+              customImageClass="img-fluid rounded-circle bg-gray-200"
+              height={40}
+              width={40}
             />
           ) : (
             <h3

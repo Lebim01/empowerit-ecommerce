@@ -24,8 +24,6 @@ const SubLayout = ({ children }) => {
   const searchParams = useSearchParams();
   const accessToken = searchParams.get("accessToken");
 
-  console.log(data);
-
   useEffect(() => {
     if (accessToken && !data?.user) {
       signIn("credentials", {
