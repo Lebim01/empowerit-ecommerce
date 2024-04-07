@@ -22,8 +22,6 @@ const HeaderProfile = () => {
     signOut();
   };
 
-  console.log(accountData);
-
   return (
     <li className="right-side onhover-dropdown">
       <div className="delivery-login-box">

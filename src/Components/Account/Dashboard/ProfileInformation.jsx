@@ -38,8 +38,8 @@ const ProfileInformation = () => {
                     <td>
                       {accountData?.address[0]?.street}
                       {accountData?.address[0]?.city},{" "}
-                      {accountData?.address[0]?.state.name},{" "}
-                      {accountData?.address[0]?.country.name}{" "}
+                      {accountData?.address[0]?.state?.name},{" "}
+                      {accountData?.address[0]?.country?.name}{" "}
                       {accountData?.address[0]?.pincode}
                     </td>
                   </tr>
