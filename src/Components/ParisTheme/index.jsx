@@ -11,10 +11,12 @@ import ThemeOptionContext from "@/Helper/ThemeOptionsContext";
 import StickyCart from "@/Layout/StickyCart";
 import ProductIdsContext from "@/Helper/ProductIdsContext";
 import Loader from "@/Layout/Loader";
+import AccountContext from "@/Helper/AccountContext";
 
 const ParisTheme = () => {
   const { setGetProductIds, isLoading: productLoader } =
     useContext(ProductIdsContext);
+  const { referenceUser } = useContext(AccountContext);
   const { themeOption } = useContext(ThemeOptionContext);
   const { data, isLoading, refetch, fetchStatus } = useQuery(
     ["paris"],
@@ -61,8 +63,21 @@ const ParisTheme = () => {
       {data?.content?.news_letter?.status && (
         <NewsLetter dataAPI={data?.content?.news_letter} />
       )}
+
       {themeOption?.general?.sticky_cart_enable &&
         themeOption?.general?.cart_style !== "cart_sidebar" && <StickyCart />}
+
+      {referenceUser?.id && (
+        <div
+          className="sticky bottom-4 border rounded-full overflow-hidden shadow-lg bg-white"
+          style={{ left: "100%", height: 80, width: 80, marginRight: 20 }}
+        >
+          <img
+            className="h-full w-full rounded-full"
+            src={referenceUser?.avatar}
+          />
+        </div>
+      )}
     </>
   );
 };

@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCuY1Xb35wJCOMrsqfjdnEn6M-E8Qgh7Yc",
-  authDomain: "empowerit-top.firebaseapp.com",
-  projectId: "empowerit-top",
-  storageBucket: "empowerit-top.appspot.com",
-  messagingSenderId: "120897574110",
-  appId: "1:120897574110:web:9bb4c7b46d3578af11de4f",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECTID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_SENDERID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
 };
 
 // Initialize Firebase

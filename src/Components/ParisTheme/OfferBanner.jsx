@@ -15,7 +15,7 @@ const OfferBanner = ({
   const { referenceUser } = useContext(AccountContext);
 
   const url = referenceUser?.id
-    ? `https://backoffice.empowerittop.com/sign-up/${user.id}/${user.right}`
+    ? `https://backoffice.empowerittop.com/sign-up/${referenceUser.id}/${referenceUser.right}`
     : "https://backoffice.empowerittop.com/sign-up/9CXMbcJt2sNWG40zqWwQSxH8iki2/6e3c063e-091c-4ec0-81b7-0a855995382a";
 
   return (
