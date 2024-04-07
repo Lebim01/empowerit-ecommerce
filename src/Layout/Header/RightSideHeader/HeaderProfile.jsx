@@ -32,7 +32,7 @@ const HeaderProfile = () => {
             <Avatar
               data={{ original_url: accountData?.avatar }}
               customeClass="user-box me-2"
-              customImageClass="img-fluid rounded-circle bg-gray-200"
+              customImageClass="img-fluid rounded-circle"
               height={40}
               width={40}
             />

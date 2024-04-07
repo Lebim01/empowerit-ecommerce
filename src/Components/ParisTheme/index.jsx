@@ -69,8 +69,16 @@ const ParisTheme = () => {
 
       {referenceUser?.id && (
         <div
-          className="sticky bottom-4 border rounded-full overflow-hidden shadow-lg bg-white"
-          style={{ left: "100%", height: 80, width: 80, marginRight: 20 }}
+          className="rounded-circle overflow-hidden shadow-lg"
+          style={{
+            left: "100%",
+            height: 80,
+            width: 80,
+            marginRight: 20,
+            position: "sticky",
+            bottom: "1rem",
+            backgroundColor: "white",
+          }}
         >
           <img
             className="h-full w-full rounded-full"
