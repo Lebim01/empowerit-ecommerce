@@ -27,7 +27,6 @@ const FooterUseFul = ({ footerMenu, setFooterMenu }) => {
               {elem.type == "file" ? (
                 <a
                   href={elem.link}
-                  download
                   className="text-content text-capitalize"
                 >
                   {t(elem.label)}
