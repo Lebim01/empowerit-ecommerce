@@ -121,6 +121,16 @@
         {
           "label": "Search",
           "link": "search"
+        },
+        {
+          "label": "TermsAndConditions",
+          "link": "/assets/terms-conditions.pdf",
+          "type": "file"
+        },
+        {
+          "label": "PrivacyPolicy",
+          "link": "/assets/privacy-policy.pdf",
+          "type": "file"
         }
       ],
       "support_number": "+52-669-278-8388",

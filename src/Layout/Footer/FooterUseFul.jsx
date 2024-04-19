@@ -24,12 +24,22 @@ const FooterUseFul = ({ footerMenu, setFooterMenu }) => {
         <ul>
           {themeOption?.footer?.useful_link?.map((elem, i) => (
             <li key={i}>
-              <Link
-                href={`/${i18Lang}/${elem.link}`}
-                className="text-content text-capitalize"
-              >
-                {t(elem.label)}
-              </Link>
+              {elem.type == "file" ? (
+                <Link
+                  href={elem.link}
+                  download
+                  className="text-content text-capitalize"
+                >
+                  {t(elem.label)}
+                </Link>
+              ) : (
+                <Link
+                  href={`/${i18Lang}/${elem.link}`}
+                  className="text-content text-capitalize"
+                >
+                  {t(elem.label)}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

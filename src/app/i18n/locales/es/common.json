@@ -489,5 +489,7 @@
   "out_of_stock": "Agotado",
   "Add": "Añadir",
   "DeliveryOption": "Opciones de Envio",
-  "Billing": "Facturación"
+  "Billing": "Facturación",
+  "TermsAndConditions": "Términos y condiciones",
+  "PrivacyPolicy": "Políticas de Privacidad"
 }

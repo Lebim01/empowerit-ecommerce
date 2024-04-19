@@ -486,5 +486,7 @@
   "SocialLogin": "Social Login",
   "MyWish": "My Wish",
   "in_stock": "In Stock",
-  "out_of_stock": "Out Stock"
+  "out_of_stock": "Out Stock",
+  "TermsAndConditions": "Terms And Conditions",
+  "PrivacyPolicy": "Privacy Policy"
 }
