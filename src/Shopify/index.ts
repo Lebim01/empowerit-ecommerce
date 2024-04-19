@@ -11,4 +11,4 @@ const client = createGraphQLClient({
   retries: 1,
 });
 
-export default client;
+export default client; 
