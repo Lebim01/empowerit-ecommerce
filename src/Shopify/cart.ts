@@ -253,6 +253,10 @@ export const getShopifyCart = async (customer_id: string) => {
           invoiceUrl
           status
           totalPrice
+          customer {
+            id
+            displayName
+          }
           line_items: lineItems(first: 1) {
             nodes {
               id
@@ -281,6 +285,7 @@ export const getShopifyCart = async (customer_id: string) => {
       }
     }
   `;
+
   const { data, errors, extensions } =
     await client.request<ResponseGetDraftOrders>(query, {
       variables: {
@@ -293,6 +298,8 @@ export const getShopifyCart = async (customer_id: string) => {
       "gid://shopify/DraftOrder/",
       ""
     );
+
+    console.log(data.draftOrders.nodes[0])
 
     const order = {
       id,
