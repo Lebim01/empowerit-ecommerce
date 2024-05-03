@@ -13,7 +13,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
 const SubLayout = ({ children }) => {
-  const { data } = useSession();
+  const { data, status } = useSession();
   const [originalTitle] = useState(
     document.title || "Empowerit TOP Marketplace"
   );
@@ -25,7 +25,7 @@ const SubLayout = ({ children }) => {
   const accessToken = searchParams.get("accessToken");
 
   useEffect(() => {
-    if (accessToken && !data?.user) {
+    if (accessToken && status == "unauthenticated") {
       signIn("credentials", {
         accessToken,
       });
