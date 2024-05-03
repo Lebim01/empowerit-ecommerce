@@ -30,7 +30,7 @@ const SubLayout = ({ children }) => {
         accessToken,
       });
     }
-  }, [accessToken]);
+  }, [accessToken, status]);
 
   useEffect(() => {
     const message = ["⚡ Vuelve !!!", "🔥 No olvides estó....."];
