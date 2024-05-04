@@ -14,11 +14,7 @@ export async function PATCH(req: NextRequest, { params }) {
     const result = await updateNewCart({
       id: "gid://shopify/DraftOrder/" + cartID,
       email: session?.user?.email,
-      purchasingEntity: session
-        ? {
-            customerId: session?.user?.shopify_id,
-          }
-        : undefined,
+      customerId: session?.user?.shopify_id,
       lineItems: data.map((item) => ({
         quantity: item.quantity,
         variantId: "gid://shopify/ProductVariant/" + item.variation.id,
