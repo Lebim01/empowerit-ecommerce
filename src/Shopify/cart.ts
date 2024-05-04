@@ -33,6 +33,8 @@ type DraftOrderInput = {
   shippingAddress?: MailingAddressInput;
   useCustomerDefaultAddress?: boolean;
   purchasingEntity?: PurchasingEntityInput;
+  // prefix: gid://shopify/Customer/{id}
+  customerId: string;
 };
 
 type ResponseCreateDraf = {
@@ -289,7 +291,7 @@ export const getShopifyCart = async (customer_id: string) => {
   const { data, errors, extensions } =
     await client.request<ResponseGetDraftOrders>(query, {
       variables: {
-        query: "customerId:" + customer_id + "AND status:OPEN",
+        query: "customer_id:" + customer_id,
       },
     });
 
@@ -298,8 +300,6 @@ export const getShopifyCart = async (customer_id: string) => {
       "gid://shopify/DraftOrder/",
       ""
     );
-
-    console.log(data.draftOrders.nodes[0])
 
     const order = {
       id,

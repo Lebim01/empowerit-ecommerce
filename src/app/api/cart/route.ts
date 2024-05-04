@@ -54,9 +54,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
   const result = await createNewCart({
     email: session?.user?.email,
-    purchasingEntity: {
-      customerId: shopify_id,
-    },
+    customerId: shopify_id,
     lineItems: data.map((item) => ({
       quantity: item.quantity,
       variantId: item.variation
